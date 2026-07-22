@@ -636,24 +636,13 @@ const FilmSolutions = () => {
                             className="film-solution-item"
                             key={film.id}
                         >
-
-                            {/* ==================================
-                  IMAGE
-              ================================== */}
-
-                            <div className="film-solution-image">
+                              <div className="film-solution-image">
                                 <img
                                     src={film.image}
                                     alt={film.alt}
                                     loading="lazy"
                                 />
                             </div>
-
-
-                            {/* ==================================
-                  CONTENT
-              ================================== */}
-
                             <div className="film-solution-content">
 
                                 <h2 className="film-solution-title">

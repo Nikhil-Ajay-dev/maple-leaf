@@ -202,6 +202,7 @@ const AboutContent = () => {
         .about-content-section {
           background-color: #f5f4f0;
           padding: 90px 0;
+          text-align: left
         }
 
         .about-content-container {
@@ -254,8 +255,8 @@ const AboutContent = () => {
         }
 
         .about-image-column img {
-          width: 100%;
-          max-width: 480px;
+        //   width: 100%;
+          width: 600px;
           height: auto;
           aspect-ratio: 4 / 3;
           object-fit: cover;
@@ -428,6 +429,7 @@ const OurCommitment = () => {
           width: 100%;
           padding: 80px 0;
           will-change: transform;
+          text-align: left
         }
 
         .commitment-container {

@@ -64,8 +64,8 @@ function Header() {
                 </nav>
 
                 <div className="header-right">
-                    <a href="tel:647-808-4677" className="header-phone">
-                        <i className="fas fa-phone-alt"></i> 647-808-4677
+                    <a href="tel:226-503-6102" className="header-phone">
+                        <i className="fas fa-phone-alt"></i> 226-503-6102
                     </a>
                     <Link to="/contact" className="header-btn">GET FREE QUOTE</Link>
                     <div className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
