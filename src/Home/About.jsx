@@ -322,280 +322,172 @@ const AboutContent = () => {
 // ============================================
 // 3. COMMITMENT COMPONENT (with Parallax)
 // ============================================
+
 const OurCommitment = () => {
-    const sectionRef = useRef(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const section = sectionRef.current;
-            if (!section) return;
-
-            const scrollPosition = window.scrollY;
-            const sectionTop = section.offsetTop;
-            const offset = (scrollPosition - sectionTop) * 0.3;
-
-            const bgLayer = section.querySelector('.commitment-bg-layer');
-            if (bgLayer) {
-                bgLayer.style.transform = `translateY(${offset * 0.5}px) scale(1.1)`;
-            }
-
-            const content = section.querySelector('.commitment-content-wrapper');
-            if (content) {
-                content.style.transform = `translateY(${-offset * 0.2}px)`;
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <section className="commitment-section" ref={sectionRef}>
-                <div className="commitment-bg-layer"></div>
+            <section className="commitment-section">
+                {/* Dark semi-transparent overlay for text readability */}
                 <div className="commitment-overlay"></div>
 
-                <div className="commitment-content-wrapper">
-                    <div className="commitment-container">
-                        <div className="commitment-text-content">
-                            <h2 className="commitment-heading">Our Commitment</h2>
+                {/* Content Container */}
+                <div className="commitment-container">
+                    <div className="commitment-content-wrapper">
+                        <h2 className="commitment-heading">Our Commitment</h2>
 
-                            <p className="commitment-paragraph">
-                                At Maple Leaf Window Film Inc., we believe that our clients deserve the best.
-                                This is why we are committed to only using the highest quality materials and
-                                latest technology to ensure our products meet and exceed our client's expectations.
-                            </p>
+                        <p className="commitment-paragraph">
+                            At Maple Leaf Window Film Inc., we believe that our clients deserve the best.
+                            This is why we are committed to only using the highest quality materials and
+                            latest technology to ensure our products meet and exceed our client's expectations.
+                            Our team of experts is always available to help you choose the right window film
+                            for your needs and to provide professional installation services. We understand
+                            that every client's needs are unique, which is why we offer a wide range of
+                            customizable options to suit any project. Our commitment to excellence and
+                            customer satisfaction is what sets us apart from the competition.
+                        </p>
 
-                            <p className="commitment-paragraph">
-                                Our team of experts is always available to help you choose the right window film
-                                for your needs and to provide professional installation services. We understand
-                                that every client's needs are unique, which is why we offer a wide range of
-                                customizable options to suit any project.
-                            </p>
-
-                            <p className="commitment-paragraph">
-                                Our commitment to excellence and customer satisfaction is what sets us apart
-                                from the competition.
-                            </p>
-
-                            <button className="commitment-btn">
-                                Get a Free Estimate <i className="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        <button className="commitment-btn">
+                            Get a Free Estimate
+                        </button>
                     </div>
                 </div>
             </section>
 
+            {/* Embedded CSS */}
             <style>{`
         .commitment-section {
           position: relative;
-          min-height: 550px;
+          width: 100%;
+          min-height: 500px;
           display: flex;
           align-items: center;
+          justify-content: flex-end;
+          padding: 100px 0;
           overflow: hidden;
-          background: #0a0a0a;
-        }
 
-        .commitment-bg-layer {
-          position: absolute;
-          top: -20%;
-          left: 0;
-          width: 100%;
-          height: 140%;
-          background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop&crop=center');
-          background-size: cover;
+          /* --- PARALLAX EFFECT --- */
+          /* Sticky background image while text scrolls over it */
+          background-image: url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1600&auto=format&fit=crop');
+          background-attachment: fixed;
           background-position: center;
           background-repeat: no-repeat;
-          will-change: transform;
-          transform: scale(1.1);
-          z-index: 1;
+          background-size: cover;
         }
 
+        /* Overlay for subtle tinting & readability */
         .commitment-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            135deg,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(10, 10, 10, 0.75) 50%,
-            rgba(0, 0, 0, 0.85) 100%
-          );
-          z-index: 2;
-        }
-
-        .commitment-content-wrapper {
-          position: relative;
-          z-index: 3;
-          width: 100%;
-          padding: 80px 0;
-          will-change: transform;
-          text-align: left
+          background: rgba(0, 0, 0, 0.45);
+          z-index: 1;
         }
 
         .commitment-container {
+          position: relative;
+          z-index: 2;
           max-width: 1280px;
+          width: 100%;
           margin: 0 auto;
-          padding: 0 32px;
+          padding: 0 40px;
+          display: flex;
+          justify-content: flex-end; /* Align content to the right side as shown in screenshot */
         }
 
-        .commitment-text-content {
-          max-width: 720px;
+        .commitment-content-wrapper {
+          max-width: 580px;
           color: #ffffff;
+          text-align: left;
         }
 
         .commitment-heading {
           font-size: 3rem;
           font-weight: 800;
           color: #ffffff;
-          margin-bottom: 28px;
+          margin-bottom: 24px;
           letter-spacing: -0.5px;
-          text-transform: uppercase;
-        }
-
-        .commitment-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 4px;
-          background: #d32f2f;
-          margin-top: 12px;
-          border-radius: 2px;
+          line-height: 1.1;
         }
 
         .commitment-paragraph {
-          font-size: 1rem;
-          line-height: 1.8;
-          color: #e0e0e0;
-          margin-bottom: 20px;
-          font-weight: 300;
-          letter-spacing: 0.3px;
-        }
-
-        .commitment-paragraph:last-of-type {
+          font-size: 0.95rem;
+          line-height: 1.7;
+          color: #f0f0f0;
           margin-bottom: 32px;
+          font-weight: 400;
+          letter-spacing: 0.2px;
         }
 
+        /* Pill CTA Button (Matches Golden/Amber accent from mockup) */
         .commitment-btn {
-          background: #d32f2f;
+          background-color: #d32f2f; 
           color: #ffffff;
           border: none;
-          padding: 16px 40px;
-          font-size: 1rem;
+          padding: 14px 36px;
+          font-size: 0.95rem;
           font-weight: 700;
-          border-radius: 4px;
+          border-radius: 30px;
           cursor: pointer;
           transition: all 0.3s ease;
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .commitment-btn i {
-          font-size: 1.1rem;
-          transition: transform 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .commitment-btn:hover {
-          background: #b71c1c;
+           background: #b71c1c;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(211, 47, 47, 0.4);
-        }
-
-        .commitment-btn:hover i {
-          transform: translateX(6px);
+          box-shadow: 0 8px 24px rgba(211, 47, 47, 0.35);
         }
 
         .commitment-btn:active {
           transform: translateY(0);
-          box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
         }
 
+        /* Responsive Styles */
         @media (max-width: 992px) {
           .commitment-section {
-            min-height: 450px;
+            min-height: 500px;
+            padding: 80px 0;
           }
-          .commitment-content-wrapper {
-            padding: 60px 0;
-          }
+
           .commitment-heading {
-            font-size: 2.5rem;
-          }
-          .commitment-text-content {
-            max-width: 100%;
+            font-size: 2.4rem;
           }
         }
 
         @media (max-width: 768px) {
           .commitment-section {
-            min-height: 400px;
-          }
-          .commitment-content-wrapper {
-            padding: 50px 0;
-          }
-          .commitment-container {
-            padding: 0 20px;
-          }
-          .commitment-heading {
-            font-size: 2rem;
-            margin-bottom: 20px;
-          }
-          .commitment-heading::after {
-            width: 45px;
-            height: 3px;
-          }
-          .commitment-paragraph {
-            font-size: 0.92rem;
-            line-height: 1.7;
-          }
-          .commitment-btn {
-            padding: 14px 32px;
-            font-size: 0.9rem;
-            width: 100%;
+            /* Touch screens (iOS) sometimes disable attachment: fixed; fallback smoothly */
+            background-attachment: scroll; 
+            padding: 60px 0;
             justify-content: center;
           }
-        }
 
-        @media (max-width: 480px) {
-          .commitment-section {
-            min-height: 350px;
+          .commitment-container {
+            justify-content: center;
+            padding: 0 24px;
           }
+
           .commitment-content-wrapper {
-            padding: 40px 0;
+            max-width: 100%;
           }
+
           .commitment-heading {
-            font-size: 1.6rem;
+            font-size: 2rem;
           }
+
           .commitment-paragraph {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
           }
+
           .commitment-btn {
-            padding: 12px 24px;
-            font-size: 0.8rem;
-          }
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-          .commitment-text-content {
-            animation: fadeInUp 0.8s ease-out;
-          }
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+            width: 100%;
+            text-align: center;
           }
         }
       `}</style>
         </>
     );
 };
+
 
 // ============================================
 // 4. NUMBERS & TESTIMONIALS COMPONENT
