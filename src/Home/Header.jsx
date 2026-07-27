@@ -43,18 +43,18 @@ function Header() {
                     <div className="dropdown">
                         <NavLink to="/services">SERVICES <i className="fas fa-chevron-down"></i></NavLink>
                         <div className="dropdown-menu">
-                            <Link to="/services/anti-graffiti">Anti-Graffiti Window Films</Link>
-                            <Link to="/services/blinds">Blinds</Link>
-                            <Link to="/services/custom-printed-plotted-film">Custom Printed & Plotted Film</Link>
-                            <Link to="/services/daylight-redirection">Daylight Redirection Films</Link>
-                            <Link to="/services/decorative-tinting">Decorative Window Tinting</Link>
-                            <Link to="/services/feather-friendly">Feather Friendly Film</Link>
-                            <Link to="/services/heat-control">Heat Control Window Films</Link>
-                            <Link to="/services/privacy-film">Privacy Film</Link>
-                            <Link to="/services/security-film">Security Film</Link>
-                            <Link to="/services/solar-film">Solar Film</Link>
-                            <Link to="/services/wall-graphics">Wall Graphics</Link>
-                            <Link to="/services/way-finding">Way Finding Signage</Link>
+                            <Link to="/anti-graffiti">Anti-Graffiti Window Films</Link>
+                            <Link to="/blinds">Blinds</Link>
+                            <Link to="/custom-printed-plotted-film">Custom Printed & Plotted Film</Link>
+                            <Link to="/daylight-redirection">Daylight Redirection Films</Link>
+                            <Link to="/decorative-tinting">Decorative Window Tinting</Link>
+                            <Link to="/feather-friendly">Feather Friendly Film</Link>
+                            <Link to="/heat-control">Heat Control Window Films</Link>
+                            <Link to="/privacy-film">Privacy Film</Link>
+                            <Link to="/security-film">Security Film</Link>
+                            <Link to="/solar-film">Solar Film</Link>
+                            <Link to="/wall-graphics">Wall Graphics</Link>
+                            <Link to="/way-finding">Way Finding Signage</Link>
 
                         </div>
                     </div>
