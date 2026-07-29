@@ -25,6 +25,11 @@ const AboutHero = () => {
 
             {/* Hero Styles */}
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+        }
+
         .about-hero {
           position: relative;
           background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=700&fit=crop&crop=center') center/cover no-repeat;
@@ -37,7 +42,7 @@ const AboutHero = () => {
         .about-hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, rgba(18, 22, 25, 0.92) 0%, rgba(18, 22, 25, 0.75) 50%, rgba(18, 22, 25, 0.5) 100%);
+          background: linear-gradient(90deg, rgba(7, 21, 74, 0.92) 0%, rgba(7, 21, 74, 0.75) 50%, rgba(7, 21, 74, 0.5) 100%);
           z-index: 1;
         }
 
@@ -68,8 +73,8 @@ const AboutHero = () => {
         }
 
         .about-callout-box {
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           padding: 36px 48px;
           display: flex;
           flex-direction: column;
@@ -83,7 +88,7 @@ const AboutHero = () => {
         .callout-label {
           font-size: 1.1rem;
           font-weight: 600;
-          color: #ffffff;
+          color: var(--primary-blue);
           margin-bottom: 8px;
           letter-spacing: 0.5px;
         }
@@ -91,14 +96,14 @@ const AboutHero = () => {
         .callout-phone {
           font-size: 2.2rem;
           font-weight: 900;
-          color: #ffffff;
+          color: var(--primary-blue);
           text-decoration: none;
           letter-spacing: 1px;
           transition: opacity 0.2s ease;
         }
 
         .callout-phone:hover {
-          opacity: 0.9;
+          opacity: 0.7;
         }
 
         @media (max-width: 992px) {
@@ -199,6 +204,11 @@ const AboutContent = () => {
             </section>
 
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+        }
+
         .about-content-section {
           background-color: #f5f4f0;
           padding: 90px 0;
@@ -222,15 +232,26 @@ const AboutContent = () => {
         .about-heading {
           font-size: 2.5rem;
           font-weight: 800;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 28px;
           letter-spacing: -0.5px;
+          position: relative;
+        }
+
+        .about-heading::after {
+          content: '';
+          display: block;
+          width: 60px;
+          height: 3px;
+          background: var(--primary-gold);
+          margin-top: 12px;
+          border-radius: 2px;
         }
 
         .about-subheading {
           font-size: 1.2rem;
           font-weight: 800;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 24px;
           line-height: 1.35;
           max-width: 580px;
@@ -255,13 +276,18 @@ const AboutContent = () => {
         }
 
         .about-image-column img {
-        //   width: 100%;
           width: 600px;
           height: auto;
           aspect-ratio: 4 / 3;
           object-fit: cover;
           border-radius: 2px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 24px rgba(7, 21, 74, 0.08);
+          border: 2px solid rgba(214, 168, 0, 0.1);
+          transition: border-color 0.3s ease;
+        }
+
+        .about-image-column img:hover {
+          border-color: var(--primary-gold);
         }
 
         @media (max-width: 992px) {
@@ -279,6 +305,7 @@ const AboutContent = () => {
           }
           .about-image-column img {
             max-width: 100%;
+            width: 100%;
           }
         }
 
@@ -286,6 +313,9 @@ const AboutContent = () => {
           .about-heading {
             font-size: 2rem;
             margin-bottom: 20px;
+          }
+          .about-heading::after {
+            width: 50px;
           }
           .about-subheading {
             font-size: 1.05rem;
@@ -306,6 +336,9 @@ const AboutContent = () => {
         @media (max-width: 480px) {
           .about-heading {
             font-size: 1.6rem;
+          }
+          .about-heading::after {
+            width: 40px;
           }
           .about-subheading {
             font-size: 0.95rem;
@@ -355,6 +388,12 @@ const OurCommitment = () => {
 
             {/* Embedded CSS */}
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         .commitment-section {
           position: relative;
           width: 100%;
@@ -378,7 +417,7 @@ const OurCommitment = () => {
         .commitment-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0, 0, 0, 0.45);
+          background: rgba(7, 21, 74, 0.6);
           z-index: 1;
         }
 
@@ -406,6 +445,17 @@ const OurCommitment = () => {
           margin-bottom: 24px;
           letter-spacing: -0.5px;
           line-height: 1.1;
+          position: relative;
+        }
+
+        .commitment-heading::after {
+          content: '';
+          display: block;
+          width: 60px;
+          height: 3px;
+          background: var(--primary-gold);
+          margin-top: 12px;
+          border-radius: 2px;
         }
 
         .commitment-paragraph {
@@ -417,10 +467,10 @@ const OurCommitment = () => {
           letter-spacing: 0.2px;
         }
 
-        /* Pill CTA Button (Matches Golden/Amber accent from mockup) */
+        /* Pill CTA Button - Gold */
         .commitment-btn {
-          background-color: #d32f2f; 
-          color: #ffffff;
+          background-color: var(--primary-blue);
+          color: var(--primary-gold);
           border: none;
           padding: 14px 36px;
           font-size: 0.95rem;
@@ -428,13 +478,14 @@ const OurCommitment = () => {
           border-radius: 30px;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 15px rgba(214, 168, 0, 0.3);
         }
 
         .commitment-btn:hover {
-           background: #b71c1c;
+          background-color: var(--primary-gold);
+          color: var(--primary-blue);
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(211, 47, 47, 0.35);
+          box-shadow: 0 8px 24px rgba(214, 168, 0, 0.4);
         }
 
         .commitment-btn:active {
@@ -474,6 +525,10 @@ const OurCommitment = () => {
             font-size: 2rem;
           }
 
+          .commitment-heading::after {
+            width: 50px;
+          }
+
           .commitment-paragraph {
             font-size: 0.9rem;
           }
@@ -481,6 +536,26 @@ const OurCommitment = () => {
           .commitment-btn {
             width: 100%;
             text-align: center;
+            padding: 14px 24px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .commitment-heading {
+            font-size: 1.6rem;
+          }
+
+          .commitment-heading::after {
+            width: 40px;
+          }
+
+          .commitment-paragraph {
+            font-size: 0.85rem;
+          }
+
+          .commitment-btn {
+            font-size: 0.85rem;
+            padding: 12px 20px;
           }
         }
       `}</style>
@@ -606,6 +681,12 @@ const NumbersAndTestimonials = () => {
 
             {/* Numbers & Testimonials Styles */}
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         /* ============================================
            NUMBERS & TESTIMONIALS SECTION
            ============================================ */
@@ -625,7 +706,7 @@ const NumbersAndTestimonials = () => {
           text-align: center;
           font-size: 2.8rem;
           font-weight: 800;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 48px;
           letter-spacing: -0.5px;
           text-transform: uppercase;
@@ -636,7 +717,7 @@ const NumbersAndTestimonials = () => {
           display: block;
           width: 60px;
           height: 4px;
-          background: #d32f2f;
+          background: var(--primary-gold);
           margin: 12px auto 0;
           border-radius: 2px;
         }
@@ -660,14 +741,14 @@ const NumbersAndTestimonials = () => {
 
         .stat-item:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 24px rgba(7, 21, 74, 0.08);
         }
 
         .stat-number {
           display: block;
           font-size: 3.2rem;
           font-weight: 900;
-          color: #d32f2f;
+          color: var(--primary-gold);
           margin-bottom: 8px;
           letter-spacing: -1px;
         }
@@ -676,7 +757,7 @@ const NumbersAndTestimonials = () => {
           display: block;
           font-size: 1rem;
           font-weight: 600;
-          color: #555555;
+          color: var(--primary-blue);
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
@@ -692,7 +773,7 @@ const NumbersAndTestimonials = () => {
         .mission-statement p {
           font-size: 1.2rem;
           font-weight: 600;
-          color: #222222;
+          color: var(--primary-blue);
           line-height: 1.7;
           letter-spacing: 0.3px;
         }
@@ -737,7 +818,7 @@ const NumbersAndTestimonials = () => {
         .google-text {
           font-size: 1.1rem;
           font-weight: 700;
-          color: #222222;
+          color: var(--primary-blue);
         }
 
         .google-rating {
@@ -756,7 +837,7 @@ const NumbersAndTestimonials = () => {
         .rating-text {
           font-weight: 800;
           font-size: 1.1rem;
-          color: #222222;
+          color: var(--primary-blue);
         }
 
         .rating-count {
@@ -780,7 +861,7 @@ const NumbersAndTestimonials = () => {
         }
 
         .google-link:hover {
-          color: #1a73e8;
+          color: var(--primary-gold);
           text-decoration: underline;
         }
 
@@ -805,7 +886,7 @@ const NumbersAndTestimonials = () => {
 
         .testimonial-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 8px 24px rgba(7, 21, 74, 0.06);
         }
 
         .testimonial-author {
@@ -822,8 +903,8 @@ const NumbersAndTestimonials = () => {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           font-weight: 700;
           font-size: 1rem;
           flex-shrink: 0;
@@ -837,7 +918,7 @@ const NumbersAndTestimonials = () => {
         .author-name {
           font-weight: 700;
           font-size: 0.95rem;
-          color: #222222;
+          color: var(--primary-blue);
         }
 
         .author-date {
@@ -1072,6 +1153,12 @@ const WhatPeopleSay = () => {
 
             {/* Styles */}
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         /* ============================================
            WHAT PEOPLE SAY - FEATURED TESTIMONIALS
            Side by Side Layout
@@ -1092,7 +1179,7 @@ const WhatPeopleSay = () => {
           text-align: center;
           font-size: 2.8rem;
           font-weight: 800;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 48px;
           letter-spacing: -0.5px;
           text-transform: uppercase;
@@ -1104,7 +1191,7 @@ const WhatPeopleSay = () => {
           display: block;
           width: 60px;
           height: 4px;
-          background: #d32f2f;
+          background: var(--primary-gold);
           margin: 12px auto 0;
           border-radius: 2px;
         }
@@ -1121,7 +1208,7 @@ const WhatPeopleSay = () => {
           background: #ffffff;
           padding: 36px 40px;
           border-radius: 12px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4px 20px rgba(7, 21, 74, 0.06);
           border: 1px solid #e8e8e8;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           position: relative;
@@ -1132,12 +1219,12 @@ const WhatPeopleSay = () => {
 
         .testimonial-featured-card:hover {
           transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+          box-shadow: 0 12px 40px rgba(7, 21, 74, 0.10);
         }
 
         /* Quote Icon */
         .testimonial-featured-quote {
-          color: #d32f2f;
+          color: var(--primary-gold);
           font-size: 1.8rem;
           margin-bottom: 14px;
           opacity: 0.5;
@@ -1176,8 +1263,8 @@ const WhatPeopleSay = () => {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           font-weight: 700;
           font-size: 1.2rem;
           flex-shrink: 0;
@@ -1191,7 +1278,7 @@ const WhatPeopleSay = () => {
         .testimonial-featured-name {
           font-weight: 700;
           font-size: 1rem;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 2px;
         }
 
@@ -1410,6 +1497,12 @@ const WorryFreeSolutions = () => {
 
             {/* Styles */}
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         /* ============================================
            WORRY AND HASSLE FREE SOLUTIONS
            ============================================ */
@@ -1428,7 +1521,7 @@ const WorryFreeSolutions = () => {
           right: -20%;
           width: 600px;
           height: 600px;
-          background: radial-gradient(circle, rgba(211, 47, 47, 0.03) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(214, 168, 0, 0.05) 0%, transparent 70%);
           border-radius: 50%;
           pointer-events: none;
         }
@@ -1454,7 +1547,7 @@ const WorryFreeSolutions = () => {
         .worry-free-heading {
           font-size: 2.8rem;
           font-weight: 800;
-          color: #222222;
+          color: var(--primary-blue);
           margin-bottom: 20px;
           letter-spacing: -0.5px;
           line-height: 1.2;
@@ -1466,7 +1559,7 @@ const WorryFreeSolutions = () => {
           display: block;
           width: 60px;
           height: 4px;
-          background: #d32f2f;
+          background: var(--primary-gold);
           margin-top: 16px;
           border-radius: 2px;
         }
@@ -1510,8 +1603,8 @@ const WorryFreeSolutions = () => {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           font-size: 1.1rem;
           flex-shrink: 0;
           transition: transform 0.3s ease;
@@ -1530,7 +1623,7 @@ const WorryFreeSolutions = () => {
         .worry-free-feature-title {
           font-weight: 700;
           font-size: 0.95rem;
-          color: #222222;
+          color: var(--primary-blue);
         }
 
         .worry-free-feature-desc {
@@ -1541,8 +1634,8 @@ const WorryFreeSolutions = () => {
 
         /* Button */
         .worry-free-btn {
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           border: none;
           padding: 16px 40px;
           font-size: 1rem;
@@ -1564,9 +1657,10 @@ const WorryFreeSolutions = () => {
         }
 
         .worry-free-btn:hover {
-          background: #b71c1c;
+          background: var(--primary-blue);
+          color: #ffffff;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(211, 47, 47, 0.35);
+          box-shadow: 0 8px 24px rgba(7, 21, 74, 0.35);
         }
 
         .worry-free-btn:hover i {
@@ -1582,7 +1676,7 @@ const WorryFreeSolutions = () => {
           position: relative;
           border-radius: 12px;
           overflow: hidden;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+          box-shadow: 0 8px 32px rgba(7, 21, 74, 0.10);
         }
 
         .worry-free-image img {
@@ -1604,7 +1698,7 @@ const WorryFreeSolutions = () => {
           left: 0;
           right: 0;
           padding: 30px;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+          background: linear-gradient(transparent, rgba(7, 21, 74, 0.6));
         }
 
         .worry-free-badge {
@@ -1614,19 +1708,19 @@ const WorryFreeSolutions = () => {
           background: rgba(255, 255, 255, 0.95);
           padding: 12px 24px;
           border-radius: 50px;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+          box-shadow: 0 4px 16px rgba(7, 21, 74, 0.10);
           backdrop-filter: blur(8px);
         }
 
         .worry-free-badge i {
-          color: #d32f2f;
+          color: var(--primary-gold);
           font-size: 1.2rem;
         }
 
         .worry-free-badge span {
           font-weight: 700;
           font-size: 0.9rem;
-          color: #222222;
+          color: var(--primary-blue);
         }
 
         /* ============================================

@@ -27,11 +27,13 @@ const ServicesHero = () => {
                 </div>
             </section>
 
-            {/* Styles */}
             <style>{`
-        /* ============================================
-           SERVICES HERO SECTION
-           ============================================ */
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         .services-hero {
           position: relative;
           background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=600&fit=crop&crop=center') center/cover no-repeat;
@@ -44,7 +46,7 @@ const ServicesHero = () => {
         .services-hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, rgba(18, 22, 25, 0.92) 0%, rgba(18, 22, 25, 0.75) 50%, rgba(18, 22, 25, 0.5) 100%);
+          background: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(38, 38, 39, 0.5) 50%, rgba(43, 43, 44, 0.5) 100%);
           z-index: 1;
         }
 
@@ -78,7 +80,7 @@ const ServicesHero = () => {
         }
 
         .services-hero-breadcrumb span {
-          color: #d32f2f;
+          color: var(--primary-gold);
         }
 
         .services-hero-title {
@@ -96,7 +98,7 @@ const ServicesHero = () => {
           display: block;
           width: 60px;
           height: 4px;
-          background: #d32f2f;
+          background: var(--primary-gold);
           margin-top: 16px;
           border-radius: 2px;
         }
@@ -110,8 +112,8 @@ const ServicesHero = () => {
         }
 
         .services-hero-callout {
-          background: #d32f2f;
-          color: #ffffff;
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           padding: 32px 40px;
           display: flex;
           flex-direction: column;
@@ -128,7 +130,7 @@ const ServicesHero = () => {
         .services-callout-label {
           font-size: 1rem;
           font-weight: 600;
-          color: #ffffff;
+          color: var(--primary-blue);
           margin-bottom: 8px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
@@ -137,19 +139,15 @@ const ServicesHero = () => {
         .services-callout-phone {
           font-size: 2rem;
           font-weight: 900;
-          color: #ffffff;
+          color: var(--primary-blue);
           text-decoration: none;
           letter-spacing: 1px;
           transition: opacity 0.2s ease;
         }
 
         .services-callout-phone:hover {
-          opacity: 0.9;
+          opacity: 0.7;
         }
-
-        /* ============================================
-           RESPONSIVE BREAKPOINTS
-           ============================================ */
 
         @media (max-width: 992px) {
           .services-hero {
@@ -317,6 +315,12 @@ const CustomDesigns = () => {
             </section>
 
             <style>{`
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
         .custom-designs-section {
           width: 100%;
           background: #f3f2ef;
@@ -332,7 +336,6 @@ const CustomDesigns = () => {
           align-items: start;
         }
 
-        /* LEFT CONTENT */
         .custom-designs-content {
           padding: 60px 40px 60px 60px;
           display: flex;
@@ -343,14 +346,14 @@ const CustomDesigns = () => {
         .custom-designs-tag {
           display: block;
           margin-bottom: 35px;
-          color: #111f2d;
+          color: var(--primary-blue);
           font-size: 16px;
           font-weight: 700;
         }
 
         .custom-designs-heading {
           margin: 0 0 30px;
-          color: #10283d;
+          color: var(--primary-blue);
           font-size: 1.8rem;
           font-weight: 700;
           line-height: 1.35;
@@ -387,7 +390,7 @@ const CustomDesigns = () => {
         }
 
         .custom-designs-btn:hover {
-          color: #d32f2f;
+          color: var(--primary-gold);
           transform: translateX(4px);
         }
 
@@ -395,7 +398,6 @@ const CustomDesigns = () => {
           transform: translateX(3px);
         }
 
-        /* ACCORDION */
         .custom-designs-accordion {
           width: calc(100% - 30px);
           margin-top: 60px;
@@ -410,25 +412,24 @@ const CustomDesigns = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          color: #344f68;
+          color: var(--primary-blue);
           font-size: 18px;
           font-weight: 700;
         }
 
         .custom-designs-accordion-header i {
-          color: #000;
+          color: var(--primary-gold);
           font-size: 12px;
         }
 
         .custom-designs-accordion-body {
           padding: 0 20px 35px;
-          color: #000;
+          color: var(--primary-blue);
           font-size: 18px;
           line-height: 1.9;
           font-weight: 400;
         }
 
-        /* RIGHT IMAGE */
         .custom-designs-image {
           width: 71%;
           height: 350px;
@@ -448,7 +449,6 @@ const CustomDesigns = () => {
           transform: scale(1.03);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1200px) {
           .custom-designs-container {
             grid-template-columns: 1fr 1fr;
@@ -559,11 +559,6 @@ const CustomDesigns = () => {
 
 
 const FilmSolutions = () => {
-    // ============================================
-    // FILM DATA
-    // Add more film objects here
-    // ============================================
-
     const filmData = [
         {
             id: 1,
@@ -574,7 +569,6 @@ const FilmSolutions = () => {
                 "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop&crop=center",
             alt: "Energy saving window film",
         },
-
         {
             id: 2,
             title: "Decorative Film",
@@ -584,7 +578,6 @@ const FilmSolutions = () => {
                 "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop&crop=center",
             alt: "Decorative window film",
         },
-
         {
             id: 3,
             title: "Safety and Security Film",
@@ -594,7 +587,6 @@ const FilmSolutions = () => {
                 "https://images.unsplash.com/photo-1558008258-3256797b43f3?w=800&h=600&fit=crop&crop=center",
             alt: "Safety and security window film",
         },
-
         {
             id: 4,
             title: "Privacy Film",
@@ -604,7 +596,6 @@ const FilmSolutions = () => {
                 "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&crop=center",
             alt: "Privacy window film",
         },
-
         {
             id: 5,
             title: "Installation",
@@ -614,7 +605,6 @@ const FilmSolutions = () => {
                 "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&crop=center",
             alt: "Professional window film installation",
         },
-
         {
             id: 6,
             title: "Service & Repair",
@@ -630,47 +620,26 @@ const FilmSolutions = () => {
         <>
             <section className="film-solutions-section">
                 <div className="film-solutions-container">
-
                     {filmData.map((film) => (
-                        <article
-                            className="film-solution-item"
-                            key={film.id}
-                        >
-                              <div className="film-solution-image">
-                                <img
-                                    src={film.image}
-                                    alt={film.alt}
-                                    loading="lazy"
-                                />
+                        <article className="film-solution-item" key={film.id}>
+                            <div className="film-solution-image">
+                                <img src={film.image} alt={film.alt} loading="lazy" />
                             </div>
                             <div className="film-solution-content">
-
-                                <h2 className="film-solution-title">
-                                    {film.title}
-                                </h2>
-
-                                <p className="film-solution-description">
-                                    {film.description}
-                                </p>
-
+                                <h2 className="film-solution-title">{film.title}</h2>
+                                <p className="film-solution-description">{film.description}</p>
                             </div>
-
                         </article>
                     ))}
-
                 </div>
             </section>
 
-
-            {/* ============================================
-          STYLES
-      ============================================ */}
-
             <style>{`
-
-        /* ============================================
-           MAIN SECTION
-        ============================================ */
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
 
         .film-solutions-section {
           width: 100%;
@@ -680,11 +649,6 @@ const FilmSolutions = () => {
           text-align: left
         }
 
-
-        /* ============================================
-           MAIN CONTAINER
-        ============================================ */
-
         .film-solutions-container {
           width: 100%;
           max-width: 1100px;
@@ -692,297 +656,153 @@ const FilmSolutions = () => {
           padding: 0 20px;
         }
 
-
-        /* ============================================
-           SINGLE FILM ITEM
-        ============================================ */
-
         .film-solution-item {
           width: 100%;
-
           display: grid;
-
-          grid-template-columns:
-            350px
-            minmax(0, 1fr);
-
+          grid-template-columns: 350px minmax(0, 1fr);
           column-gap: 55px;
-
           align-items: start;
-
           margin-bottom: 100px;
         }
-
-
-        /* Remove margin from last item */
 
         .film-solution-item:last-child {
           margin-bottom: 0;
         }
 
-
-        /* ============================================
-           IMAGE
-        ============================================ */
-
         .film-solution-image {
           width: 100%;
           height: 230px;
-
           overflow: hidden;
-
           position: relative;
-
           background: #e8e7e4;
         }
-
 
         .film-solution-image img {
           width: 100%;
           height: 100%;
-
           display: block;
-
           object-fit: cover;
           object-position: center;
-
-          transition:
-            transform 0.5s ease;
+          transition: transform 0.5s ease;
         }
 
-
-        /* ============================================
-           IMAGE HOVER
-        ============================================ */
-
-        .film-solution-item:hover
-        .film-solution-image img {
+        .film-solution-item:hover .film-solution-image img {
           transform: scale(1.03);
         }
-
-
-        /* ============================================
-           CONTENT
-        ============================================ */
 
         .film-solution-content {
           padding-top: 5px;
         }
 
-
-        /* ============================================
-           TITLE
-        ============================================ */
-
         .film-solution-title {
           margin: 0 0 22px;
-
-          color: #10283d;
-
+          color: var(--primary-blue);
           font-size: 2rem;
-
           font-weight: 700;
-
           line-height: 1.25;
-
           letter-spacing: -0.5px;
         }
 
-
-        /* ============================================
-           DESCRIPTION
-        ============================================ */
-
         .film-solution-description {
           max-width: 620px;
-
           margin: 0;
-
           color: #294967;
-
           font-size: 16px;
-
           font-weight: 400;
-
           line-height: 1.9;
-
           letter-spacing: 0.2px;
         }
 
-
-        /* ============================================
-           TABLET
-        ============================================ */
-
         @media (max-width: 992px) {
-
           .film-solutions-section {
-            padding:
-              50px 0
-              70px;
+            padding: 50px 0 70px;
           }
-
 
           .film-solutions-container {
-            max-width:
-              900px;
+            max-width: 900px;
           }
-
 
           .film-solution-item {
-            grid-template-columns:
-              300px
-              minmax(0, 1fr);
-
-            column-gap:
-              35px;
-
-            margin-bottom:
-              75px;
+            grid-template-columns: 300px minmax(0, 1fr);
+            column-gap: 35px;
+            margin-bottom: 75px;
           }
-
 
           .film-solution-image {
-            height:
-              200px;
+            height: 200px;
           }
-
 
           .film-solution-title {
-            font-size:
-              1.7rem;
-
-            margin-bottom:
-              16px;
+            font-size: 1.7rem;
+            margin-bottom: 16px;
           }
-
 
           .film-solution-description {
-            font-size:
-              15px;
-
-            line-height:
-              1.8;
+            font-size: 15px;
+            line-height: 1.8;
           }
-
         }
-
-
-        /* ============================================
-           MOBILE
-        ============================================ */
 
         @media (max-width: 768px) {
-
           .film-solutions-section {
-            padding:
-              40px 0
-              60px;
+            padding: 40px 0 60px;
           }
-
 
           .film-solutions-container {
-            padding:
-              0 20px;
+            padding: 0 20px;
           }
-
 
           .film-solution-item {
-            display:
-              flex;
-
-            flex-direction:
-              column;
-
-            gap:
-              25px;
-
-            margin-bottom:
-              60px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 60px;
           }
-
 
           .film-solution-image {
-            width:
-              100%;
-
-            height:
-              220px;
+            width: 100%;
+            height: 220px;
           }
-
 
           .film-solution-content {
-            padding:
-              0;
+            padding: 0;
           }
-
 
           .film-solution-title {
-            font-size:
-              1.6rem;
-
-            line-height:
-              1.25;
-
-            margin-bottom:
-              18px;
+            font-size: 1.6rem;
+            line-height: 1.25;
+            margin-bottom: 18px;
           }
-
 
           .film-solution-description {
-            font-size:
-              14px;
-
-            line-height:
-              1.75;
+            font-size: 14px;
+            line-height: 1.75;
           }
-
         }
-
-
-        /* ============================================
-           SMALL MOBILE
-        ============================================ */
 
         @media (max-width: 480px) {
-
           .film-solutions-container {
-            padding:
-              0 16px;
+            padding: 0 16px;
           }
-
 
           .film-solution-item {
-            gap:
-              24px;
-
-            margin-bottom:
-              60px;
+            gap: 24px;
+            margin-bottom: 60px;
           }
-
 
           .film-solution-image {
-            height:
-              190px;
+            height: 190px;
           }
-
 
           .film-solution-title {
-            font-size:
-              1.4rem;
+            font-size: 1.4rem;
           }
-
 
           .film-solution-description {
-            font-size:
-              14px;
-
-            line-height:
-              1.75;
+            font-size: 14px;
+            line-height: 1.75;
           }
-
         }
-
       `}</style>
         </>
     );
@@ -996,13 +816,8 @@ const FreeEstimateSection = () => {
     return (
         <>
             <section className="free-estimate-section">
-                {/* Online Background Image */}
                 <div className="free-estimate-bg"></div>
-
-                {/* Dark Overlay */}
                 <div className="free-estimate-overlay"></div>
-
-                {/* Content */}
                 <div className="free-estimate-container">
                     <div className="free-estimate-content">
                         <h2 className="free-estimate-heading">
@@ -1026,9 +841,11 @@ const FreeEstimateSection = () => {
             </section>
 
             <style>{`
-        /* ============================================
-           FREE ESTIMATE CTA SECTION
-           ============================================ */
+        :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
 
         .free-estimate-section {
           position: relative;
@@ -1037,141 +854,97 @@ const FreeEstimateSection = () => {
           display: flex;
           align-items: center;
           overflow: hidden;
-          background: #1c292e;
+          background: var(--primary-blue);
         }
 
-        /* Online Background Image */
         .free-estimate-bg {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-
-          background-image: url(
-            'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1800&auto=format&fit=crop&q=85'
-          );
-
+          background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1800&auto=format&fit=crop&q=85');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
-
           z-index: 1;
-
           transition: transform 0.8s ease;
         }
 
-        /* Dark Overlay */
         .free-estimate-overlay {
           position: absolute;
           inset: 0;
-
           background: linear-gradient(
             90deg,
-            rgba(10, 20, 24, 0.92) 0%,
-            rgba(10, 20, 24, 0.84) 35%,
-            rgba(10, 20, 24, 0.65) 65%,
-            rgba(10, 20, 24, 0.72) 100%
+            rgba(7, 21, 74, 0.92) 0%,
+            rgba(7, 21, 74, 0.84) 35%,
+            rgba(7, 21, 74, 0.65) 65%,
+            rgba(7, 21, 74, 0.72) 100%
           );
-
           z-index: 2;
         }
 
-        /* Main Container */
         .free-estimate-container {
           position: relative;
           z-index: 3;
-
           width: 100%;
           max-width: 1200px;
-
           margin: 0 auto;
           padding: 80px 24px;
         }
 
-        /* Content */
         .free-estimate-content {
           max-width: 760px;
           color: #ffffff;
         }
 
-        /* Heading */
         .free-estimate-heading {
           margin: 0 0 40px;
-
           font-size: 3.2rem;
           line-height: 1.2;
           font-weight: 800;
-
           color: #ffffff;
-
           letter-spacing: -1px;
         }
 
-        /* Description */
         .free-estimate-description {
           max-width: 850px;
-
           margin: 0 0 50px;
-
           color: #ffffff;
-
           font-size: 1.15rem;
           line-height: 1.9;
           font-weight: 400;
         }
 
-        /* ============================================
-           BUTTON
-           ============================================ */
-
         .free-estimate-btn {
           position: relative;
-
           display: inline-flex;
           align-items: center;
           justify-content: center;
           gap: 14px;
-
           min-width: 270px;
-
           padding: 16px 32px;
-
-          border: 2px solid #d32f2f;
+          border: 2px solid var(--primary-gold);
           border-radius: 4px;
-
-          background: #d32f2f;
-          color: #ffffff;
-
+          background: var(--primary-gold);
+          color: var(--primary-blue);
           font-size: 1rem;
           font-weight: 700;
-
           cursor: pointer;
-
           overflow: hidden;
-
-          transition:
-            background 0.3s ease,
-            color 0.3s ease,
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+          transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .free-estimate-btn i {
           font-size: 0.9rem;
-
           transition: transform 0.3s ease;
         }
 
-        /* Button Hover */
         .free-estimate-btn:hover {
-          background: #b71c1c;
-          border-color: #b71c1c;
-
+          background: transparent;
+          border-color: var(--primary-gold);
+          color: var(--primary-gold);
           transform: translateY(-3px);
-
-          box-shadow:
-            0 8px 20px rgba(211, 47, 47, 0.35),
-            0 0 0 4px rgba(211, 47, 47, 0.12);
+          box-shadow: 0 8px 20px rgba(214, 168, 0, 0.35);
         }
 
         .free-estimate-btn:hover i {
@@ -1180,25 +953,14 @@ const FreeEstimateSection = () => {
 
         .free-estimate-btn:active {
           transform: translateY(-1px);
-          box-shadow:
-            0 4px 12px rgba(211, 47, 47, 0.3);
+          box-shadow: 0 4px 12px rgba(214, 168, 0, 0.3);
         }
-
-        /* ============================================
-           BACKGROUND HOVER EFFECT
-           ============================================ */
 
         .free-estimate-section:hover .free-estimate-bg {
           transform: scale(1.03);
         }
 
-
-        /* ============================================
-           TABLET
-           ============================================ */
-
         @media (max-width: 992px) {
-
           .free-estimate-section {
             min-height: 480px;
           }
@@ -1219,13 +981,7 @@ const FreeEstimateSection = () => {
           }
         }
 
-
-        /* ============================================
-           MOBILE
-           ============================================ */
-
         @media (max-width: 768px) {
-
           .free-estimate-section {
             min-height: 500px;
           }
@@ -1237,8 +993,8 @@ const FreeEstimateSection = () => {
           .free-estimate-overlay {
             background: linear-gradient(
               90deg,
-              rgba(10, 20, 24, 0.94) 0%,
-              rgba(10, 20, 24, 0.82) 100%
+              rgba(7, 21, 74, 0.94) 0%,
+              rgba(7, 21, 74, 0.82) 100%
             );
           }
 
@@ -1271,13 +1027,7 @@ const FreeEstimateSection = () => {
           }
         }
 
-
-        /* ============================================
-           SMALL MOBILE
-           ============================================ */
-
         @media (max-width: 480px) {
-
           .free-estimate-section {
             min-height: 520px;
           }
