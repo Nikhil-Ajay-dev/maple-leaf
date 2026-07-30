@@ -868,7 +868,7 @@ function HomePage() {
     },
   ];
 
-  const ImprovementCards = () => {
+const ImprovementCards = () => {
     const cards = [
       {
         id: 1,
@@ -921,7 +921,7 @@ function HomePage() {
               <h2>WHAT WOULD YOU LIKE TO IMPROVE?</h2>
               <span className="gold-line"></span>
             </div>
-            <div className="underline"></div>
+            {/* <div className="underline"></div> */}
           </div>
 
           <div className="cards-grid">
@@ -1008,10 +1008,11 @@ function HomePage() {
 
         .gold-line {
           flex: 1;
-          max-width: 60px;
-          height: 3px;
+          max-width: 80px;
+          height: 1.5px;
           background: linear-gradient(90deg, transparent, var(--primary-gold));
           border-radius: 2px;
+          margin-bottom: 6px;
         }
 
         .gold-line:last-child {
@@ -1027,6 +1028,7 @@ function HomePage() {
           margin: 0;
           position: relative;
           animation: titleGlow 3s ease-in-out infinite;
+          white-space: nowrap;
         }
 
         @keyframes titleGlow {
@@ -1256,6 +1258,10 @@ function HomePage() {
             grid-template-columns: repeat(3, 1fr);
             gap: 32px 20px;
           }
+
+          .gold-line {
+            max-width: 50px;
+          }
         }
 
         @media (max-width: 768px) {
@@ -1265,7 +1271,8 @@ function HomePage() {
           }
 
           .section-title h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            white-space: normal;
           }
 
           .title-decoration {
@@ -1284,12 +1291,16 @@ function HomePage() {
           }
 
           .section-title h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             letter-spacing: 0.5px;
           }
 
           .card-image {
             height: 160px;
+          }
+
+          .gold-line {
+            max-width: 20px;
           }
         }
       `}</style>
@@ -1864,7 +1875,7 @@ function HomePage() {
     },
   ];
 
-  const WhyChooseUs = () => {
+const WhyChooseUs = () => {
     const reasons = [
       {
         icon: "fas fa-check-circle",
@@ -1899,9 +1910,15 @@ function HomePage() {
           {/* Header Block */}
           <div className="why-header">
             <p className="why-eyebrow">WHY CHOOSE MAPLE LEAF WINDOW FILM</p>
-            <h2 className="why-main-title">
-              RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
-            </h2>
+            
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2 className="why-main-title">
+                RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
+              </h2>
+              <span className="line-right"></span>
+            </div>
+            
             <p className="why-description">
               We don't just install window film — we provide the right solution
               for your space.
@@ -1956,13 +1973,33 @@ function HomePage() {
           margin-bottom: 10px;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: 14px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 0 0 80px;
+          height: 2px;
+          background: linear-gradient(to right, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(to left, transparent, var(--primary-gold));
+        }
+
         .why-main-title {
           font-size: 1.85rem;
           font-weight: 900;
           color: var(--primary-blue);
           letter-spacing: 0.5px;
-          margin-bottom: 14px;
           text-transform: uppercase;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .why-description {
@@ -2049,15 +2086,34 @@ function HomePage() {
             border-right: none;
             margin-bottom: 20px;
           }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 40px;
+          }
+
+          .why-main-title {
+            font-size: 1.4rem;
+            white-space: normal;
+          }
         }
 
         @media (max-width: 600px) {
           .why-main-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
           }
 
           .why-card {
             flex: 1 1 100%;
+          }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2088,7 +2144,7 @@ function HomePage() {
     },
   ];
 
-  const FeaturedProjects = () => {
+const FeaturedProjects = () => {
     const projects = [
       {
         img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
@@ -2120,9 +2176,13 @@ function HomePage() {
       <section className="projects-section">
         <div className="container">
           <div className="projects-header">
-            <h2>FEATURED PROJECTS</h2>
-            <button className="view-all">VIEW ALL PROJECTS →</button>
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2>FEATURED PROJECTS</h2>
+              <span className="line-right"></span>
+            </div>
           </div>
+          
           <Swiper
             spaceBetween={20}
             slidesPerView={1.2}
@@ -2142,6 +2202,10 @@ function HomePage() {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          <div className="projects-footer">
+            <button className="view-all">VIEW ALL PROJECTS →</button>
+          </div>
         </div>
 
         <style>{`
@@ -2163,9 +2227,33 @@ function HomePage() {
 
         .projects-header {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           margin-bottom: 32px;
+        }
+
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          width: 100%;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 2px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
         }
 
         .projects-header h2 {
@@ -2174,16 +2262,24 @@ function HomePage() {
           color: var(--primary-blue);
           letter-spacing: 1px;
           text-transform: uppercase;
+          margin: 0;
+          white-space: nowrap;
+        }
+
+        .projects-footer {
+          display: flex;
+          justify-content: center;
+          margin-top: 32px;
         }
 
         .view-all {
           background: var(--primary-blue);
           color: white;
           border: none;
-          padding: 10px 24px;
+          padding: 12px 36px;
           border-radius: 4px;
           font-weight: 700;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           cursor: pointer;
           transition: all 0.3s ease;
           letter-spacing: 0.5px;
@@ -2252,15 +2348,30 @@ function HomePage() {
           height: auto;
         }
 
-        @media (max-width: 768px) {
-          .projects-header {
-            flex-direction: column;
-            gap: 16px;
-            align-items: flex-start;
+        @media (max-width: 992px) {
+          .line-left,
+          .line-right {
+            max-width: 50px;
           }
 
+          .heading-with-lines {
+            gap: 16px;
+          }
+        }
+
+        @media (max-width: 768px) {
           .projects-header h2 {
             font-size: 1.3rem;
+            white-space: normal;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
           }
 
           .view-all {
@@ -2276,6 +2387,15 @@ function HomePage() {
 
           .projects-header h2 {
             font-size: 1.1rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2306,7 +2426,7 @@ function HomePage() {
     },
   ];
 
-  const HowItWorks = () => {
+ const HowItWorks = () => {
     const steps = [
       {
         num: "01",
@@ -2334,8 +2454,11 @@ function HomePage() {
       <section className="how-it-works bg-gray">
         <div className="container">
           <div className="section-title">
-            <h2>HOW IT WORKS</h2>
-            <div className="underline"></div>
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2>HOW IT WORKS</h2>
+              <span className="line-right"></span>
+            </div>
           </div>
           <div className="steps">
             {steps.map((step, idx) => (
@@ -2380,21 +2503,37 @@ function HomePage() {
           margin-bottom: 40px;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 2px;
+          border-radius: 1px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .section-title h2 {
           font-size: 1.8rem;
           font-weight: 800;
           color: var(--primary-blue);
           letter-spacing: 1px;
-          margin-bottom: 12px;
           text-transform: uppercase;
-        }
-
-        .section-title .underline {
-          width: 50px;
-          height: 3px;
-          background: var(--primary-gold);
-          margin: 0 auto;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .steps { 
@@ -2479,6 +2618,17 @@ function HomePage() {
           flex-shrink: 0;
         }
 
+        @media (max-width: 992px) {
+          .line-left,
+          .line-right {
+            max-width: 50px;
+          }
+
+          .heading-with-lines {
+            gap: 16px;
+          }
+        }
+
         @media (max-width: 768px) {
           .step-card {
             min-width: 140px;
@@ -2492,6 +2642,16 @@ function HomePage() {
 
           .section-title h2 {
             font-size: 1.4rem;
+            white-space: normal;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
           }
         }
 
@@ -2499,6 +2659,19 @@ function HomePage() {
           .step-card {
             min-width: 100%;
             max-width: 100%;
+          }
+
+          .section-title h2 {
+            font-size: 1.1rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2570,7 +2743,7 @@ function HomePage() {
           <div>
             <button className="btn-gold">GET FREE QUOTE →</button>
             <p className="cta-phone">
-              or call <a href="tel:+16478084677">647-808-4677</a>
+              or call <a href="tel:+12265036102">226-503-6102</a>
             </p>
           </div>
         </div>
@@ -2765,7 +2938,7 @@ function HomePage() {
           <div>
             <h4>Contact</h4>
             <p>
-              <i className="fas fa-phone"></i> 647-808-4677
+              <i className="fas fa-phone"></i> 226-503-6102
             </p>
             <p>
               <i className="fas fa-envelope"></i> info@mapleleafwindowfilm.com

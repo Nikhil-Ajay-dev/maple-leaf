@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -82,8 +85,6 @@ a { text-decoration: none; color: inherit; }
 /* CTA */
 
 
-/* Footer */
-
 
 /* Responsive */
 @media (max-width: 992px) {
@@ -111,4 +112,18 @@ a { text-decoration: none; color: inherit; }
   .cta-inner { flex-direction: column; text-align: center; }
   .projects-header { flex-direction: column; gap: 12px; align-items: flex-start; }
   .cards-grid { grid-template-columns: 1fr 1fr; }
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2c2c2c;
+  letter-spacing: 0.2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
