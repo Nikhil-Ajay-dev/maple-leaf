@@ -1,33 +1,34 @@
-import React from 'react';
-import Header from './Header';
+import React, { useEffect } from "react";
+import Header from "./Header";
 
 // ============================================
 // SERVICES PAGE HERO COMPONENT
 // ============================================
 const ServicesHero = () => {
-    return (
-        <>
-            <section className="services-hero">
-                <div className="services-hero-overlay"></div>
-                <div className="services-hero-container">
-                    <div className="services-hero-content">
-                        <span className="services-hero-breadcrumb">Home / Services</span>
-                        <h1 className="services-hero-title">Services</h1>
-                        <p className="services-hero-text">
-                            Professional window film solutions for your residential and commercial needs
-                        </p>
-                    </div>
+  return (
+    <>
+      <section className="services-hero">
+        <div className="services-hero-overlay"></div>
+        <div className="services-hero-container">
+          <div className="services-hero-content">
+            <span className="services-hero-breadcrumb">Home / Services</span>
+            <h1 className="services-hero-title">Services</h1>
+            <p className="services-hero-text">
+              Professional window film solutions for your residential and
+              commercial needs
+            </p>
+          </div>
 
-                    <div className="services-hero-callout">
-                        <span className="services-callout-label">Call Today</span>
-                        <a href="tel:226-503-6102" className="services-callout-phone">
-                            226-503-6102
-                        </a>
-                    </div>
-                </div>
-            </section>
+          <div className="services-hero-callout">
+            <span className="services-callout-label">Call Today</span>
+            <a href="tel:226-503-6102" className="services-callout-phone">
+              226-503-6102
+            </a>
+          </div>
+        </div>
+      </section>
 
-            <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -263,58 +264,59 @@ const ServicesHero = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 // ============================================
 // CUSTOM DESIGNS SECTION
 // ============================================
 const CustomDesigns = () => {
-    return (
-        <>
-            <section className="custom-designs-section">
-                <div className="custom-designs-container">
-                    {/* LEFT CONTENT */}
-                    <div className="custom-designs-content">
-                        <span className="custom-designs-tag">Services</span>
-                        <h2 className="custom-designs-heading">
-                            Transform your space
-                            <br />
-                            with window film
-                        </h2>
-                        <p className="custom-designs-description">
-                            Whether you are looking to protect your home or office from vandalism using security film,
-                            reduce heat and glare with solar film, or reduce visibility with privacy film - our
-                            knowledgeable team is here to help.
-                        </p>
-                    </div>
+  return (
+    <>
+      <section className="custom-designs-section">
+        <div className="custom-designs-container">
+          {/* LEFT CONTENT */}
+          <div className="custom-designs-content">
+            <span className="custom-designs-tag">Services</span>
+            <h2 className="custom-designs-heading">
+              Transform your space
+              <br />
+              with window film
+            </h2>
+            <p className="custom-designs-description">
+              Whether you are looking to protect your home or office from
+              vandalism using security film, reduce heat and glare with solar
+              film, or reduce visibility with privacy film - our knowledgeable
+              team is here to help.
+            </p>
+          </div>
 
-                    {/* MIDDLE ACCORDION */}
-                    <div className="custom-designs-accordion">
-                        <div className="custom-designs-accordion-header">
-                            <span>Custom Designs</span>
-                        </div>
-                        <div className="custom-designs-accordion-body">
-                            Struggling to find the perfect design?
-                            <br />
-                            Our team is here to assist you with all
-                            <br />
-                            your project design requirements.
-                        </div>
-                    </div>
+          {/* MIDDLE ACCORDION */}
+          <div className="custom-designs-accordion">
+            <div className="custom-designs-accordion-header">
+              <span>Custom Designs</span>
+            </div>
+            <div className="custom-designs-accordion-body">
+              Struggling to find the perfect design?
+              <br />
+              Our team is here to assist you with all
+              <br />
+              your project design requirements.
+            </div>
+          </div>
 
-                    {/* RIGHT IMAGE */}
-                    <div className="custom-designs-image">
-                        <img
-                            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=800&fit=crop&crop=center"
-                            alt="Modern interior with large windows"
-                            loading="lazy"
-                        />
-                    </div>
-                </div>
-            </section>
+          {/* RIGHT IMAGE */}
+          <div className="custom-designs-image">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&h=800&fit=crop&crop=center"
+              alt="Modern interior with large windows"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
 
-            <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -551,90 +553,87 @@ const CustomDesigns = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 
-
-
-
 const FilmSolutions = () => {
-    const filmData = [
-        {
-            id: 1,
-            title: "Energy Saving Film",
-            description:
-                "Reduce energy consumption and save costs on cooling expenses with our energy efficient window film solutions. Our energy saving window films can help reduce energy consumption by up to 30% by reflecting sunrays back and preventing heat from escaping during winter months.",
-            image:
-                "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop&crop=center",
-            alt: "Energy saving window film",
-        },
-        {
-            id: 2,
-            title: "Decorative Film",
-            description:
-                "Looking for a way to dress up your storefront or interior? Our decorative film options allow you to add a touch of style to your commercial or residential space without breaking the bank.",
-            image:
-                "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop&crop=center",
-            alt: "Decorative window film",
-        },
-        {
-            id: 3,
-            title: "Safety and Security Film",
-            description:
-                "Discover how our safety and security films can protect against forced entry burglaries, reduce the risk of serious glass-impact injuries, and protect building occupants from flying glass fragments in the event of a blast or serious weather event.",
-            image:
-                "https://images.unsplash.com/photo-1558008258-3256797b43f3?w=800&h=600&fit=crop&crop=center",
-            alt: "Safety and security window film",
-        },
-        {
-            id: 4,
-            title: "Privacy Film",
-            description:
-                "Our window film provides an added layer of privacy and security for your commercial space while still allowing for natural light to flow through.",
-            image:
-                "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&crop=center",
-            alt: "Privacy window film",
-        },
-        {
-            id: 5,
-            title: "Installation",
-            description:
-                "Our skilled team of installers are committed to providing you with a quick and flawless installation. We pledge to complete the job to your full satisfaction.",
-            image:
-                "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&crop=center",
-            alt: "Professional window film installation",
-        },
-        {
-            id: 6,
-            title: "Service & Repair",
-            description:
-                "Issue with your window film? Our knowledgeable experts are happy to return to the site to inspect the issue and provide a resolution.",
-            image:
-                "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop&crop=center",
-            alt: "Window film service and repair",
-        },
-    ];
+  const filmData = [
+    {
+      id: 1,
+      title: "Energy Saving Film",
+      description:
+        "Reduce energy consumption and save costs on cooling expenses with our energy efficient window film solutions. Our energy saving window films can help reduce energy consumption by up to 30% by reflecting sunrays back and preventing heat from escaping during winter months.",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop&crop=center",
+      alt: "Energy saving window film",
+    },
+    {
+      id: 2,
+      title: "Decorative Film",
+      description:
+        "Looking for a way to dress up your storefront or interior? Our decorative film options allow you to add a touch of style to your commercial or residential space without breaking the bank.",
+      image:
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop&crop=center",
+      alt: "Decorative window film",
+    },
+    {
+      id: 3,
+      title: "Safety and Security Film",
+      description:
+        "Discover how our safety and security films can protect against forced entry burglaries, reduce the risk of serious glass-impact injuries, and protect building occupants from flying glass fragments in the event of a blast or serious weather event.",
+      image:
+        "https://images.unsplash.com/photo-1558008258-3256797b43f3?w=800&h=600&fit=crop&crop=center",
+      alt: "Safety and security window film",
+    },
+    {
+      id: 4,
+      title: "Privacy Film",
+      description:
+        "Our window film provides an added layer of privacy and security for your commercial space while still allowing for natural light to flow through.",
+      image:
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&crop=center",
+      alt: "Privacy window film",
+    },
+    {
+      id: 5,
+      title: "Installation",
+      description:
+        "Our skilled team of installers are committed to providing you with a quick and flawless installation. We pledge to complete the job to your full satisfaction.",
+      image:
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&crop=center",
+      alt: "Professional window film installation",
+    },
+    {
+      id: 6,
+      title: "Service & Repair",
+      description:
+        "Issue with your window film? Our knowledgeable experts are happy to return to the site to inspect the issue and provide a resolution.",
+      image:
+        "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop&crop=center",
+      alt: "Window film service and repair",
+    },
+  ];
 
-    return (
-        <>
-            <section className="film-solutions-section">
-                <div className="film-solutions-container">
-                    {filmData.map((film) => (
-                        <article className="film-solution-item" key={film.id}>
-                            <div className="film-solution-image">
-                                <img src={film.image} alt={film.alt} loading="lazy" />
-                            </div>
-                            <div className="film-solution-content">
-                                <h2 className="film-solution-title">{film.title}</h2>
-                                <p className="film-solution-description">{film.description}</p>
-                            </div>
-                        </article>
-                    ))}
-                </div>
-            </section>
+  return (
+    <>
+      <section className="film-solutions-section">
+        <div className="film-solutions-container">
+          {filmData.map((film) => (
+            <article className="film-solution-item" key={film.id}>
+              <div className="film-solution-image">
+                <img src={film.image} alt={film.alt} loading="lazy" />
+              </div>
+              <div className="film-solution-content">
+                <h2 className="film-solution-title">{film.title}</h2>
+                <p className="film-solution-description">{film.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-            <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -804,43 +803,42 @@ const FilmSolutions = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
-
 
 // ============================================
 // FREE ESTIMATE CTA SECTION
 // ============================================
 const FreeEstimateSection = () => {
-    return (
-        <>
-            <section className="free-estimate-section">
-                <div className="free-estimate-bg"></div>
-                <div className="free-estimate-overlay"></div>
-                <div className="free-estimate-container">
-                    <div className="free-estimate-content">
-                        <h2 className="free-estimate-heading">
-                            See How Window Film Can
-                            <br />
-                            Benefit Your Space
-                        </h2>
+  return (
+    <>
+      <section className="free-estimate-section">
+        <div className="free-estimate-bg"></div>
+        <div className="free-estimate-overlay"></div>
+        <div className="free-estimate-container">
+          <div className="free-estimate-content">
+            <h2 className="free-estimate-heading">
+              See How Window Film Can
+              <br />
+              Benefit Your Space
+            </h2>
 
-                        <p className="free-estimate-description">
-                            Contact us today to discuss your ideas for your space. Our
-                            skilled staff are available to answer your questions and
-                            determine what window film is best suited for you.
-                        </p>
+            <p className="free-estimate-description">
+              Contact us today to discuss your ideas for your space. Our skilled
+              staff are available to answer your questions and determine what
+              window film is best suited for you.
+            </p>
 
-                        <button className="free-estimate-btn">
-                            <span>Get a Free Estimate</span>
-                            <i className="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </section>
+            <button className="free-estimate-btn">
+              <span>Get a Free Estimate</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
 
-            <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -1050,24 +1048,31 @@ const FreeEstimateSection = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 
 // ============================================
 // SERVICES PAGE COMPONENT
 // ============================================
 function Services() {
-    return (
-        <>
-            <Header />
-            <ServicesHero />
-            <CustomDesigns />
-            <FilmSolutions />
-            <FreeEstimateSection />
-            {/* Add more sections here as needed */}
-        </>
-    );
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+  return (
+    <>
+      <Header />
+      <ServicesHero />
+      <CustomDesigns />
+      <FilmSolutions />
+      <FreeEstimateSection />
+      {/* Add more sections here as needed */}
+    </>
+  );
 }
 
 export default Services;

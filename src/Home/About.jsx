@@ -1,30 +1,30 @@
-import React, { useEffect, useRef } from 'react';
-import Header from './Header';
+import React, { useEffect, useRef } from "react";
+import Header from "./Header";
 
 // ============================================
 // 1. HERO BANNER COMPONENT
 // ============================================
 const AboutHero = () => {
-    return (
-        <>
-            <section className="about-hero">
-                <div className="about-hero-overlay"></div>
-                <div className="about-hero-container">
-                    <div className="about-hero-title">
-                        <h1>About The Company</h1>
-                    </div>
+  return (
+    <>
+      <section className="about-hero">
+        <div className="about-hero-overlay"></div>
+        <div className="about-hero-container">
+          <div className="about-hero-title">
+            <h1>About The Company</h1>
+          </div>
 
-                    <div className="about-callout-box">
-                        <span className="callout-label">Call Today</span>
-                        <a href="tel:226-503-6102" className="callout-phone">
-                            226-503-6102
-                        </a>
-                    </div>
-                </div>
-            </section>
+          <div className="about-callout-box">
+            <span className="callout-label">Call Today</span>
+            <a href="tel:226-503-6102" className="callout-phone">
+              226-503-6102
+            </a>
+          </div>
+        </div>
+      </section>
 
-            {/* Hero Styles */}
-            <style>{`
+      {/* Hero Styles */}
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -160,50 +160,57 @@ const AboutHero = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 
 // ============================================
 // 2. ABOUT CONTENT COMPONENT
 // ============================================
 const AboutContent = () => {
-    return (
-        <>
-            <section className="about-content-section">
-                <div className="about-content-container">
-                    <div className="about-text-column">
-                        <h2 className="about-heading">About Us</h2>
+  return (
+    <>
+      <section className="about-content-section">
+        <div className="about-content-container">
+          <div className="about-text-column">
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2 className="about-heading">About Us</h2>
+              <span className="line-right"></span>
+            </div>
 
-                        <h3 className="about-subheading">
-                            Maple Leaf Window Film Inc. is Canada's premier window film business.
-                        </h3>
+            <h3 className="about-subheading">
+              Maple Leaf Window Film Inc. is Canada's premier window film
+              business.
+            </h3>
 
-                        <p className="about-paragraph">
-                            Maple Leaf Window Film Inc. is a leading provider of window film solutions based in
-                            London, Ontario. Our team is dedicated to delivering quality products and exceptional
-                            service to our clients.
-                        </p>
+            <p className="about-paragraph">
+              Maple Leaf Window Film Inc. is a leading provider of window film
+              solutions based in London, Ontario. Our team is dedicated to
+              delivering quality products and exceptional service to our
+              clients.
+            </p>
 
-                        <p className="about-paragraph">
-                            With years of experience in the industry, we specialize in providing customized solutions
-                            for residential and commercial properties. Our range of window films offers energy
-                            efficiency, UV protection, privacy, and security benefits. Trust us to enhance the comfort
-                            and safety of your space.
-                        </p>
-                    </div>
+            <p className="about-paragraph">
+              With years of experience in the industry, we specialize in
+              providing customized solutions for residential and commercial
+              properties. Our range of window films offers energy efficiency, UV
+              protection, privacy, and security benefits. Trust us to enhance
+              the comfort and safety of your space.
+            </p>
+          </div>
 
-                    <div className="about-image-column">
-                        <img
-                            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
-                            alt="Low angle view of modern glass skyscraper"
-                            loading="lazy"
-                        />
-                    </div>
-                </div>
-            </section>
+          <div className="about-image-column">
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
+              alt="Low angle view of modern glass skyscraper"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
 
-            <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -229,23 +236,36 @@ const AboutContent = () => {
           flex: 1.2;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 20px;
+          margin-bottom: 28px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 0 0 60px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .about-heading {
           font-size: 2.5rem;
           font-weight: 800;
           color: var(--primary-blue);
-          margin-bottom: 28px;
           letter-spacing: -0.5px;
-          position: relative;
-        }
-
-        .about-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 3px;
-          background: var(--primary-gold);
-          margin-top: 12px;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .about-subheading {
@@ -307,16 +327,34 @@ const AboutContent = () => {
             max-width: 100%;
             width: 100%;
           }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 40px;
+          }
+
+          .heading-with-lines {
+            gap: 15px;
+          }
         }
 
         @media (max-width: 768px) {
           .about-heading {
             font-size: 2rem;
+            white-space: normal;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
             margin-bottom: 20px;
           }
-          .about-heading::after {
-            width: 50px;
+
+          .line-left,
+          .line-right {
+            flex: 0 0 30px;
+            height: 2px;
           }
+
           .about-subheading {
             font-size: 1.05rem;
             max-width: 100%;
@@ -337,9 +375,17 @@ const AboutContent = () => {
           .about-heading {
             font-size: 1.6rem;
           }
-          .about-heading::after {
-            width: 40px;
+
+          .heading-with-lines {
+            gap: 10px;
           }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 20px;
+            height: 2px;
+          }
+
           .about-subheading {
             font-size: 0.95rem;
           }
@@ -348,8 +394,8 @@ const AboutContent = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 
 // ============================================
@@ -357,37 +403,41 @@ const AboutContent = () => {
 // ============================================
 
 const OurCommitment = () => {
-    return (
-        <>
-            <section className="commitment-section">
-                {/* Dark semi-transparent overlay for text readability */}
-                <div className="commitment-overlay"></div>
+  return (
+    <>
+      <section className="commitment-section">
+        {/* Dark semi-transparent overlay for text readability */}
+        <div className="commitment-overlay"></div>
 
-                {/* Content Container */}
-                <div className="commitment-container">
-                    <div className="commitment-content-wrapper">
-                        <h2 className="commitment-heading">Our Commitment</h2>
+        {/* Content Container */}
+        <div className="commitment-container">
+          <div className="commitment-content-wrapper">
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2 className="commitment-heading">Our Commitment</h2>
+              <span className="line-right"></span>
+            </div>
 
-                        <p className="commitment-paragraph">
-                            At Maple Leaf Window Film Inc., we believe that our clients deserve the best.
-                            This is why we are committed to only using the highest quality materials and
-                            latest technology to ensure our products meet and exceed our client's expectations.
-                            Our team of experts is always available to help you choose the right window film
-                            for your needs and to provide professional installation services. We understand
-                            that every client's needs are unique, which is why we offer a wide range of
-                            customizable options to suit any project. Our commitment to excellence and
-                            customer satisfaction is what sets us apart from the competition.
-                        </p>
+            <p className="commitment-paragraph">
+              At Maple Leaf Window Film Inc., we believe that our clients
+              deserve the best. This is why we are committed to only using the
+              highest quality materials and latest technology to ensure our
+              products meet and exceed our client's expectations. Our team of
+              experts is always available to help you choose the right window
+              film for your needs and to provide professional installation
+              services. We understand that every client's needs are unique,
+              which is why we offer a wide range of customizable options to suit
+              any project. Our commitment to excellence and customer
+              satisfaction is what sets us apart from the competition.
+            </p>
 
-                        <button className="commitment-btn">
-                            Get a Free Estimate
-                        </button>
-                    </div>
-                </div>
-            </section>
+            <button className="commitment-btn">Get a Free Estimate</button>
+          </div>
+        </div>
+      </section>
 
-            {/* Embedded CSS */}
-            <style>{`
+      {/* Embedded CSS */}
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -438,24 +488,37 @@ const OurCommitment = () => {
           text-align: left;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 20px;
+          margin-bottom: 24px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 0 0 60px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .commitment-heading {
           font-size: 3rem;
           font-weight: 800;
           color: #ffffff;
-          margin-bottom: 24px;
           letter-spacing: -0.5px;
           line-height: 1.1;
-          position: relative;
-        }
-
-        .commitment-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 3px;
-          background: var(--primary-gold);
-          margin-top: 12px;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .commitment-paragraph {
@@ -502,6 +565,15 @@ const OurCommitment = () => {
           .commitment-heading {
             font-size: 2.4rem;
           }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 40px;
+          }
+
+          .heading-with-lines {
+            gap: 15px;
+          }
         }
 
         @media (max-width: 768px) {
@@ -523,10 +595,18 @@ const OurCommitment = () => {
 
           .commitment-heading {
             font-size: 2rem;
+            white-space: normal;
           }
 
-          .commitment-heading::after {
-            width: 50px;
+          .heading-with-lines {
+            gap: 12px;
+            margin-bottom: 20px;
+          }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 30px;
+            height: 2px;
           }
 
           .commitment-paragraph {
@@ -545,8 +625,14 @@ const OurCommitment = () => {
             font-size: 1.6rem;
           }
 
-          .commitment-heading::after {
-            width: 40px;
+          .heading-with-lines {
+            gap: 10px;
+          }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 20px;
+            height: 2px;
           }
 
           .commitment-paragraph {
@@ -559,128 +645,136 @@ const OurCommitment = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
-
 
 // ============================================
 // 4. NUMBERS & TESTIMONIALS COMPONENT
 // ============================================
 const NumbersAndTestimonials = () => {
-    return (
-        <>
-            <section className="numbers-section">
-                <div className="numbers-container">
-                    {/* Heading */}
-                    <h2 className="numbers-heading">Numbers Speak for Themselves</h2>
+  return (
+    <>
+      <section className="numbers-section">
+        <div className="numbers-container">
+          {/* Heading */}
+          <div className="heading-with-lines">
+            <span className="line-left"></span>
+            <h2 className="numbers-heading">Numbers Speak for Themselves</h2>
+            <span className="line-right"></span>
+          </div>
 
-                    {/* Stats Grid */}
-                    <div className="stats-grid">
-                        <div className="stat-item">
-                            <span className="stat-number">900+</span>
-                            <span className="stat-label">Satisfied Clients</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">7+</span>
-                            <span className="stat-label">Years of Experience</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">1,500+</span>
-                            <span className="stat-label">Completed Projects</span>
-                        </div>
-                    </div>
+          {/* Stats Grid */}
+          <div className="stats-grid">
+            <div className="stat-item">
+              <span className="stat-number">900+</span>
+              <span className="stat-label">Satisfied Clients</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">7+</span>
+              <span className="stat-label">Years of Experience</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">1,500+</span>
+              <span className="stat-label">Completed Projects</span>
+            </div>
+          </div>
 
-                    {/* Mission Statement */}
-                    <div className="mission-statement">
-                        <p>
-                            Knowledge, dependability, and diligence are the main focuses at
-                            Maple Leaf Window Film Inc.
-                        </p>
-                    </div>
+          {/* Mission Statement */}
+          <div className="mission-statement">
+            <p>
+              Knowledge, dependability, and diligence are the main focuses at
+              Maple Leaf Window Film Inc.
+            </p>
+          </div>
 
-                    {/* Google Reviews Section */}
-                    <div className="google-reviews-section">
-                        <div className="google-reviews-header">
-                            <div className="google-logo">
-                                <span className="google-icon">G</span>
-                                <span className="google-text">Maple Leaf Window film</span>
-                            </div>
-                            <div className="google-rating">
-                                <span className="rating-stars">★★★★★</span>
-                                <span className="rating-text">5.0</span>
-                                <span className="rating-count">Based on 6 reviews</span>
-                            </div>
-                            <div className="google-links">
-                                <a href="#" className="google-link">powered by Google</a>
-                                <span className="link-separator">|</span>
-                                <a href="#" className="google-link">review us on</a>
-                            </div>
-                        </div>
+          {/* Google Reviews Section */}
+          <div className="google-reviews-section">
+            <div className="google-reviews-header">
+              <div className="google-logo">
+                <span className="google-icon">G</span>
+                <span className="google-text">Maple Leaf Window film</span>
+              </div>
+              <div className="google-rating">
+                <span className="rating-stars">★★★★★</span>
+                <span className="rating-text">5.0</span>
+                <span className="rating-count">Based on 6 reviews</span>
+              </div>
+              <div className="google-links">
+                <a href="#" className="google-link">
+                  powered by Google
+                </a>
+                <span className="link-separator">|</span>
+                <a href="#" className="google-link">
+                  review us on
+                </a>
+              </div>
+            </div>
 
-                        {/* Testimonials Grid */}
-                        <div className="testimonials-grid">
-                            {/* Testimonial 1 */}
-                            <div className="testimonial-card">
-                                <div className="testimonial-author">
-                                    <div className="author-avatar">
-                                        <span>A</span>
-                                    </div>
-                                    <div className="author-info">
-                                        <span className="author-name">A Flynn</span>
-                                        <span className="author-date">3 years ago</span>
-                                    </div>
-                                </div>
-                                <div className="testimonial-stars">★★★★★</div>
-                                <p className="testimonial-text">
-                                    We had solar film installed in the front windows of the house.
-                                    Shiv's product knowledge is extensive and he is professional
-                                    to work with. We
-                                </p>
-                            </div>
-
-                            {/* Testimonial 2 */}
-                            <div className="testimonial-card">
-                                <div className="testimonial-author">
-                                    <div className="author-avatar">
-                                        <span>G</span>
-                                    </div>
-                                    <div className="author-info">
-                                        <span className="author-name">Asif Akhtar</span>
-                                        <span className="author-date">3 years ago</span>
-                                    </div>
-                                </div>
-                                <div className="testimonial-stars">★★★★★</div>
-                                <p className="testimonial-text">
-                                    I worked on a wall graphic project with Maple Leaf Window Film Inc.
-                                    They were easy to work with, responsive, and professional. The
-                                </p>
-                            </div>
-
-                            {/* Testimonial 3 */}
-                            <div className="testimonial-card">
-                                <div className="testimonial-author">
-                                    <div className="author-avatar">
-                                        <span>G</span>
-                                    </div>
-                                    <div className="author-info">
-                                        <span className="author-name">Joe C</span>
-                                        <span className="author-date">3 years ago</span>
-                                    </div>
-                                </div>
-                                <div className="testimonial-stars">★★★★★</div>
-                                <p className="testimonial-text">
-                                    Very happy with the work performed by Shiv and would highly
-                                    recommend Maple Leaf Window film. My wife wanted to install a
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            {/* Testimonials Grid */}
+            <div className="testimonials-grid">
+              {/* Testimonial 1 */}
+              <div className="testimonial-card">
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span>A</span>
+                  </div>
+                  <div className="author-info">
+                    <span className="author-name">A Flynn</span>
+                    <span className="author-date">3 years ago</span>
+                  </div>
                 </div>
-            </section>
+                <div className="testimonial-stars">★★★★★</div>
+                <p className="testimonial-text">
+                  We had solar film installed in the front windows of the house.
+                  Shiv's product knowledge is extensive and he is professional
+                  to work with. We
+                </p>
+              </div>
 
-            {/* Numbers & Testimonials Styles */}
-            <style>{`
+              {/* Testimonial 2 */}
+              <div className="testimonial-card">
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span>G</span>
+                  </div>
+                  <div className="author-info">
+                    <span className="author-name">Asif Akhtar</span>
+                    <span className="author-date">3 years ago</span>
+                  </div>
+                </div>
+                <div className="testimonial-stars">★★★★★</div>
+                <p className="testimonial-text">
+                  I worked on a wall graphic project with Maple Leaf Window Film
+                  Inc. They were easy to work with, responsive, and
+                  professional. The
+                </p>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="testimonial-card">
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span>G</span>
+                  </div>
+                  <div className="author-info">
+                    <span className="author-name">Joe C</span>
+                    <span className="author-date">3 years ago</span>
+                  </div>
+                </div>
+                <div className="testimonial-stars">★★★★★</div>
+                <p className="testimonial-text">
+                  Very happy with the work performed by Shiv and would highly
+                  recommend Maple Leaf Window film. My wife wanted to install a
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Numbers & Testimonials Styles */}
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -702,24 +796,37 @@ const NumbersAndTestimonials = () => {
         }
 
         /* Heading */
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          margin-bottom: 48px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .numbers-heading {
-          text-align: center;
           font-size: 2.8rem;
           font-weight: 800;
           color: var(--primary-blue);
-          margin-bottom: 48px;
           letter-spacing: -0.5px;
-          text-transform: uppercase;
-        }
-
-        .numbers-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 4px;
-          background: var(--primary-gold);
-          margin: 12px auto 0;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         /* Stats Grid */
@@ -953,6 +1060,15 @@ const NumbersAndTestimonials = () => {
             font-size: 2.2rem;
           }
 
+          .line-left,
+          .line-right {
+            max-width: 50px;
+          }
+
+          .heading-with-lines {
+            gap: 16px;
+          }
+
           .stats-grid {
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
@@ -983,7 +1099,17 @@ const NumbersAndTestimonials = () => {
 
           .numbers-heading {
             font-size: 1.8rem;
+            white-space: normal;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
             margin-bottom: 32px;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
           }
 
           .stats-grid {
@@ -1041,8 +1167,14 @@ const NumbersAndTestimonials = () => {
             font-size: 1.5rem;
           }
 
-          .numbers-heading::after {
-            width: 40px;
+          .heading-with-lines {
+            gap: 10px;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+            height: 2px;
           }
 
           .stat-number {
@@ -1074,85 +1206,88 @@ const NumbersAndTestimonials = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
-
 
 // ============================================
 // WHAT PEOPLE SAY - TESTIMONIALS COMPONENT
 // Side by Side Layout
 // ============================================
 const WhatPeopleSay = () => {
-    return (
-        <>
-            <section className="testimonials-featured-section">
-                <div className="testimonials-featured-container">
-                    {/* Section Heading */}
-                    <h2 className="testimonials-featured-heading">What people say?</h2>
+  return (
+    <>
+      <section className="testimonials-featured-section">
+        <div className="testimonials-featured-container">
+          {/* Section Heading */}
+          <div className="heading-with-lines">
+            <span className="line-left"></span>
+            <h2 className="testimonials-featured-heading">What people say?</h2>
+            <span className="line-right"></span>
+          </div>
 
-                    {/* Testimonials Grid - Side by Side */}
-                    <div className="testimonials-featured-grid">
-                        {/* Featured Testimonial 1 */}
-                        <div className="testimonial-featured-card">
-                            <div className="testimonial-featured-quote">
-                                <i className="fas fa-quote-left"></i>
-                            </div>
-                            <p className="testimonial-featured-text">
-                                "We have worked on multiple projects with Maple Leaf Film Inc. All the jobs
-                                they have completed for us were done to the highest quality standards,
-                                on time, and on budget. Shiv's commitment to getting the job done is
-                                exceptional - even working over a long weekend to meet the schedule.
-                                His expertise, professionalism, and dedication resulted in a flawless
-                                installation that exceeded our expectations. We highly recommend
-                                Maple Leaf Window Film Inc. for any window film project."
-                            </p>
-                            <div className="testimonial-featured-author">
-                                <div className="testimonial-featured-avatar">
-                                    <span>E</span>
-                                </div>
-                                <div className="testimonial-featured-info">
-                                    <span className="testimonial-featured-name">
-                                        Eco Architectural Glass Inc.
-                                    </span>
-                                    <span className="testimonial-featured-location">
-                                        LONDON, ON
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Featured Testimonial 2 */}
-                        <div className="testimonial-featured-card">
-                            <div className="testimonial-featured-quote">
-                                <i className="fas fa-quote-left"></i>
-                            </div>
-                            <p className="testimonial-featured-text">
-                                "Maple Leaf Window Film Inc. provided exceptional service. The team was
-                                professional and knowledgeable, and the window film they installed
-                                looks amazing! I am so happy with the results and highly recommend
-                                their services to anyone in need of high quality window film."
-                            </p>
-                            <div className="testimonial-featured-author">
-                                <div className="testimonial-featured-avatar">
-                                    <span>J</span>
-                                </div>
-                                <div className="testimonial-featured-info">
-                                    <span className="testimonial-featured-name">
-                                        Jennifer L.
-                                    </span>
-                                    <span className="testimonial-featured-location">
-                                        LONDON, ON
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          {/* Testimonials Grid - Side by Side */}
+          <div className="testimonials-featured-grid">
+            {/* Featured Testimonial 1 */}
+            <div className="testimonial-featured-card">
+              <div className="testimonial-featured-quote">
+                <i className="fas fa-quote-left"></i>
+              </div>
+              <p className="testimonial-featured-text">
+                "We have worked on multiple projects with Maple Leaf Film Inc.
+                All the jobs they have completed for us were done to the highest
+                quality standards, on time, and on budget. Shiv's commitment to
+                getting the job done is exceptional - even working over a long
+                weekend to meet the schedule. His expertise, professionalism,
+                and dedication resulted in a flawless installation that exceeded
+                our expectations. We highly recommend Maple Leaf Window Film
+                Inc. for any window film project."
+              </p>
+              <div className="testimonial-featured-author">
+                <div className="testimonial-featured-avatar">
+                  <span>E</span>
                 </div>
-            </section>
+                <div className="testimonial-featured-info">
+                  <span className="testimonial-featured-name">
+                    Eco Architectural Glass Inc.
+                  </span>
+                  <span className="testimonial-featured-location">
+                    LONDON, ON
+                  </span>
+                </div>
+              </div>
+            </div>
 
-            {/* Styles */}
-            <style>{`
+            {/* Featured Testimonial 2 */}
+            <div className="testimonial-featured-card">
+              <div className="testimonial-featured-quote">
+                <i className="fas fa-quote-left"></i>
+              </div>
+              <p className="testimonial-featured-text">
+                "Maple Leaf Window Film Inc. provided exceptional service. The
+                team was professional and knowledgeable, and the window film
+                they installed looks amazing! I am so happy with the results and
+                highly recommend their services to anyone in need of high
+                quality window film."
+              </p>
+              <div className="testimonial-featured-author">
+                <div className="testimonial-featured-avatar">
+                  <span>J</span>
+                </div>
+                <div className="testimonial-featured-info">
+                  <span className="testimonial-featured-name">Jennifer L.</span>
+                  <span className="testimonial-featured-location">
+                    LONDON, ON
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Styles */}
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -1175,25 +1310,37 @@ const WhatPeopleSay = () => {
         }
 
         /* Heading */
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          margin-bottom: 48px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .testimonials-featured-heading {
-          text-align: center;
           font-size: 2.8rem;
           font-weight: 800;
           color: var(--primary-blue);
-          margin-bottom: 48px;
           letter-spacing: -0.5px;
-          text-transform: uppercase;
-          position: relative;
-        }
-
-        .testimonials-featured-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 4px;
-          background: var(--primary-gold);
-          margin: 12px auto 0;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         /* Testimonials Grid - Side by Side */
@@ -1300,6 +1447,15 @@ const WhatPeopleSay = () => {
 
           .testimonials-featured-heading {
             font-size: 2.2rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 50px;
+          }
+
+          .heading-with-lines {
+            gap: 16px;
             margin-bottom: 36px;
           }
 
@@ -1323,12 +1479,17 @@ const WhatPeopleSay = () => {
 
           .testimonials-featured-heading {
             font-size: 1.8rem;
+            white-space: normal;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
             margin-bottom: 28px;
           }
 
-          .testimonials-featured-heading::after {
-            width: 45px;
-            height: 3px;
+          .line-left,
+          .line-right {
+            max-width: 30px;
           }
 
           /* Stack vertically on mobile */
@@ -1376,12 +1537,17 @@ const WhatPeopleSay = () => {
 
           .testimonials-featured-heading {
             font-size: 1.5rem;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
             margin-bottom: 24px;
           }
 
-          .testimonials-featured-heading::after {
-            width: 35px;
-            height: 3px;
+          .line-left,
+          .line-right {
+            max-width: 20px;
+            height: 2px;
           }
 
           .testimonial-featured-card {
@@ -1418,85 +1584,105 @@ const WhatPeopleSay = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 // ============================================
 // WORRY AND HASSLE FREE SOLUTIONS COMPONENT
 // ============================================
 const WorryFreeSolutions = () => {
-    return (
-        <>
-            <section className="worry-free-section">
-                <div className="worry-free-container">
-                    <div className="worry-free-content">
-                        <h2 className="worry-free-heading">
-                            Worry and Hassle Free Solutions
-                        </h2>
+  return (
+    <>
+      <section className="worry-free-section">
+        <div className="worry-free-container">
+          {/* Heading on top */}
+          <div className="worry-free-header">
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2 className="worry-free-heading">
+                Worry and Hassle Free Solutions
+              </h2>
+              <span className="line-right"></span>
+            </div>
+          </div>
 
-                        <p className="worry-free-text">
-                            Expert installation of high quality window film that provides privacy,
-                            reduces heat and glare, and enhances the appearance of your building.
-                            Our team of skilled professionals will ensure a flawless application
-                            that lasts for years to come.
-                        </p>
+          {/* Content and Image Grid */}
+          <div className="worry-free-grid">
+            <div className="worry-free-content">
+              <p className="worry-free-text">
+                Expert installation of high quality window film that provides
+                privacy, reduces heat and glare, and enhances the appearance of
+                your building. Our team of skilled professionals will ensure a
+                flawless application that lasts for years to come.
+              </p>
 
-                        <div className="worry-free-features">
-                            <div className="worry-free-feature">
-                                <div className="worry-free-icon">
-                                    <i className="fas fa-shield-alt"></i>
-                                </div>
-                                <div className="worry-free-feature-text">
-                                    <span className="worry-free-feature-title">Privacy</span>
-                                    <span className="worry-free-feature-desc">Enhanced privacy without sacrificing light</span>
-                                </div>
-                            </div>
-
-                            <div className="worry-free-feature">
-                                <div className="worry-free-icon">
-                                    <i className="fas fa-sun"></i>
-                                </div>
-                                <div className="worry-free-feature-text">
-                                    <span className="worry-free-feature-title">Heat & Glare Reduction</span>
-                                    <span className="worry-free-feature-desc">Stay comfortable with reduced heat and glare</span>
-                                </div>
-                            </div>
-
-                            <div className="worry-free-feature">
-                                <div className="worry-free-icon">
-                                    <i className="fas fa-building"></i>
-                                </div>
-                                <div className="worry-free-feature-text">
-                                    <span className="worry-free-feature-title">Enhanced Appearance</span>
-                                    <span className="worry-free-feature-desc">Improve the look of your building</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button className="worry-free-btn">
-                            Get Free Estimate <i className="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-
-                    {/* Right Image Column */}
-                    <div className="worry-free-image">
-                        <img
-                            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&crop=center"
-                            alt="Modern glass building with window film"
-                            loading="lazy"
-                        />
-                        <div className="worry-free-image-overlay">
-                            <div className="worry-free-badge">
-                                <i className="fas fa-check-circle"></i>
-                                <span>100% Satisfaction Guaranteed</span>
-                            </div>
-                        </div>
-                    </div>
+              <div className="worry-free-features">
+                <div className="worry-free-feature">
+                  <div className="worry-free-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <div className="worry-free-feature-text">
+                    <span className="worry-free-feature-title">Privacy</span>
+                    <span className="worry-free-feature-desc">
+                      Enhanced privacy without sacrificing light
+                    </span>
+                  </div>
                 </div>
-            </section>
 
-            {/* Styles */}
-            <style>{`
+                <div className="worry-free-feature">
+                  <div className="worry-free-icon">
+                    <i className="fas fa-sun"></i>
+                  </div>
+                  <div className="worry-free-feature-text">
+                    <span className="worry-free-feature-title">
+                      Heat & Glare Reduction
+                    </span>
+                    <span className="worry-free-feature-desc">
+                      Stay comfortable with reduced heat and glare
+                    </span>
+                  </div>
+                </div>
+
+                <div className="worry-free-feature">
+                  <div className="worry-free-icon">
+                    <i className="fas fa-building"></i>
+                  </div>
+                  <div className="worry-free-feature-text">
+                    <span className="worry-free-feature-title">
+                      Enhanced Appearance
+                    </span>
+                    <span className="worry-free-feature-desc">
+                      Improve the look of your building
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <button className="worry-free-btn">
+                Get Free Estimate <i className="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            {/* Right Image Column */}
+            <div className="worry-free-image">
+              <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&crop=center"
+                alt="Modern glass building with window film"
+                loading="lazy"
+              />
+              <div className="worry-free-image-overlay">
+                <div className="worry-free-badge">
+                  <i className="fas fa-check-circle"></i>
+                  <span>100% Satisfaction Guaranteed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Styles */}
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -1530,38 +1716,60 @@ const WorryFreeSolutions = () => {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 24px;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 60px;
-          align-items: center;
           position: relative;
           z-index: 1;
         }
 
-        /* Content */
-        .worry-free-content {
+        /* Header with Heading */
+        .worry-free-header {
+          margin-bottom: 40px;
+        }
+
+        .heading-with-lines {
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
         }
 
         .worry-free-heading {
           font-size: 2.8rem;
           font-weight: 800;
           color: var(--primary-blue);
-          margin-bottom: 20px;
           letter-spacing: -0.5px;
           line-height: 1.2;
-          text-transform: uppercase;
+          margin: 0;
+          white-space: nowrap;
         }
 
-        .worry-free-heading::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 4px;
-          background: var(--primary-gold);
-          margin-top: 16px;
-          border-radius: 2px;
+        /* Grid for content and image */
+        .worry-free-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          align-items: center;
+        }
+
+        /* Content */
+        .worry-free-content {
+          display: flex;
+          flex-direction: column;
         }
 
         .worry-free-text {
@@ -1732,13 +1940,22 @@ const WorryFreeSolutions = () => {
             padding: 60px 0;
           }
 
-          .worry-free-container {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-
           .worry-free-heading {
             font-size: 2.2rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 50px;
+          }
+
+          .heading-with-lines {
+            gap: 16px;
+          }
+
+          .worry-free-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
           }
 
           .worry-free-text {
@@ -1771,11 +1988,21 @@ const WorryFreeSolutions = () => {
 
           .worry-free-heading {
             font-size: 1.8rem;
+            white-space: normal;
           }
 
-          .worry-free-heading::after {
-            width: 45px;
-            height: 3px;
+          .heading-with-lines {
+            gap: 12px;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
+            height: 2px;
+          }
+
+          .worry-free-header {
+            margin-bottom: 30px;
           }
 
           .worry-free-text {
@@ -1836,9 +2063,18 @@ const WorryFreeSolutions = () => {
             font-size: 1.5rem;
           }
 
-          .worry-free-heading::after {
-            width: 35px;
-            height: 3px;
+          .heading-with-lines {
+            gap: 10px;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+            height: 2px;
+          }
+
+          .worry-free-header {
+            margin-bottom: 24px;
           }
 
           .worry-free-text {
@@ -1889,24 +2125,31 @@ const WorryFreeSolutions = () => {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 };
 // ============================================
 // 5. MAIN ABOUT COMPONENT
 // ============================================
 function About() {
-    return (
-        <div>
-            <Header />
-            <AboutHero />
-            <AboutContent />
-            <OurCommitment />
-            <NumbersAndTestimonials />
-            <WhatPeopleSay />
-            <WorryFreeSolutions />
-        </div>
-    );
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+  return (
+    <div>
+      <Header />
+      <AboutHero />
+      <AboutContent />
+      <OurCommitment />
+      <NumbersAndTestimonials />
+      <WhatPeopleSay />
+      <WorryFreeSolutions />
+    </div>
+  );
 }
 
 export default About;

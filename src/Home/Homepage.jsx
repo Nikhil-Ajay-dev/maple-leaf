@@ -17,8 +17,8 @@ function HomePage() {
         subtitle: "Blocks solar infrared energy",
         icon: "fas fa-sun",
         dotPos: { x: "68%", y: "64%" },
-        labelPos: { x: "42%", y: "46%" },
-        linePoints: "68,64 58,64 58,50 52,50",
+        labelPos: { x: "52%", y: "16%" },
+        linePoints: "68,64 58,64 58,20",
       },
       {
         id: "privacy",
@@ -44,8 +44,8 @@ function HomePage() {
         subtitle: "Deterrent for bird strikes",
         icon: "fas fa-crow",
         dotPos: { x: "79%", y: "60%" },
-        labelPos: { x: "90%", y: "47%" },
-        linePoints: "79,60 88,60 88,54 90,54",
+        labelPos: { x: "82%", y: "11%" },
+        linePoints: "79,60 88,60 88,20",
       },
     ];
 
@@ -868,7 +868,7 @@ function HomePage() {
     },
   ];
 
-const ImprovementCards = () => {
+  const ImprovementCards = () => {
     const cards = [
       {
         id: 1,
@@ -1875,7 +1875,7 @@ const ImprovementCards = () => {
     },
   ];
 
-const WhyChooseUs = () => {
+  const WhyChooseUs = () => {
     const reasons = [
       {
         icon: "fas fa-check-circle",
@@ -1910,7 +1910,7 @@ const WhyChooseUs = () => {
           {/* Header Block */}
           <div className="why-header">
             <p className="why-eyebrow">WHY CHOOSE MAPLE LEAF WINDOW FILM</p>
-            
+
             <div className="heading-with-lines">
               <span className="line-left"></span>
               <h2 className="why-main-title">
@@ -1918,7 +1918,7 @@ const WhyChooseUs = () => {
               </h2>
               <span className="line-right"></span>
             </div>
-            
+
             <p className="why-description">
               We don't just install window film — we provide the right solution
               for your space.
@@ -2144,7 +2144,7 @@ const WhyChooseUs = () => {
     },
   ];
 
-const FeaturedProjects = () => {
+  const FeaturedProjects = () => {
     const projects = [
       {
         img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
@@ -2182,7 +2182,7 @@ const FeaturedProjects = () => {
               <span className="line-right"></span>
             </div>
           </div>
-          
+
           <Swiper
             spaceBetween={20}
             slidesPerView={1.2}
@@ -2426,7 +2426,7 @@ const FeaturedProjects = () => {
     },
   ];
 
- const HowItWorks = () => {
+  const HowItWorks = () => {
     const steps = [
       {
         num: "01",
@@ -3100,7 +3100,13 @@ const FeaturedProjects = () => {
       </footer>
     );
   };
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <>
       <Header />
