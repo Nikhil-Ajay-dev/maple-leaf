@@ -13,11 +13,7 @@ function Header() {
             setScrolled(window.scrollY > fiftyVh);
         };
         
-        const handleScroll = () => {
-            // Calculate 50vh in pixels
-            const fiftyVh = window.innerHeight * 0.5;
-            setScrolled(window.scrollY > fiftyVh);
-        };
+       
         
         window.addEventListener('scroll', handleScroll);
         // Initial check
