@@ -7,16 +7,23 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemailer": "^9.0.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-google-recaptcha": "^3.1.0",
     "react-icons": "^5.7.0",
     "react-router-dom": "^6.30.4",
     "react-scripts": "^5.0.1",
     "swiper": "^14.0.6",
+    "validator": "^13.15.35",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node server/index.js",
+    "dev": "concurrently \"npm start\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4"
   }
 }

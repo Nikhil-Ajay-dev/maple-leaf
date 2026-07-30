@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./Home/About";
 import Services from "./Home/Services";
 import ServicesChildren from "./Home/ServicesChildren";
+import Contact from "./Home/Contact";
 
 
 export default function RoutesComponent() {
@@ -13,6 +14,7 @@ export default function RoutesComponent() {
                 <Routes>
                     <Route element={<HomePage />} path="/" />
                     <Route element={<About />} path="/about" />
+                    <Route element={<Contact />} path="/contact" />
                     <Route element={<Services />} path="/services" />
                     <Route element={<ServicesChildren />} path="/anti-graffiti" />
                     <Route element={<ServicesChildren />} path="/blinds" />

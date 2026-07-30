@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css/pagination";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaCanadianMapleLeaf } from "react-icons/fa";
 import Header from "./Header";
 
@@ -17,8 +17,8 @@ function HomePage() {
         subtitle: "Blocks solar infrared energy",
         icon: "fas fa-sun",
         dotPos: { x: "68%", y: "64%" },
-        labelPos: { x: "42%", y: "46%" },
-        linePoints: "68,64 58,64 58,50 52,50",
+        labelPos: { x: "52%", y: "16%" },
+        linePoints: "68,64 58,64 58,20",
       },
       {
         id: "privacy",
@@ -43,9 +43,9 @@ function HomePage() {
         title: "BIRD SAFETY FILM",
         subtitle: "Deterrent for bird strikes",
         icon: "fas fa-crow",
-        dotPos: { x: "76%", y: "60%" },
-        labelPos: { x: "87%", y: "47%" },
-        linePoints: "76,60 85,60 85,54 87,54",
+        dotPos: { x: "79%", y: "60%" },
+        labelPos: { x: "82%", y: "11%" },
+        linePoints: "79,60 88,60 88,20",
       },
     ];
 
@@ -481,20 +481,21 @@ function HomePage() {
 
         /* Hotspot Labels */
         .hotspot-label {
-          position: absolute;
-          display: flex;
-          align-items: flex-start;
-          gap: 8px;
-          max-width: 180px;
-          background: rgba(7, 21, 74, 0.85);
-          padding: 8px 12px;
-          border-radius: 6px;
-          backdrop-filter: blur(8px);
-          border: 1px solid var(--primary-gold);
-          animation: labelFadeIn 0.6s ease forwards;
-          opacity: 0;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 300px;
+  background: rgba(7, 21, 74, 0.85);
+  padding: 8px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--primary-gold);
+  animation: labelFadeIn 0.6s ease forwards;
+  opacity: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  white-space: nowrap; /* ADD THIS LINE */
+}
 
         .hotspot-label:hover {
           background: rgba(214, 168, 0, 0.2);
@@ -876,6 +877,7 @@ function HomePage() {
         icon: "fas fa-sun",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=250&fit=crop",
+        path: "/heat-control",
       },
       {
         id: 2,
@@ -884,6 +886,7 @@ function HomePage() {
         icon: "fas fa-user-shield",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=250&fit=crop",
+        path: "/privacy-film",
       },
       {
         id: 3,
@@ -892,6 +895,7 @@ function HomePage() {
         icon: "fas fa-shield-alt",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
+        path: "/security-film",
       },
       {
         id: 4,
@@ -900,6 +904,7 @@ function HomePage() {
         icon: "fas fa-paint-brush",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=250&fit=crop",
+        path: "/decorative-tinting",
       },
       {
         id: 5,
@@ -908,9 +913,10 @@ function HomePage() {
         icon: "fas fa-dove",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=250&fit=crop",
+        path: "/feather-friendly",
       },
     ];
-
+    const navigate = useNavigate();
     return (
       <section className="improvement-section">
         <div className="container">
@@ -920,7 +926,7 @@ function HomePage() {
               <h2>WHAT WOULD YOU LIKE TO IMPROVE?</h2>
               <span className="gold-line"></span>
             </div>
-            <div className="underline"></div>
+            {/* <div className="underline"></div> */}
           </div>
 
           <div className="cards-grid">
@@ -943,7 +949,10 @@ function HomePage() {
                 <div className="card-content">
                   <h3>{card.title}</h3>
                   <p>{card.desc}</p>
-                  <button className="card-btn">
+                  <button
+                    className="card-btn"
+                    onClick={() => navigate(card.path)}
+                  >
                     <span>{card.btn}</span>
                     <i className="fas fa-arrow-right"></i>
                   </button>
@@ -1007,10 +1016,11 @@ function HomePage() {
 
         .gold-line {
           flex: 1;
-          max-width: 60px;
-          height: 3px;
+          max-width: 80px;
+          height: 1.5px;
           background: linear-gradient(90deg, transparent, var(--primary-gold));
           border-radius: 2px;
+          margin-bottom: 6px;
         }
 
         .gold-line:last-child {
@@ -1026,6 +1036,7 @@ function HomePage() {
           margin: 0;
           position: relative;
           animation: titleGlow 3s ease-in-out infinite;
+          white-space: nowrap;
         }
 
         @keyframes titleGlow {
@@ -1255,6 +1266,10 @@ function HomePage() {
             grid-template-columns: repeat(3, 1fr);
             gap: 32px 20px;
           }
+
+          .gold-line {
+            max-width: 50px;
+          }
         }
 
         @media (max-width: 768px) {
@@ -1264,7 +1279,8 @@ function HomePage() {
           }
 
           .section-title h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            white-space: normal;
           }
 
           .title-decoration {
@@ -1283,12 +1299,16 @@ function HomePage() {
           }
 
           .section-title h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             letter-spacing: 0.5px;
           }
 
           .card-image {
             height: 160px;
+          }
+
+          .gold-line {
+            max-width: 20px;
           }
         }
       `}</style>
@@ -1296,170 +1316,181 @@ function HomePage() {
     );
   };
 
+  const BeforeAfterSection = () => {
+    const [position, setPosition] = useState(50);
+    const containerRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const autoPlayRef = useRef(null);
 
-const BeforeAfterSection = () => {
-  const [position, setPosition] = useState(50);
-  const containerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const autoPlayRef = useRef(null);
+    // Auto-slide effect
+    useEffect(() => {
+      if (isPlaying) {
+        let direction = 1;
+        autoPlayRef.current = setInterval(() => {
+          setPosition((prev) => {
+            let newPos = prev + direction * 0.5;
+            if (newPos >= 95) {
+              direction = -1;
+              newPos = 95;
+            } else if (newPos <= 5) {
+              direction = 1;
+              newPos = 5;
+            }
+            return newPos;
+          });
+        }, 30);
+      }
+      return () => clearInterval(autoPlayRef.current);
+    }, [isPlaying]);
 
-  // Auto-slide effect
-  useEffect(() => {
-    if (isPlaying) {
-      let direction = 1;
-      autoPlayRef.current = setInterval(() => {
-        setPosition((prev) => {
-          let newPos = prev + direction * 0.5;
-          if (newPos >= 95) {
-            direction = -1;
-            newPos = 95;
-          } else if (newPos <= 5) {
-            direction = 1;
-            newPos = 5;
-          }
-          return newPos;
-        });
-      }, 30);
-    }
-    return () => clearInterval(autoPlayRef.current);
-  }, [isPlaying]);
+    // Handle Drag / Interaction
+    const handleMove = (e) => {
+      if (!isDragging) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      if (x >= 0 && x <= 100) setPosition(x);
+    };
 
-  // Handle Drag / Interaction
-  const handleMove = (e) => {
-    if (!isDragging) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    if (x >= 0 && x <= 100) setPosition(x);
-  };
+    const handleStart = () => {
+      setIsDragging(true);
+      setIsPlaying(false); // Pause auto-play when user interacts manually
+    };
 
-  const handleStart = () => {
-    setIsDragging(true);
-    setIsPlaying(false); // Pause auto-play when user interacts manually
-  };
+    const handleEnd = () => {
+      setIsDragging(false);
+    };
 
-  const handleEnd = () => {
-    setIsDragging(false);
-  };
+    // Button Controls Actions
+    const togglePlayPause = () => {
+      setIsPlaying((prev) => !prev);
+    };
 
-  // Button Controls Actions
-  const togglePlayPause = () => {
-    setIsPlaying((prev) => !prev);
-  };
+    const handleReset = () => {
+      setIsPlaying(false);
+      setPosition(50);
+    };
 
-  const handleReset = () => {
-    setIsPlaying(false);
-    setPosition(50);
-  };
+    const showBefore = () => {
+      setIsPlaying(false);
+      setPosition(100);
+    };
 
-  const showBefore = () => {
-    setIsPlaying(false);
-    setPosition(100);
-  };
+    const showAfter = () => {
+      setIsPlaying(false);
+      setPosition(0);
+    };
 
-  const showAfter = () => {
-    setIsPlaying(false);
-    setPosition(0);
-  };
+    return (
+      <section className="before-after-section">
+        <div className="container before-after-inner">
+          {/* Left Column: Compact Text */}
+          <div className="before-after-text">
+            <span className="eyebrow">
+              <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
+              <span className="gold-accent">✦</span>
+            </span>
+            <h2>
+              TRANSFORM YOUR GLASS.
+              <br />
+              TRANSFORM YOUR SPACE.
+            </h2>
+            <p>
+              From privacy upgrades to heat reduction and glare protection, our
+              films are selected for the right problem and installed with care.
+            </p>
+            <button className="btn-primary">
+              <span>VIEW MORE BEFORE & AFTER</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </div>
 
-  return (
-    <section className="before-after-section">
-      <div className="container before-after-inner">
-        {/* Left Column: Compact Text */}
-        <div className="before-after-text">
-          <span className="eyebrow">
-            <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
-            <span className="gold-accent">✦</span>
-          </span>
-          <h2>
-            TRANSFORM YOUR GLASS.
-            <br />
-            TRANSFORM YOUR SPACE.
-          </h2>
-          <p>
-            From privacy upgrades to heat reduction and glare protection, our
-            films are selected for the right problem and installed with care.
-          </p>
-          <button className="btn-primary">
-            <span>VIEW MORE BEFORE & AFTER</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
+          {/* Right Column: Larger Image Slider with Controls Below */}
+          <div className="slider-wrapper">
+            <div
+              className="before-after-slider"
+              ref={containerRef}
+              onMouseMove={handleMove}
+              onMouseDown={handleStart}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={handleStart}
+              onTouchEnd={handleEnd}
+              onTouchMove={(e) => {
+                const touch = e.touches[0];
+                const rect = containerRef.current.getBoundingClientRect();
+                const x = ((touch.clientX - rect.left) / rect.width) * 100;
+                if (x >= 0 && x <= 100) {
+                  setPosition(x);
+                  setIsPlaying(false);
+                }
+              }}
+            >
+              <div className="ba-container">
+                {/* Bottom layer: The "AFTER" image */}
+                <div className="ba-image-after"></div>
 
-        {/* Right Column: Larger Image Slider with Controls Below */}
-        <div className="slider-wrapper">
-          <div
-            className="before-after-slider"
-            ref={containerRef}
-            onMouseMove={handleMove}
-            onMouseDown={handleStart}
-            onMouseUp={handleEnd}
-            onMouseLeave={handleEnd}
-            onTouchStart={handleStart}
-            onTouchEnd={handleEnd}
-            onTouchMove={(e) => {
-              const touch = e.touches[0];
-              const rect = containerRef.current.getBoundingClientRect();
-              const x = ((touch.clientX - rect.left) / rect.width) * 100;
-              if (x >= 0 && x <= 100) {
-                setPosition(x);
-                setIsPlaying(false);
-              }
-            }}
-          >
-            <div className="ba-container">
-              {/* Bottom layer: The "AFTER" image */}
-              <div className="ba-image-after"></div>
+                {/* Top layer: The "BEFORE" image */}
+                <div
+                  className="ba-image-before"
+                  style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+                ></div>
 
-              {/* Top layer: The "BEFORE" image */}
-              <div
-                className="ba-image-before"
-                style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-              ></div>
-
-              {/* Drag handle */}
-              <div className="ba-handle" style={{ left: `${position}%` }}>
-                <div className="handle-circle">
-                  <i className="fas fa-arrows-alt-h"></i>
+                {/* Drag handle */}
+                <div className="ba-handle" style={{ left: `${position}%` }}>
+                  <div className="handle-circle">
+                    <i className="fas fa-arrows-alt-h"></i>
+                  </div>
                 </div>
-              </div>
 
-              {/* Labels */}
-              <span className="ba-label before">BEFORE</span>
-              <span className="ba-label after">AFTER</span>
+                {/* Labels */}
+                <span className="ba-label before">BEFORE</span>
+                <span className="ba-label after">AFTER</span>
+              </div>
+            </div>
+
+            {/* Under-Image Control Bar */}
+            <div className="slider-controls">
+              <button
+                className={`ctrl-btn ${isPlaying ? "active" : ""}`}
+                onClick={togglePlayPause}
+                title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
+              >
+                <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
+                <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={handleReset}
+                title="Reset to Center"
+              >
+                <i className="fas fa-redo-alt"></i>
+                <span>RESET</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={showBefore}
+                title="Show Before View"
+              >
+                <i className="fas fa-undo"></i>
+                <span>100% BEFORE</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={showAfter}
+                title="Show After View"
+              >
+                <i className="fas fa-redo"></i>
+                <span>100% AFTER</span>
+              </button>
             </div>
           </div>
-
-          {/* Under-Image Control Bar */}
-          <div className="slider-controls">
-            <button
-              className={`ctrl-btn ${isPlaying ? "active" : ""}`}
-              onClick={togglePlayPause}
-              title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
-            >
-              <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
-              <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={handleReset} title="Reset to Center">
-              <i className="fas fa-redo-alt"></i>
-              <span>RESET</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={showBefore} title="Show Before View">
-              <i className="fas fa-undo"></i>
-              <span>100% BEFORE</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={showAfter} title="Show After View">
-              <i className="fas fa-redo"></i>
-              <span>100% AFTER</span>
-            </button>
-          </div>
         </div>
-      </div>
 
-      <style>{`
+        <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -1820,10 +1851,9 @@ const BeforeAfterSection = () => {
           }
         }
       `}</style>
-    </section>
-  );
-};
-
+      </section>
+    );
+  };
 
   const reasons = [
     {
@@ -1888,9 +1918,15 @@ const BeforeAfterSection = () => {
           {/* Header Block */}
           <div className="why-header">
             <p className="why-eyebrow">WHY CHOOSE MAPLE LEAF WINDOW FILM</p>
-            <h2 className="why-main-title">
-              RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
-            </h2>
+
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2 className="why-main-title">
+                RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
+              </h2>
+              <span className="line-right"></span>
+            </div>
+
             <p className="why-description">
               We don't just install window film — we provide the right solution
               for your space.
@@ -1945,13 +1981,33 @@ const BeforeAfterSection = () => {
           margin-bottom: 10px;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: 14px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 0 0 80px;
+          height: 2px;
+          background: linear-gradient(to right, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(to left, transparent, var(--primary-gold));
+        }
+
         .why-main-title {
           font-size: 1.85rem;
           font-weight: 900;
           color: var(--primary-blue);
           letter-spacing: 0.5px;
-          margin-bottom: 14px;
           text-transform: uppercase;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .why-description {
@@ -2038,15 +2094,34 @@ const BeforeAfterSection = () => {
             border-right: none;
             margin-bottom: 20px;
           }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 40px;
+          }
+
+          .why-main-title {
+            font-size: 1.4rem;
+            white-space: normal;
+          }
         }
 
         @media (max-width: 600px) {
           .why-main-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
           }
 
           .why-card {
             flex: 1 1 100%;
+          }
+
+          .line-left,
+          .line-right {
+            flex: 0 0 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2109,9 +2184,13 @@ const BeforeAfterSection = () => {
       <section className="projects-section">
         <div className="container">
           <div className="projects-header">
-            <h2>FEATURED PROJECTS</h2>
-            <button className="view-all">VIEW ALL PROJECTS →</button>
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2>FEATURED PROJECTS</h2>
+              <span className="line-right"></span>
+            </div>
           </div>
+
           <Swiper
             spaceBetween={20}
             slidesPerView={1.2}
@@ -2131,6 +2210,10 @@ const BeforeAfterSection = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          <div className="projects-footer">
+            <button className="view-all">VIEW ALL PROJECTS →</button>
+          </div>
         </div>
 
         <style>{`
@@ -2152,9 +2235,33 @@ const BeforeAfterSection = () => {
 
         .projects-header {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           margin-bottom: 32px;
+        }
+
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          width: 100%;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 2px;
+          border-radius: 2px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
         }
 
         .projects-header h2 {
@@ -2163,16 +2270,24 @@ const BeforeAfterSection = () => {
           color: var(--primary-blue);
           letter-spacing: 1px;
           text-transform: uppercase;
+          margin: 0;
+          white-space: nowrap;
+        }
+
+        .projects-footer {
+          display: flex;
+          justify-content: center;
+          margin-top: 32px;
         }
 
         .view-all {
           background: var(--primary-blue);
           color: white;
           border: none;
-          padding: 10px 24px;
+          padding: 12px 36px;
           border-radius: 4px;
           font-weight: 700;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           cursor: pointer;
           transition: all 0.3s ease;
           letter-spacing: 0.5px;
@@ -2241,15 +2356,30 @@ const BeforeAfterSection = () => {
           height: auto;
         }
 
-        @media (max-width: 768px) {
-          .projects-header {
-            flex-direction: column;
-            gap: 16px;
-            align-items: flex-start;
+        @media (max-width: 992px) {
+          .line-left,
+          .line-right {
+            max-width: 50px;
           }
 
+          .heading-with-lines {
+            gap: 16px;
+          }
+        }
+
+        @media (max-width: 768px) {
           .projects-header h2 {
             font-size: 1.3rem;
+            white-space: normal;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
           }
 
           .view-all {
@@ -2265,6 +2395,15 @@ const BeforeAfterSection = () => {
 
           .projects-header h2 {
             font-size: 1.1rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2323,8 +2462,11 @@ const BeforeAfterSection = () => {
       <section className="how-it-works bg-gray">
         <div className="container">
           <div className="section-title">
-            <h2>HOW IT WORKS</h2>
-            <div className="underline"></div>
+            <div className="heading-with-lines">
+              <span className="line-left"></span>
+              <h2>HOW IT WORKS</h2>
+              <span className="line-right"></span>
+            </div>
           </div>
           <div className="steps">
             {steps.map((step, idx) => (
@@ -2369,21 +2511,37 @@ const BeforeAfterSection = () => {
           margin-bottom: 40px;
         }
 
+        .heading-with-lines {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+        }
+
+        .line-left,
+        .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 2px;
+          border-radius: 1px;
+        }
+
+        .line-left {
+          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        }
+
+        .line-right {
+          background: linear-gradient(90deg, var(--primary-gold), transparent);
+        }
+
         .section-title h2 {
           font-size: 1.8rem;
           font-weight: 800;
           color: var(--primary-blue);
           letter-spacing: 1px;
-          margin-bottom: 12px;
           text-transform: uppercase;
-        }
-
-        .section-title .underline {
-          width: 50px;
-          height: 3px;
-          background: var(--primary-gold);
-          margin: 0 auto;
-          border-radius: 2px;
+          margin: 0;
+          white-space: nowrap;
         }
 
         .steps { 
@@ -2468,6 +2626,17 @@ const BeforeAfterSection = () => {
           flex-shrink: 0;
         }
 
+        @media (max-width: 992px) {
+          .line-left,
+          .line-right {
+            max-width: 50px;
+          }
+
+          .heading-with-lines {
+            gap: 16px;
+          }
+        }
+
         @media (max-width: 768px) {
           .step-card {
             min-width: 140px;
@@ -2481,6 +2650,16 @@ const BeforeAfterSection = () => {
 
           .section-title h2 {
             font-size: 1.4rem;
+            white-space: normal;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 30px;
+          }
+
+          .heading-with-lines {
+            gap: 12px;
           }
         }
 
@@ -2488,6 +2667,19 @@ const BeforeAfterSection = () => {
           .step-card {
             min-width: 100%;
             max-width: 100%;
+          }
+
+          .section-title h2 {
+            font-size: 1.1rem;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 20px;
+          }
+
+          .heading-with-lines {
+            gap: 10px;
           }
         }
       `}</style>
@@ -2559,7 +2751,7 @@ const BeforeAfterSection = () => {
           <div>
             <button className="btn-gold">GET FREE QUOTE →</button>
             <p className="cta-phone">
-              or call <a href="tel:+16478084677">647-808-4677</a>
+              or call <a href="tel:+12265036102">226-503-6102</a>
             </p>
           </div>
         </div>
@@ -2719,67 +2911,81 @@ const BeforeAfterSection = () => {
     );
   };
 
+
 const Footer = () => {
-    return (
-      <footer className="footer bg-dark">
-        <div className="container footer-grid">
-          <div>
-            <div className="logo">
-              <i>
-                <FaCanadianMapleLeaf />
-              </i>{" "}
-              MAPLE LEAF <span>WINDOW FILM</span>
-            </div>
-            <p>
-              Professional window film solutions for homes and businesses across
-              the Greater Toronto Area.
-            </p>
+  return (
+    <footer className="footer bg-dark">
+      <div className="container footer-grid">
+        {/* Column 1: Logo */}
+        <div>
+          <div className="logo">
+            <i>
+              <FaCanadianMapleLeaf />
+            </i>{" "}
+            MAPLE LEAF <span>WINDOW FILM</span>
           </div>
+          <p className="logo-description">
+            Professional window film solutions for homes and businesses across
+            the Greater Toronto Area.
+          </p>
+        </div>
+
+        {/* Column 2: Quick Links */}
+        <div>
+          <h4>Quick Links</h4>
+          <Link to="/">Home</Link>
+          <Link to="/residential">Residential</Link>
+          <Link to="/commercial">Commercial</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/projects">Projects</Link>
+        </div>
+
+        {/* Column 3: Services */}
+        <div>
+          <h4>Services</h4>
+          <Link to="/services/security-film">Security Film</Link>
+          <Link to="/services/solar-film">Solar / Heat Reduction</Link>
+          <Link to="/services/privacy-film">Privacy Film</Link>
+          <Link to="/services/decorative-film">Decorative Frost Film</Link>
+          <Link to="/services/bird-safety-film">Bird Strike Protection</Link>
+        </div>
+
+        {/* Column 4: Contact */}
+        <div>
+          <h4>Contact</h4>
+          <p>
+            <i className="fas fa-phone"></i> 226-503-6102
+          </p>
+          <p>
+            <i className="fas fa-envelope"></i> info@mapleleafwindowfilm.com
+          </p>
+          <p>
+            <i className="fas fa-map-pin"></i> Serving Toronto & Surrounding
+            Areas
+          </p>
+        </div>
+
+        {/* Column 5: Hours */}
+        <div>
+          <h4>Hours</h4>
+          <p>Mon - Fri: 8:00am - 6:00pm</p>
+          <p>Saturday: 9:00am - 3:00pm</p>
+          <p>Sunday: Closed</p>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <div className="container">
+          <span>© 2026 Maple Leaf Window Film. All Rights Reserved.</span>
           <div>
-            <h4>Quick Links</h4>
-            <Link to="/">Home</Link>
-            <Link to="/residential">Residential</Link>
-            <Link to="/commercial">Commercial</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/projects">Projects</Link>
-          </div>
-          <div>
-            <h4>Services</h4>
-            <Link to="/services/security-film">Security Film</Link>
-            <Link to="/services/solar-film">Solar / Heat Reduction</Link>
-            <Link to="/services/privacy-film">Privacy Film</Link>
-            <Link to="/services/decorative-film">Decorative Frost Film</Link>
-            <Link to="/services/bird-safety-film">Bird Strike Protection</Link>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <p>
-              <i className="fas fa-phone"></i> 647-808-4677
-            </p>
-            <p>
-              <i className="fas fa-envelope"></i> info@mapleleafwindowfilm.com
-            </p>
-            <p>
-              <i className="fas fa-map-pin"></i> Serving Toronto & Surrounding
-              Areas
-            </p>
-            <h4>Hours</h4>
-            <p>Mon - Fri: 8:00am - 6:00pm</p>
-            <p>Saturday: 9:00am - 3:00pm</p>
-            <p>Sunday: Closed</p>
+            <Link to="/privacy">Privacy Policy</Link>{" "}
+            <Link to="/terms">Terms of Service</Link>
           </div>
         </div>
-        <div className="footer-bottom">
-          <div className="container">
-            <span>© 2024 Maple Leaf Window Film. All Rights Reserved.</span>
-            <div>
-              <Link to="/privacy">Privacy Policy</Link>{" "}
-              <Link to="/terms">Terms of Service</Link>
-            </div>
-          </div>
-        </div>
-        <style>
-          {`
+      </div>
+
+      <style>
+        {`
           :root {
             --primary-blue: #07154a;
             --primary-gold: #d6a800;
@@ -2800,7 +3006,7 @@ const Footer = () => {
 
           .footer-grid { 
             display: grid; 
-            grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+            grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr; 
             gap: 40px; 
             padding-bottom: 40px; 
             border-bottom: 1px solid rgba(214, 168, 0, 0.15);
@@ -2823,8 +3029,11 @@ const Footer = () => {
             color: var(--primary-gold); 
           }
 
-          .footer-grid .logo p {
-            margin-top: 8px;
+          .logo-description {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.6;
           }
 
           .footer-grid h4 { 
@@ -2885,6 +3094,7 @@ const Footer = () => {
             color: var(--primary-gold);
           }
 
+          /* Responsive */
           @media (max-width: 992px) {
             .footer-grid {
               grid-template-columns: 1fr 1fr;
@@ -2910,13 +3120,25 @@ const Footer = () => {
             .footer-grid .logo {
               justify-content: center;
             }
-          }
-          `}
-        </style>
-      </footer>
-    );
-  };
 
+            .logo-description {
+              text-align: center;
+            }
+          }
+        `}
+      </style>
+    </footer>
+  );
+};
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.key]);
   return (
     <>
       <Header />
