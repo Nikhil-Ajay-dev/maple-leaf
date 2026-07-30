@@ -320,7 +320,7 @@ function ServicesChildren() {
                 .service-hero-section {
                     position: relative;
                     width: 100%;
-                    min-height: 450px;
+                    min-height: 380px;
                     display: flex;
                     align-items: flex-end;
                     background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop');
