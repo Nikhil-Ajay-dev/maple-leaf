@@ -7,21 +7,16 @@ import Header from "./Header";
 const ServicesHero = () => {
   return (
     <>
-      <section className="services-hero">
-        <div className="services-hero-overlay"></div>
-        <div className="services-hero-container">
-          <div className="services-hero-content">
-            <span className="services-hero-breadcrumb">Home / Services</span>
-            <h1 className="services-hero-title">Services</h1>
-            <p className="services-hero-text">
-              Professional window film solutions for your residential and
-              commercial needs
-            </p>
+      <section className="about-hero">
+        <div className="about-hero-overlay"></div>
+        <div className="about-hero-container">
+          <div className="about-hero-title">
+            <h1>Services</h1>
           </div>
 
-          <div className="services-hero-callout">
-            <span className="services-callout-label">Call Today</span>
-            <a href="tel:226-503-6102" className="services-callout-phone">
+          <div className="about-callout-box">
+            <span className="callout-label">Call Today</span>
+            <a href="tel:226-503-6102" className="callout-phone">
               226-503-6102
             </a>
           </div>
@@ -35,23 +30,23 @@ const ServicesHero = () => {
           --dark-gold: #b89200;
         }
 
-        .services-hero {
+        .about-hero {
           position: relative;
-          background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=600&fit=crop&crop=center') center/cover no-repeat;
+          background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=700&fit=crop&crop=center') center/cover no-repeat;
           min-height: 380px;
           display: flex;
           align-items: flex-end;
           overflow: hidden;
         }
 
-        .services-hero-overlay {
+        .about-hero-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(38, 38, 39, 0.5) 50%, rgba(43, 43, 44, 0.5) 100%);
           z-index: 1;
         }
 
-        .services-hero-container {
+        .about-hero-container {
           position: relative;
           z-index: 2;
           max-width: 1280px;
@@ -62,83 +57,44 @@ const ServicesHero = () => {
           justify-content: space-between;
           align-items: flex-end;
           height: 100%;
-          padding-bottom: 0;
         }
 
-        .services-hero-content {
-          flex: 1;
-          padding: 60px 0 40px;
+        .about-hero-title {
+          padding-bottom: 70px;
         }
 
-        .services-hero-breadcrumb {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.6);
-          font-weight: 500;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          margin-bottom: 12px;
-          display: block;
-        }
-
-        .services-hero-breadcrumb span {
-          color: var(--primary-gold);
-        }
-
-        .services-hero-title {
+        .about-hero-title h1 {
           color: #ffffff;
           font-size: 3.5rem;
           font-weight: 800;
           letter-spacing: -0.5px;
-          margin: 0 0 12px 0;
+          margin: 0;
           line-height: 1.1;
-          text-transform: uppercase;
         }
 
-        .services-hero-title::after {
-          content: '';
-          display: block;
-          width: 60px;
-          height: 4px;
-          background: var(--primary-gold);
-          margin-top: 16px;
-          border-radius: 2px;
-        }
-
-        .services-hero-text {
-          font-size: 1.1rem;
-          color: rgba(255, 255, 255, 0.8);
-          max-width: 500px;
-          line-height: 1.6;
-          margin-top: 8px;
-        }
-
-        .services-hero-callout {
+        .about-callout-box {
           background: var(--primary-gold);
           color: var(--primary-blue);
-          padding: 32px 40px;
+          padding: 36px 48px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          box-shadow: -4px -4px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.3);
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
-          flex-shrink: 0;
-          min-width: 200px;
-          align-self: flex-end;
-          margin-bottom: 0;
+          margin-right: 40px;
         }
 
-        .services-callout-label {
-          font-size: 1rem;
+        .callout-label {
+          font-size: 1.1rem;
           font-weight: 600;
           color: var(--primary-blue);
           margin-bottom: 8px;
           letter-spacing: 0.5px;
-          text-transform: uppercase;
         }
 
-        .services-callout-phone {
-          font-size: 2rem;
+        .callout-phone {
+          font-size: 2.2rem;
           font-weight: 900;
           color: var(--primary-blue);
           text-decoration: none;
@@ -146,10 +102,9 @@ const ServicesHero = () => {
           transition: opacity 0.2s ease;
         }
 
-        .services-callout-phone:hover {
+        .callout-phone:hover {
           opacity: 0.7;
         }
-
         @media (max-width: 992px) {
           .services-hero {
             min-height: 320px;
