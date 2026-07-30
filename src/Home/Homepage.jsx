@@ -2911,67 +2911,81 @@ function HomePage() {
     );
   };
 
-  const Footer = () => {
-    return (
-      <footer className="footer bg-dark">
-        <div className="container footer-grid">
-          <div>
-            <div className="logo">
-              <i>
-                <FaCanadianMapleLeaf />
-              </i>{" "}
-              MAPLE LEAF <span>WINDOW FILM</span>
-            </div>
-            <p>
-              Professional window film solutions for homes and businesses across
-              the Greater Toronto Area.
-            </p>
+
+const Footer = () => {
+  return (
+    <footer className="footer bg-dark">
+      <div className="container footer-grid">
+        {/* Column 1: Logo */}
+        <div>
+          <div className="logo">
+            <i>
+              <FaCanadianMapleLeaf />
+            </i>{" "}
+            MAPLE LEAF <span>WINDOW FILM</span>
           </div>
+          <p className="logo-description">
+            Professional window film solutions for homes and businesses across
+            the Greater Toronto Area.
+          </p>
+        </div>
+
+        {/* Column 2: Quick Links */}
+        <div>
+          <h4>Quick Links</h4>
+          <Link to="/">Home</Link>
+          <Link to="/residential">Residential</Link>
+          <Link to="/commercial">Commercial</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/projects">Projects</Link>
+        </div>
+
+        {/* Column 3: Services */}
+        <div>
+          <h4>Services</h4>
+          <Link to="/services/security-film">Security Film</Link>
+          <Link to="/services/solar-film">Solar / Heat Reduction</Link>
+          <Link to="/services/privacy-film">Privacy Film</Link>
+          <Link to="/services/decorative-film">Decorative Frost Film</Link>
+          <Link to="/services/bird-safety-film">Bird Strike Protection</Link>
+        </div>
+
+        {/* Column 4: Contact */}
+        <div>
+          <h4>Contact</h4>
+          <p>
+            <i className="fas fa-phone"></i> 226-503-6102
+          </p>
+          <p>
+            <i className="fas fa-envelope"></i> info@mapleleafwindowfilm.com
+          </p>
+          <p>
+            <i className="fas fa-map-pin"></i> Serving Toronto & Surrounding
+            Areas
+          </p>
+        </div>
+
+        {/* Column 5: Hours */}
+        <div>
+          <h4>Hours</h4>
+          <p>Mon - Fri: 8:00am - 6:00pm</p>
+          <p>Saturday: 9:00am - 3:00pm</p>
+          <p>Sunday: Closed</p>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <div className="container">
+          <span>© 2026 Maple Leaf Window Film. All Rights Reserved.</span>
           <div>
-            <h4>Quick Links</h4>
-            <Link to="/">Home</Link>
-            <Link to="/residential">Residential</Link>
-            <Link to="/commercial">Commercial</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/projects">Projects</Link>
-          </div>
-          <div>
-            <h4>Services</h4>
-            <Link to="/services/security-film">Security Film</Link>
-            <Link to="/services/solar-film">Solar / Heat Reduction</Link>
-            <Link to="/services/privacy-film">Privacy Film</Link>
-            <Link to="/services/decorative-film">Decorative Frost Film</Link>
-            <Link to="/services/bird-safety-film">Bird Strike Protection</Link>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <p>
-              <i className="fas fa-phone"></i> 226-503-6102
-            </p>
-            <p>
-              <i className="fas fa-envelope"></i> info@mapleleafwindowfilm.com
-            </p>
-            <p>
-              <i className="fas fa-map-pin"></i> Serving Toronto & Surrounding
-              Areas
-            </p>
-            <h4>Hours</h4>
-            <p>Mon - Fri: 8:00am - 6:00pm</p>
-            <p>Saturday: 9:00am - 3:00pm</p>
-            <p>Sunday: Closed</p>
+            <Link to="/privacy">Privacy Policy</Link>{" "}
+            <Link to="/terms">Terms of Service</Link>
           </div>
         </div>
-        <div className="footer-bottom">
-          <div className="container">
-            <span>© 2024 Maple Leaf Window Film. All Rights Reserved.</span>
-            <div>
-              <Link to="/privacy">Privacy Policy</Link>{" "}
-              <Link to="/terms">Terms of Service</Link>
-            </div>
-          </div>
-        </div>
-        <style>
-          {`
+      </div>
+
+      <style>
+        {`
           :root {
             --primary-blue: #07154a;
             --primary-gold: #d6a800;
@@ -2992,7 +3006,7 @@ function HomePage() {
 
           .footer-grid { 
             display: grid; 
-            grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+            grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr; 
             gap: 40px; 
             padding-bottom: 40px; 
             border-bottom: 1px solid rgba(214, 168, 0, 0.15);
@@ -3015,8 +3029,11 @@ function HomePage() {
             color: var(--primary-gold); 
           }
 
-          .footer-grid .logo p {
-            margin-top: 8px;
+          .logo-description {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.6;
           }
 
           .footer-grid h4 { 
@@ -3077,6 +3094,7 @@ function HomePage() {
             color: var(--primary-gold);
           }
 
+          /* Responsive */
           @media (max-width: 992px) {
             .footer-grid {
               grid-template-columns: 1fr 1fr;
@@ -3102,12 +3120,17 @@ function HomePage() {
             .footer-grid .logo {
               justify-content: center;
             }
+
+            .logo-description {
+              text-align: center;
+            }
           }
-          `}
-        </style>
-      </footer>
-    );
-  };
+        `}
+      </style>
+    </footer>
+  );
+};
+
   const location = useLocation();
 
   useEffect(() => {
