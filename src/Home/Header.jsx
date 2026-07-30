@@ -13,6 +13,12 @@ function Header() {
             setScrolled(window.scrollY > fiftyVh);
         };
         
+        const handleScroll = () => {
+            // Calculate 50vh in pixels
+            const fiftyVh = window.innerHeight * 0.5;
+            setScrolled(window.scrollY > fiftyVh);
+        };
+        
         window.addEventListener('scroll', handleScroll);
         // Initial check
         handleScroll();
@@ -126,7 +132,10 @@ function Header() {
 
                 .header.scrolled .logo-img {
                     width: 60px;
+                    flex-shrink: 0;
                 }
+
+               
 
                 .logo-text {
                     display: flex;
