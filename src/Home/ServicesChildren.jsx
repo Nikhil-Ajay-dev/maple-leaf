@@ -167,6 +167,14 @@ function ServicesChildren() {
             </section>
 
             <style>{`
+
+             :root {
+          --primary-blue: #07154a;
+          --primary-gold: #d6a800;
+          --dark-gold: #b89200;
+        }
+
+
                 /* Hero Section Styles */
                 .service-hero-section {
                     position: relative;
@@ -407,7 +415,7 @@ function ServicesChildren() {
                 }
 
                 .commitment-title {
-                    color: #ffffff;
+                    color: var(--primary-gold);
                     font-size: 2.5rem;
                     font-weight: 800;
                     margin-bottom: 24px;

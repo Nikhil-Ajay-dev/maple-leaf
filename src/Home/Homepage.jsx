@@ -43,9 +43,9 @@ function HomePage() {
         title: "BIRD SAFETY FILM",
         subtitle: "Deterrent for bird strikes",
         icon: "fas fa-crow",
-        dotPos: { x: "76%", y: "60%" },
-        labelPos: { x: "87%", y: "47%" },
-        linePoints: "76,60 85,60 85,54 87,54",
+        dotPos: { x: "79%", y: "60%" },
+        labelPos: { x: "90%", y: "47%" },
+        linePoints: "79,60 88,60 88,54 90,54",
       },
     ];
 
@@ -481,20 +481,21 @@ function HomePage() {
 
         /* Hotspot Labels */
         .hotspot-label {
-          position: absolute;
-          display: flex;
-          align-items: flex-start;
-          gap: 8px;
-          max-width: 180px;
-          background: rgba(7, 21, 74, 0.85);
-          padding: 8px 12px;
-          border-radius: 6px;
-          backdrop-filter: blur(8px);
-          border: 1px solid var(--primary-gold);
-          animation: labelFadeIn 0.6s ease forwards;
-          opacity: 0;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 300px;
+  background: rgba(7, 21, 74, 0.85);
+  padding: 8px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--primary-gold);
+  animation: labelFadeIn 0.6s ease forwards;
+  opacity: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  white-space: nowrap; /* ADD THIS LINE */
+}
 
         .hotspot-label:hover {
           background: rgba(214, 168, 0, 0.2);
@@ -1296,170 +1297,181 @@ function HomePage() {
     );
   };
 
+  const BeforeAfterSection = () => {
+    const [position, setPosition] = useState(50);
+    const containerRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const autoPlayRef = useRef(null);
 
-const BeforeAfterSection = () => {
-  const [position, setPosition] = useState(50);
-  const containerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const autoPlayRef = useRef(null);
+    // Auto-slide effect
+    useEffect(() => {
+      if (isPlaying) {
+        let direction = 1;
+        autoPlayRef.current = setInterval(() => {
+          setPosition((prev) => {
+            let newPos = prev + direction * 0.5;
+            if (newPos >= 95) {
+              direction = -1;
+              newPos = 95;
+            } else if (newPos <= 5) {
+              direction = 1;
+              newPos = 5;
+            }
+            return newPos;
+          });
+        }, 30);
+      }
+      return () => clearInterval(autoPlayRef.current);
+    }, [isPlaying]);
 
-  // Auto-slide effect
-  useEffect(() => {
-    if (isPlaying) {
-      let direction = 1;
-      autoPlayRef.current = setInterval(() => {
-        setPosition((prev) => {
-          let newPos = prev + direction * 0.5;
-          if (newPos >= 95) {
-            direction = -1;
-            newPos = 95;
-          } else if (newPos <= 5) {
-            direction = 1;
-            newPos = 5;
-          }
-          return newPos;
-        });
-      }, 30);
-    }
-    return () => clearInterval(autoPlayRef.current);
-  }, [isPlaying]);
+    // Handle Drag / Interaction
+    const handleMove = (e) => {
+      if (!isDragging) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      if (x >= 0 && x <= 100) setPosition(x);
+    };
 
-  // Handle Drag / Interaction
-  const handleMove = (e) => {
-    if (!isDragging) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    if (x >= 0 && x <= 100) setPosition(x);
-  };
+    const handleStart = () => {
+      setIsDragging(true);
+      setIsPlaying(false); // Pause auto-play when user interacts manually
+    };
 
-  const handleStart = () => {
-    setIsDragging(true);
-    setIsPlaying(false); // Pause auto-play when user interacts manually
-  };
+    const handleEnd = () => {
+      setIsDragging(false);
+    };
 
-  const handleEnd = () => {
-    setIsDragging(false);
-  };
+    // Button Controls Actions
+    const togglePlayPause = () => {
+      setIsPlaying((prev) => !prev);
+    };
 
-  // Button Controls Actions
-  const togglePlayPause = () => {
-    setIsPlaying((prev) => !prev);
-  };
+    const handleReset = () => {
+      setIsPlaying(false);
+      setPosition(50);
+    };
 
-  const handleReset = () => {
-    setIsPlaying(false);
-    setPosition(50);
-  };
+    const showBefore = () => {
+      setIsPlaying(false);
+      setPosition(100);
+    };
 
-  const showBefore = () => {
-    setIsPlaying(false);
-    setPosition(100);
-  };
+    const showAfter = () => {
+      setIsPlaying(false);
+      setPosition(0);
+    };
 
-  const showAfter = () => {
-    setIsPlaying(false);
-    setPosition(0);
-  };
+    return (
+      <section className="before-after-section">
+        <div className="container before-after-inner">
+          {/* Left Column: Compact Text */}
+          <div className="before-after-text">
+            <span className="eyebrow">
+              <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
+              <span className="gold-accent">✦</span>
+            </span>
+            <h2>
+              TRANSFORM YOUR GLASS.
+              <br />
+              TRANSFORM YOUR SPACE.
+            </h2>
+            <p>
+              From privacy upgrades to heat reduction and glare protection, our
+              films are selected for the right problem and installed with care.
+            </p>
+            <button className="btn-primary">
+              <span>VIEW MORE BEFORE & AFTER</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </div>
 
-  return (
-    <section className="before-after-section">
-      <div className="container before-after-inner">
-        {/* Left Column: Compact Text */}
-        <div className="before-after-text">
-          <span className="eyebrow">
-            <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
-            <span className="gold-accent">✦</span>
-          </span>
-          <h2>
-            TRANSFORM YOUR GLASS.
-            <br />
-            TRANSFORM YOUR SPACE.
-          </h2>
-          <p>
-            From privacy upgrades to heat reduction and glare protection, our
-            films are selected for the right problem and installed with care.
-          </p>
-          <button className="btn-primary">
-            <span>VIEW MORE BEFORE & AFTER</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
+          {/* Right Column: Larger Image Slider with Controls Below */}
+          <div className="slider-wrapper">
+            <div
+              className="before-after-slider"
+              ref={containerRef}
+              onMouseMove={handleMove}
+              onMouseDown={handleStart}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={handleStart}
+              onTouchEnd={handleEnd}
+              onTouchMove={(e) => {
+                const touch = e.touches[0];
+                const rect = containerRef.current.getBoundingClientRect();
+                const x = ((touch.clientX - rect.left) / rect.width) * 100;
+                if (x >= 0 && x <= 100) {
+                  setPosition(x);
+                  setIsPlaying(false);
+                }
+              }}
+            >
+              <div className="ba-container">
+                {/* Bottom layer: The "AFTER" image */}
+                <div className="ba-image-after"></div>
 
-        {/* Right Column: Larger Image Slider with Controls Below */}
-        <div className="slider-wrapper">
-          <div
-            className="before-after-slider"
-            ref={containerRef}
-            onMouseMove={handleMove}
-            onMouseDown={handleStart}
-            onMouseUp={handleEnd}
-            onMouseLeave={handleEnd}
-            onTouchStart={handleStart}
-            onTouchEnd={handleEnd}
-            onTouchMove={(e) => {
-              const touch = e.touches[0];
-              const rect = containerRef.current.getBoundingClientRect();
-              const x = ((touch.clientX - rect.left) / rect.width) * 100;
-              if (x >= 0 && x <= 100) {
-                setPosition(x);
-                setIsPlaying(false);
-              }
-            }}
-          >
-            <div className="ba-container">
-              {/* Bottom layer: The "AFTER" image */}
-              <div className="ba-image-after"></div>
+                {/* Top layer: The "BEFORE" image */}
+                <div
+                  className="ba-image-before"
+                  style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+                ></div>
 
-              {/* Top layer: The "BEFORE" image */}
-              <div
-                className="ba-image-before"
-                style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-              ></div>
-
-              {/* Drag handle */}
-              <div className="ba-handle" style={{ left: `${position}%` }}>
-                <div className="handle-circle">
-                  <i className="fas fa-arrows-alt-h"></i>
+                {/* Drag handle */}
+                <div className="ba-handle" style={{ left: `${position}%` }}>
+                  <div className="handle-circle">
+                    <i className="fas fa-arrows-alt-h"></i>
+                  </div>
                 </div>
-              </div>
 
-              {/* Labels */}
-              <span className="ba-label before">BEFORE</span>
-              <span className="ba-label after">AFTER</span>
+                {/* Labels */}
+                <span className="ba-label before">BEFORE</span>
+                <span className="ba-label after">AFTER</span>
+              </div>
+            </div>
+
+            {/* Under-Image Control Bar */}
+            <div className="slider-controls">
+              <button
+                className={`ctrl-btn ${isPlaying ? "active" : ""}`}
+                onClick={togglePlayPause}
+                title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
+              >
+                <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
+                <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={handleReset}
+                title="Reset to Center"
+              >
+                <i className="fas fa-redo-alt"></i>
+                <span>RESET</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={showBefore}
+                title="Show Before View"
+              >
+                <i className="fas fa-undo"></i>
+                <span>100% BEFORE</span>
+              </button>
+
+              <button
+                className="ctrl-btn"
+                onClick={showAfter}
+                title="Show After View"
+              >
+                <i className="fas fa-redo"></i>
+                <span>100% AFTER</span>
+              </button>
             </div>
           </div>
-
-          {/* Under-Image Control Bar */}
-          <div className="slider-controls">
-            <button
-              className={`ctrl-btn ${isPlaying ? "active" : ""}`}
-              onClick={togglePlayPause}
-              title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
-            >
-              <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
-              <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={handleReset} title="Reset to Center">
-              <i className="fas fa-redo-alt"></i>
-              <span>RESET</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={showBefore} title="Show Before View">
-              <i className="fas fa-undo"></i>
-              <span>100% BEFORE</span>
-            </button>
-
-            <button className="ctrl-btn" onClick={showAfter} title="Show After View">
-              <i className="fas fa-redo"></i>
-              <span>100% AFTER</span>
-            </button>
-          </div>
         </div>
-      </div>
 
-      <style>{`
+        <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
@@ -1820,10 +1832,9 @@ const BeforeAfterSection = () => {
           }
         }
       `}</style>
-    </section>
-  );
-};
-
+      </section>
+    );
+  };
 
   const reasons = [
     {
@@ -2719,7 +2730,7 @@ const BeforeAfterSection = () => {
     );
   };
 
-const Footer = () => {
+  const Footer = () => {
     return (
       <footer className="footer bg-dark">
         <div className="container footer-grid">

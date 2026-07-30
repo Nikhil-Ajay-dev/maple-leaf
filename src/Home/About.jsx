@@ -42,7 +42,7 @@ const AboutHero = () => {
         .about-hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, rgba(7, 21, 74, 0.92) 0%, rgba(7, 21, 74, 0.75) 50%, rgba(7, 21, 74, 0.5) 100%);
+          background: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(38, 38, 39, 0.5) 50%, rgba(43, 43, 44, 0.5) 100%);
           z-index: 1;
         }
 
