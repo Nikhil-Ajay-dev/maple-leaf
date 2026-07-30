@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css/pagination";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaCanadianMapleLeaf } from "react-icons/fa";
 import Header from "./Header";
 
@@ -877,6 +877,7 @@ function HomePage() {
         icon: "fas fa-sun",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=250&fit=crop",
+        path: "/heat-control",
       },
       {
         id: 2,
@@ -885,6 +886,7 @@ function HomePage() {
         icon: "fas fa-user-shield",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=250&fit=crop",
+        path: "/privacy-film",
       },
       {
         id: 3,
@@ -893,6 +895,7 @@ function HomePage() {
         icon: "fas fa-shield-alt",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
+        path: "/security-film",
       },
       {
         id: 4,
@@ -901,6 +904,7 @@ function HomePage() {
         icon: "fas fa-paint-brush",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=250&fit=crop",
+        path: "/decorative-tinting",
       },
       {
         id: 5,
@@ -909,9 +913,10 @@ function HomePage() {
         icon: "fas fa-dove",
         btn: "LEARN MORE",
         img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=250&fit=crop",
+        path: "/feather-friendly",
       },
     ];
-
+    const navigate = useNavigate();
     return (
       <section className="improvement-section">
         <div className="container">
@@ -944,7 +949,10 @@ function HomePage() {
                 <div className="card-content">
                   <h3>{card.title}</h3>
                   <p>{card.desc}</p>
-                  <button className="card-btn">
+                  <button
+                    className="card-btn"
+                    onClick={() => navigate(card.path)}
+                  >
                     <span>{card.btn}</span>
                     <i className="fas fa-arrow-right"></i>
                   </button>
@@ -3100,13 +3108,14 @@ function HomePage() {
       </footer>
     );
   };
+  const location = useLocation();
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      left: 0,
       behavior: "smooth",
     });
-  }, []);
+  }, [location.key]);
   return (
     <>
       <Header />
