@@ -1389,116 +1389,114 @@ const BeforeAfterSection = () => {
   };
 
   return (
-    <>
-      <section className="before-after-section">
-        <div className="container before-after-inner">
-          {/* Left Column: Compact Text */}
-          <div className="before-after-text">
-            <span className="eyebrow">
-              <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
-              <span className="gold-accent">✦</span>
-            </span>
-            <h2>
-              TRANSFORM YOUR GLASS.
-              <br />
-              TRANSFORM YOUR SPACE.
-            </h2>
-            <p>
-              From privacy upgrades to heat reduction and glare protection, our
-              films are selected for the right problem and installed with care.
-            </p>
-            <button className="btn-primary">
-              <span>VIEW MORE BEFORE & AFTER</span>
-              <i className="fas fa-arrow-right"></i>
+    <section className="before-after-section">
+      <div className="container before-after-inner">
+        {/* Left Column: Compact Text */}
+        <div className="before-after-text">
+          <span className="eyebrow">
+            <span className="gold-accent">✦</span> SEE THE DIFFERENCE{" "}
+            <span className="gold-accent">✦</span>
+          </span>
+          <h2>
+            TRANSFORM YOUR GLASS.
+            <br />
+            TRANSFORM YOUR SPACE.
+          </h2>
+          <p>
+            From privacy upgrades to heat reduction and glare protection, our
+            films are selected for the right problem and installed with care.
+          </p>
+          <button className="btn-primary">
+            <span>VIEW MORE BEFORE & AFTER</span>
+            <i className="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
+        {/* Right Column: Larger Image Slider with Controls Below */}
+        <div className="slider-wrapper">
+          <div
+            className="before-after-slider"
+            ref={containerRef}
+            onMouseMove={handleMove}
+            onMouseDown={handleStart}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            onTouchStart={handleStart}
+            onTouchEnd={handleEnd}
+            onTouchMove={(e) => {
+              if (!isDragging) return;
+              const touch = e.touches[0];
+              const rect = containerRef.current.getBoundingClientRect();
+              const x = ((touch.clientX - rect.left) / rect.width) * 100;
+              if (x >= 0 && x <= 100) {
+                setPosition(x);
+                setIsPlaying(false);
+              }
+            }}
+          >
+            <div className="ba-container">
+              {/* Bottom layer: The "AFTER" image */}
+              <div className="ba-image-after"></div>
+
+              {/* Top layer: The "BEFORE" image */}
+              <div
+                className="ba-image-before"
+                style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+              ></div>
+
+              {/* Drag handle */}
+              <div className="ba-handle" style={{ left: `${position}%` }}>
+                <div className="handle-circle">
+                  <i className="fas fa-arrows-alt-h"></i>
+                </div>
+              </div>
+
+              {/* Labels */}
+              <span className="ba-label before">BEFORE</span>
+              <span className="ba-label after">AFTER</span>
+            </div>
+          </div>
+
+          {/* Under-Image Control Bar */}
+          <div className="slider-controls">
+            <button
+              className={`ctrl-btn ${isPlaying ? "active" : ""}`}
+              onClick={togglePlayPause}
+              title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
+            >
+              <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
+              <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
+            </button>
+
+            <button
+              className="ctrl-btn"
+              onClick={handleReset}
+              title="Reset to Center"
+            >
+              <i className="fas fa-redo-alt"></i>
+              <span>RESET</span>
+            </button>
+
+            <button
+              className="ctrl-btn"
+              onClick={showBefore}
+              title="Show Before View"
+            >
+              <i className="fas fa-undo"></i>
+              <span>100% BEFORE</span>
+            </button>
+
+            <button
+              className="ctrl-btn"
+              onClick={showAfter}
+              title="Show After View"
+            >
+              <i className="fas fa-redo"></i>
+              <span>100% AFTER</span>
             </button>
           </div>
-
-          {/* Right Column: Larger Image Slider with Controls Below */}
-          <div className="slider-wrapper">
-            <div
-              className="before-after-slider"
-              ref={containerRef}
-              onMouseMove={handleMove}
-              onMouseDown={handleStart}
-              onMouseUp={handleEnd}
-              onMouseLeave={handleEnd}
-              onTouchStart={handleStart}
-              onTouchEnd={handleEnd}
-              onTouchMove={(e) => {
-                if (!isDragging) return;
-                const touch = e.touches[0];
-                const rect = containerRef.current.getBoundingClientRect();
-                const x = ((touch.clientX - rect.left) / rect.width) * 100;
-                if (x >= 0 && x <= 100) {
-                  setPosition(x);
-                  setIsPlaying(false);
-                }
-              }}
-            >
-              <div className="ba-container">
-                {/* Bottom layer: The "AFTER" image */}
-                <div className="ba-image-after"></div>
-
-                {/* Top layer: The "BEFORE" image */}
-                <div
-                  className="ba-image-before"
-                  style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-                ></div>
-
-                {/* Drag handle */}
-                <div className="ba-handle" style={{ left: `${position}%` }}>
-                  <div className="handle-circle">
-                    <i className="fas fa-arrows-alt-h"></i>
-                  </div>
-                </div>
-
-                {/* Labels */}
-                <span className="ba-label before">BEFORE</span>
-                <span className="ba-label after">AFTER</span>
-              </div>
-            </div>
-
-            {/* Under-Image Control Bar */}
-            <div className="slider-controls">
-              <button
-                className={`ctrl-btn ${isPlaying ? "active" : ""}`}
-                onClick={togglePlayPause}
-                title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
-              >
-                <i className={`fas ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
-                <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
-              </button>
-
-              <button
-                className="ctrl-btn"
-                onClick={handleReset}
-                title="Reset to Center"
-              >
-                <i className="fas fa-redo-alt"></i>
-                <span>RESET</span>
-              </button>
-
-              <button
-                className="ctrl-btn"
-                onClick={showBefore}
-                title="Show Before View"
-              >
-                <i className="fas fa-undo"></i>
-                <span>100% BEFORE</span>
-              </button>
-
-              <button
-                className="ctrl-btn"
-                onClick={showAfter}
-                title="Show After View"
-              >
-                <i className="fas fa-redo"></i>
-                <span>100% AFTER</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
 
       <style>{`
         :root {
@@ -1536,13 +1534,13 @@ const BeforeAfterSection = () => {
           opacity: 0.3;
         }
 
-        .container {
+        .before-after-section .container {
           max-width: 1360px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .before-after-inner {
+        .before-after-section .before-after-inner {
           display: grid;
           grid-template-columns: 0.7fr 1.3fr;
           gap: 40px;
@@ -1552,7 +1550,7 @@ const BeforeAfterSection = () => {
         }
 
         /* Text Section */
-        .before-after-text .eyebrow {
+        .before-after-section .before-after-text .eyebrow {
           color: var(--primary-gold);
           font-weight: 700;
           letter-spacing: 2px;
@@ -1564,7 +1562,7 @@ const BeforeAfterSection = () => {
           margin-bottom: 6px;
         }
 
-        .gold-accent {
+        .before-after-section .gold-accent {
           color: var(--primary-gold);
           animation: spinGold 4s linear infinite;
           display: inline-block;
@@ -1575,7 +1573,7 @@ const BeforeAfterSection = () => {
           100% { transform: rotate(360deg); }
         }
 
-        .before-after-text h2 {
+        .before-after-section .before-after-text h2 {
           font-size: 2.1rem;
           font-weight: 900;
           line-height: 1.1;
@@ -1584,7 +1582,7 @@ const BeforeAfterSection = () => {
           color: #ffffff;
         }
 
-        .before-after-text p {
+        .before-after-section .before-after-text p {
           opacity: 0.7;
           margin-bottom: 20px;
           color: #cccccc;
@@ -1592,7 +1590,7 @@ const BeforeAfterSection = () => {
           line-height: 1.45;
         }
 
-        .btn-primary {
+        .before-after-section .btn-primary {
           background: var(--primary-gold);
           color: var(--primary-blue);
           border: 2px solid var(--primary-gold);
@@ -1609,30 +1607,30 @@ const BeforeAfterSection = () => {
           text-transform: uppercase;
         }
 
-        .btn-primary i {
+        .before-after-section .btn-primary i {
           transition: transform 0.3s ease;
         }
 
-        .btn-primary:hover {
+        .before-after-section .btn-primary:hover {
           background: transparent;
           color: var(--primary-gold);
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(214, 168, 0, 0.2);
         }
 
-        .btn-primary:hover i {
+        .before-after-section .btn-primary:hover i {
           transform: translateX(6px);
         }
 
         /* Slider Wrapper */
-        .slider-wrapper {
+        .before-after-section .slider-wrapper {
           display: flex;
           flex-direction: column;
           gap: 14px;
           width: 100%;
         }
 
-        .before-after-slider {
+        .before-after-section .before-after-slider {
           width: 100%;
           aspect-ratio: 16 / 9;
           min-height: 400px;
@@ -1645,12 +1643,12 @@ const BeforeAfterSection = () => {
           overflow: hidden;
         }
 
-        .before-after-slider:hover {
+        .before-after-section .before-after-slider:hover {
           border-color: #ffffff;
           box-shadow: 0 20px 60px rgba(214, 168, 0, 0.15);
         }
 
-        .ba-container {
+        .before-after-section .ba-container {
           width: 100%;
           height: 100%;
           position: relative;
@@ -1659,8 +1657,7 @@ const BeforeAfterSection = () => {
           background: #000000;
         }
 
-        /* Image placeholders - Replace with your actual images */
-        .ba-image-before {
+        .before-after-section .ba-image-before {
           position: absolute;
           inset: 0;
           background-image: url('../Images/Before.png');
@@ -1669,7 +1666,7 @@ const BeforeAfterSection = () => {
           background-repeat: no-repeat;
         }
 
-        .ba-image-after {
+        .before-after-section .ba-image-after {
           position: absolute;
           inset: 0;
           background-image: url('../Images/After.png');
@@ -1678,16 +1675,7 @@ const BeforeAfterSection = () => {
           background-repeat: no-repeat;
         }
 
-        /* Fallback gradients if images don't load */
-        // .ba-image-before {
-        //   background: linear-gradient(145deg, #1a2a3a 0%, #2c4a5e 100%);
-        // }
-
-        // .ba-image-after {
-        //   background: linear-gradient(145deg, #4a3520, #8b6b40);
-        // }
-
-        .ba-label {
+        .before-after-section .ba-label {
           position: absolute;
           top: 16px;
           padding: 6px 16px;
@@ -1701,7 +1689,7 @@ const BeforeAfterSection = () => {
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
-        .ba-label.before {
+        .before-after-section .ba-label.before {
           left: 16px;
           background: rgba(0, 0, 0, 0.8);
           color: #ffffff;
@@ -1709,7 +1697,7 @@ const BeforeAfterSection = () => {
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .ba-label.after {
+        .before-after-section .ba-label.after {
           right: 16px;
           background: var(--primary-gold);
           color: var(--primary-blue);
@@ -1717,7 +1705,7 @@ const BeforeAfterSection = () => {
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .ba-handle {
+        .before-after-section .ba-handle {
           position: absolute;
           top: 0;
           width: 3px;
@@ -1730,7 +1718,7 @@ const BeforeAfterSection = () => {
           transition: box-shadow 0.3s ease;
         }
 
-        .handle-circle {
+        .before-after-section .handle-circle {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -1756,7 +1744,7 @@ const BeforeAfterSection = () => {
         }
 
         /* Controls Bar Below Image */
-        .slider-controls {
+        .before-after-section .slider-controls {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1764,7 +1752,7 @@ const BeforeAfterSection = () => {
           flex-wrap: wrap;
         }
 
-        .ctrl-btn {
+        .before-after-section .ctrl-btn {
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(214, 168, 0, 0.3);
           color: #ffffff;
@@ -1780,7 +1768,7 @@ const BeforeAfterSection = () => {
           transition: all 0.25s ease;
         }
 
-        .ctrl-btn:hover {
+        .before-after-section .ctrl-btn:hover {
           background: var(--primary-gold);
           color: var(--primary-blue);
           border-color: var(--primary-gold);
@@ -1788,134 +1776,245 @@ const BeforeAfterSection = () => {
           box-shadow: 0 4px 14px rgba(214, 168, 0, 0.25);
         }
 
-        .ctrl-btn.active {
+        .before-after-section .ctrl-btn.active {
           background: rgba(214, 168, 0, 0.15);
           border-color: var(--primary-gold);
           color: var(--primary-gold);
         }
 
-        .ctrl-btn i {
+        .before-after-section .ctrl-btn i {
           font-size: 0.8rem;
         }
 
-        /* Responsive Layout - Mobile Fix */
+        /* ===== RESPONSIVE LAYOUT - MOBILE FIX ===== */
         @media (max-width: 992px) {
-          .before-after-inner {
+          .before-after-section .before-after-inner {
             grid-template-columns: 1fr;
             gap: 30px;
           }
 
-          .before-after-text {
+          .before-after-section .before-after-text {
             text-align: center;
           }
 
-          .before-after-text .eyebrow {
+          .before-after-section .before-after-text .eyebrow {
             justify-content: center;
           }
 
-          .before-after-text h2 {
+          .before-after-section .before-after-text h2 {
             font-size: 1.8rem;
           }
 
-          .btn-primary {
+          .before-after-section .btn-primary {
             justify-content: center;
+            margin: 0 auto;
           }
 
-          .before-after-slider {
-            min-height: 320px;
+          .before-after-section .before-after-slider {
+            min-height: 350px;
           }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
           .before-after-section {
-            padding: 40px 0;
+            padding: 50px 0;
           }
 
-          .container {
+          .before-after-section .container {
             padding: 0 16px;
           }
 
-          .before-after-inner {
-            gap: 20px;
+          .before-after-section .before-after-inner {
+            gap: 25px;
           }
 
-          .before-after-text h2 {
-            font-size: 1.4rem;
+          .before-after-section .before-after-text h2 {
+            font-size: 1.6rem;
           }
 
-          .before-after-text p {
-            font-size: 0.85rem;
+          .before-after-section .before-after-text p {
+            font-size: 0.9rem;
           }
 
-          .before-after-slider {
-            min-height: 250px;
+          .before-after-section .before-after-slider {
+            min-height: 300px;
             border-radius: 12px;
             border-width: 2px;
           }
 
-          .ba-container {
+          .before-after-section .ba-container {
             border-radius: 10px;
           }
 
-          .handle-circle {
-            width: 36px;
-            height: 36px;
-            font-size: 0.9rem;
+          .before-after-section .handle-circle {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
           }
 
-          .ba-label {
-            font-size: 0.6rem;
-            padding: 4px 10px;
+          .before-after-section .ba-label {
+            font-size: 0.65rem;
+            padding: 5px 12px;
           }
 
-          .btn-primary {
-            padding: 10px 16px;
-            font-size: 0.75rem;
-            width: 100%;
+          .before-after-section .slider-controls {
+            gap: 10px;
           }
 
-          .slider-controls {
-            gap: 8px;
-          }
-
-          .ctrl-btn {
-            padding: 6px 12px;
-            font-size: 0.68rem;
-            flex: 1 1 calc(50% - 8px);
+          .before-after-section .ctrl-btn {
+            padding: 7px 14px;
+            font-size: 0.7rem;
+            flex: 1 1 calc(50% - 10px);
             justify-content: center;
           }
 
-          .before-after-section {
-            overflow-x: hidden;
-          }
-
-          .slider-wrapper {
-            max-width: 100%;
+          .before-after-section .btn-primary {
+            width: 100%;
+            max-width: 400px;
+            justify-content: center;
           }
         }
 
-        @media (max-width: 420px) {
-          .container {
+        @media (max-width: 480px) {
+          .before-after-section {
+            padding: 40px 0;
+          }
+
+          .before-after-section .container {
             padding: 0 12px;
           }
 
-          .before-after-slider {
-            min-height: 200px;
+          .before-after-section .before-after-inner {
+            gap: 20px;
           }
 
-          .ctrl-btn {
+          .before-after-section .before-after-text .eyebrow {
+            font-size: 0.65rem;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .before-after-section .before-after-text h2 {
+            font-size: 1.3rem;
+          }
+
+          .before-after-section .before-after-text p {
+            font-size: 0.82rem;
+          }
+
+          .before-after-section .btn-primary {
+            padding: 10px 16px;
+            font-size: 0.7rem;
+            width: 100%;
+            max-width: 100%;
+            justify-content: center;
+          }
+
+          .before-after-section .before-after-slider {
+            min-height: 220px;
+            border-radius: 10px;
+            border-width: 2px;
+          }
+
+          .before-after-section .ba-container {
+            border-radius: 8px;
+          }
+
+          .before-after-section .handle-circle {
+            width: 32px;
+            height: 32px;
+            font-size: 0.8rem;
+            border-width: 2px;
+          }
+
+          .before-after-section .ba-label {
+            font-size: 0.55rem;
+            padding: 4px 10px;
+            top: 12px;
+          }
+
+          .before-after-section .ba-label.before {
+            left: 12px;
+          }
+
+          .before-after-section .ba-label.after {
+            right: 12px;
+          }
+
+          .before-after-section .slider-controls {
+            gap: 8px;
+          }
+
+          .before-after-section .ctrl-btn {
+            padding: 6px 10px;
             font-size: 0.6rem;
+            flex: 1 1 calc(50% - 8px);
+            justify-content: center;
+            gap: 4px;
+          }
+
+          .before-after-section .ctrl-btn i {
+            font-size: 0.7rem;
+          }
+
+          .before-after-section .slider-wrapper {
+            gap: 10px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .before-after-section {
+            padding: 30px 0;
+          }
+
+          .before-after-section .container {
+            padding: 0 10px;
+          }
+
+          .before-after-section .before-after-text .eyebrow {
+            font-size: 0.55rem;
+          }
+
+          .before-after-section .before-after-text h2 {
+            font-size: 1.1rem;
+          }
+
+          .before-after-section .before-after-text p {
+            font-size: 0.75rem;
+          }
+
+          .before-after-section .before-after-slider {
+            min-height: 180px;
+            border-radius: 8px;
+          }
+
+          .before-after-section .handle-circle {
+            width: 28px;
+            height: 28px;
+            font-size: 0.7rem;
+            border-width: 2px;
+          }
+
+          .before-after-section .ba-label {
+            font-size: 0.5rem;
+            padding: 3px 8px;
+            top: 10px;
+          }
+
+          .before-after-section .ctrl-btn {
+            font-size: 0.55rem;
             padding: 5px 8px;
             flex: 1 1 100%;
           }
 
-          .ba-label {
-            font-size: 0.5rem;
-            padding: 3px 8px;
+          .before-after-section .btn-primary {
+            font-size: 0.65rem;
+            padding: 8px 12px;
           }
         }
       `}</style>
-    </>
+    </section>
   );
 };
 
@@ -1948,97 +2047,89 @@ const BeforeAfterSection = () => {
     },
   ];
 
-  const WhyChooseUs = () => {
-    const reasons = [
-      {
-        icon: "fas fa-check-circle",
-        title: "RIGHT PRODUCT",
-        desc: "We select the exact film for your specific needs — heat, privacy, security, or design.",
-      },
-      {
-        icon: "fas fa-tools",
-        title: "EXPERT INSTALLATION",
-        desc: "Professionally trained technicians ensure bubble-free, perfect finishes every time.",
-      },
-      {
-        icon: "fas fa-users",
-        title: "RIGHT PEOPLE",
-        desc: "Friendly, knowledgeable team dedicated to solving your window film challenges.",
-      },
-      {
-        icon: "fas fa-shield-alt",
-        title: "QUALITY GUARANTEED",
-        desc: "We stand behind our work with comprehensive warranties on products and installation.",
-      },
-      {
-        icon: "fas fa-star",
-        title: "TRUSTED EXPERTS",
-        desc: "200+ 5-star reviews from satisfied customers across the Greater Toronto Area.",
-      },
-    ];
+const WhyChooseUs = () => {
+  const reasons = [
+    {
+      icon: "fas fa-check-circle",
+      title: "RIGHT PRODUCT",
+      desc: "We select the exact film for your specific needs — heat, privacy, security, or design.",
+    },
+    {
+      icon: "fas fa-tools",
+      title: "EXPERT INSTALLATION",
+      desc: "Professionally trained technicians ensure bubble-free, perfect finishes every time.",
+    },
+    {
+      icon: "fas fa-users",
+      title: "RIGHT PEOPLE",
+      desc: "Friendly, knowledgeable team dedicated to solving your window film challenges.",
+    },
+    {
+      icon: "fas fa-shield-alt",
+      title: "QUALITY GUARANTEED",
+      desc: "We stand behind our work with comprehensive warranties on products and installation.",
+    },
+    {
+      icon: "fas fa-star",
+      title: "TRUSTED EXPERTS",
+      desc: "200+ 5-star reviews from satisfied customers across the Greater Toronto Area.",
+    },
+  ];
 
-    return (
-      <section className="why-choose-section">
-        <div className="container">
-          {/* Header Block */}
-          <div className="why-header">
-            <p className="why-eyebrow">WHY CHOOSE MAPLE LEAF WINDOW FILM</p>
+  return (
+    <section className="why-choose-section">
+      <div className="container">
+        <div className="why-header">
+          <p className="why-eyebrow">WHY CHOOSE MAPLE LEAF WINDOW FILM</p>
 
-            <div className="heading-with-lines">
-              <span className="line-left"></span>
-              <h2 className="why-main-title">
-                RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
-              </h2>
-              <span className="line-right"></span>
-            </div>
-
-            <p className="why-description">
-              We don't just install window film — we provide the right solution
-              for your space.
-              <br />
-              Our goal is simple: solve the problem properly the first time.
-            </p>
+          <div className="heading-with-lines">
+            <span className="line-left"></span>
+            <h2 className="why-main-title">
+              RIGHT PRODUCT. RIGHT INSTALL. RIGHT PEOPLE.
+            </h2>
+            <span className="line-right"></span>
           </div>
 
-          {/* Reasons Grid */}
-          <div className="why-grid">
-            {reasons.map((item, idx) => (
-              <div key={idx} className="why-card">
-                <div className="why-icon">
-                  <i className={item.icon}></i>
-                </div>
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-          </div>
+          <p className="why-description">
+            We don't just install window film — we provide the right solution
+            for your space.
+            <br />
+            Our goal is simple: solve the problem properly the first time.
+          </p>
         </div>
 
-        <style>{`
-        :root {
-          --primary-blue: #07154a;
-          --primary-gold: #d6a800;
-          --border-color: #e2e8f0;
-        }
+        <div className="why-grid">
+          {reasons.map((item, idx) => (
+            <div key={idx} className="why-card">
+              <div className="why-icon">
+                <i className={item.icon}></i>
+              </div>
+              <h4>{item.title}</h4>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
+      <style>{`
         .why-choose-section { 
           padding: 70px 0; 
           background: #ffffff; 
         }
 
-        .container {
+        .why-choose-section .container {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .why-header {
+        .why-choose-section .why-header {
           text-align: center;
           margin-bottom: 50px;
         }
 
-        .why-eyebrow {
-          color: var(--primary-gold);
+        .why-choose-section .why-eyebrow {
+          color: #d6a800;
           font-size: 0.8rem;
           font-weight: 800;
           letter-spacing: 2px;
@@ -2046,36 +2137,45 @@ const BeforeAfterSection = () => {
           margin-bottom: 10px;
         }
 
-        .heading-with-lines {
+        .why-choose-section .heading-with-lines {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 20px;
-          margin-bottom: 14px;
+          margin: 0 auto 14px auto;
+          max-width: 900px;
+          width: 100%;
         }
 
-        .line-left,
-        .line-right {
-          flex: 0 0 80px;
-          height: 2px;
-          background: linear-gradient(to right, transparent, var(--primary-gold));
+        .why-choose-section .line-left {
+          flex: 1;
+          max-width: 120px;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #d6a800);
+          border-radius: 2px;
         }
 
-        .line-right {
-          background: linear-gradient(to left, transparent, var(--primary-gold));
+        .why-choose-section .line-right {
+          flex: 1;
+          max-width: 120px;
+          height: 3px;
+          background: linear-gradient(90deg, #d6a800, transparent);
+          border-radius: 2px;
         }
 
-        .why-main-title {
+        .why-choose-section .why-main-title {
           font-size: 1.85rem;
           font-weight: 900;
-          color: var(--primary-blue);
+          color: #07154a;
           letter-spacing: 0.5px;
           text-transform: uppercase;
           margin: 0;
           white-space: nowrap;
+          text-align: center;
+          flex-shrink: 0;
         }
 
-        .why-description {
+        .why-choose-section .why-description {
           font-size: 0.88rem;
           color: #666666;
           line-height: 1.5;
@@ -2083,36 +2183,35 @@ const BeforeAfterSection = () => {
           margin: 0 auto;
         }
 
-        /* 5-Column Grid with Dividers */
-        .why-grid { 
+        .why-choose-section .why-grid { 
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
           width: 100%;
+          gap: 0;
         }
 
-        .why-card { 
+        .why-choose-section .why-card { 
           text-align: center; 
           padding: 0 20px; 
           flex: 1;
-          border-right: 1px solid var(--border-color);
+          border-right: 1px solid #e2e8f0;
           display: flex;
           flex-direction: column;
           align-items: center;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .why-card:hover { 
-          transform: translateY(-8px)
+          transition: transform 0.3s ease;
         }
 
-        .why-card:last-child {
+        .why-choose-section .why-card:hover { 
+          transform: translateY(-8px);
+        }
+
+        .why-choose-section .why-card:last-child {
           border-right: none;
         }
 
-        /* Outlined Icon */
-        .why-icon { 
-          background: transparent; 
-          color: var(--primary-blue); 
+        .why-choose-section .why-icon { 
+          color: #07154a; 
           font-size: 2.4rem; 
           margin-bottom: 20px; 
           display: flex;
@@ -2122,25 +2221,24 @@ const BeforeAfterSection = () => {
           transition: color 0.3s ease;
         }
 
-        .why-card:hover .why-icon {
-          color: var(--primary-gold);
+        .why-choose-section .why-card:hover .why-icon {
+          color: #d6a800;
         }
 
-        .why-card h4 { 
+        .why-choose-section .why-card h4 { 
           font-weight: 800; 
           font-size: 0.82rem; 
-          color: var(--primary-blue);
+          color: #07154a;
           margin-bottom: 10px; 
           letter-spacing: 0.5px;
-          text-transform: uppercase;
           transition: color 0.3s ease;
         }
 
-        .why-card:hover h4 {
-          color: var(--primary-gold);
+        .why-choose-section .why-card:hover h4 {
+          color: #d6a800;
         }
 
-        .why-card p { 
+        .why-choose-section .why-card p { 
           font-size: 0.85rem; 
           color: #8c8989; 
           line-height: 1.5;
@@ -2148,74 +2246,174 @@ const BeforeAfterSection = () => {
           margin: 0 auto;
         }
 
+        @media (max-width: 1200px) {
+          .why-choose-section .heading-with-lines {
+            max-width: 800px;
+            gap: 16px;
+          }
+
+          .why-choose-section .line-left,
+          .why-choose-section .line-right {
+            max-width: 80px;
+          }
+
+          .why-choose-section .why-main-title {
+            font-size: 1.6rem;
+          }
+        }
+
         @media (max-width: 992px) {
-          .why-grid {
+          .why-choose-section .why-grid {
             flex-wrap: wrap;
             gap: 30px 0;
           }
 
-          .why-card {
+          .why-choose-section .why-card {
             flex: 1 1 33.33%;
             border-right: none;
-            margin-bottom: 20px;
+            padding: 0 15px;
           }
 
-          .line-left,
-          .line-right {
-            flex: 0 0 40px;
+          .why-choose-section .heading-with-lines {
+            max-width: 100%;
+            gap: 14px;
           }
 
-          .why-main-title {
+          .why-choose-section .line-left,
+          .why-choose-section .line-right {
+            max-width: 60px;
+          }
+
+          .why-choose-section .why-main-title {
             font-size: 1.4rem;
             white-space: normal;
+            word-break: break-word;
+          }
+
+          .why-choose-section .why-card p {
+            max-width: 100%;
           }
         }
 
-        @media (max-width: 600px) {
-          .why-main-title {
+        @media (max-width: 768px) {
+          .why-choose-section {
+            padding: 50px 0;
+          }
+
+          .why-choose-section .container {
+            padding: 0 16px;
+          }
+
+          .why-choose-section .why-header {
+            margin-bottom: 35px;
+          }
+
+          .why-choose-section .heading-with-lines {
+            gap: 12px;
+          }
+
+          .why-choose-section .line-left,
+          .why-choose-section .line-right {
+            max-width: 40px;
+            height: 2px;
+          }
+
+          .why-choose-section .why-main-title {
             font-size: 1.2rem;
+            white-space: normal;
+            word-break: break-word;
           }
 
-          .why-card {
-            flex: 1 1 100%;
+          .why-choose-section .why-description {
+            font-size: 0.82rem;
           }
 
-          .line-left,
-          .line-right {
-            flex: 0 0 20px;
+          .why-choose-section .why-card {
+            flex: 1 1 50%;
+            padding: 0 12px;
           }
 
-          .heading-with-lines {
+          .why-choose-section .why-icon {
+            font-size: 2rem;
+            height: 40px;
+          }
+
+          .why-choose-section .why-card h4 {
+            font-size: 0.75rem;
+          }
+
+          .why-choose-section .why-card p {
+            font-size: 0.78rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .why-choose-section {
+            padding: 40px 0;
+          }
+
+          .why-choose-section .container {
+            padding: 0 12px;
+          }
+
+          .why-choose-section .why-header {
+            margin-bottom: 28px;
+          }
+
+          .why-choose-section .why-eyebrow {
+            font-size: 0.7rem;
+          }
+
+          .why-choose-section .heading-with-lines {
             gap: 10px;
+          }
+
+          .why-choose-section .line-left,
+          .why-choose-section .line-right {
+            max-width: 30px;
+            height: 2px;
+          }
+
+          .why-choose-section .why-main-title {
+            font-size: 0.95rem;
+            width: 70%;
+            white-space: normal;
+            word-break: break-word;
+          }
+
+          .why-choose-section .why-description {
+            font-size: 0.78rem;
+          }
+
+          .why-choose-section .why-grid {
+            gap: 20px 0;
+          }
+
+          .why-choose-section .why-card {
+            flex: 1 1 100%;
+            padding: 0 10px;
+            border-right: none;
+          }
+
+          .why-choose-section .why-icon {
+            font-size: 1.8rem;
+            height: 36px;
+            margin-bottom: 14px;
+          }
+
+          .why-choose-section .why-card h4 {
+            font-size: 0.7rem;
+          }
+
+          .why-choose-section .why-card p {
+            font-size: 0.75rem;
+            max-width: 280px;
           }
         }
       `}</style>
-      </section>
-    );
-  };
-
-  const projects = [
-    {
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
-      title: "Luxury Residential",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop",
-      title: "Commercial Office",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400&h=300&fit=crop",
-      title: "Retail Storefront",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop",
-      title: "Modern Condo",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop",
-      title: "Luxury Home",
-    },
-  ];
+    </section>
+  );
+};
 
 const FeaturedProjects = () => {
   const projects = [
@@ -2235,14 +2433,6 @@ const FeaturedProjects = () => {
       img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
       title: "Luxury Condo Tinting",
     },
-    // {
-    //   img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop",
-    //   title: "Office Decorative Film",
-    // },
-    // {
-    //   img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=300&fit=crop",
-    //   title: "Bird Safety Installation",
-    // },
   ];
 
   return (
@@ -2273,32 +2463,26 @@ const FeaturedProjects = () => {
       </div>
 
       <style>{`
-        :root {
-          --primary-blue: #07154a;
-          --primary-gold: #d6a800;
-          --dark-gold: #b89200;
-        }
-
         .projects-section {
           padding: 60px 0;
-          background: var(--primary-blue);
+          background: #07154a;
           position: relative;
         }
 
-        .container {
+        .projects-section .container {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .projects-header {
+        .projects-section .projects-header {
           display: flex;
           justify-content: center;
           align-items: center;
           margin-bottom: 40px;
         }
 
-        .heading-with-lines {
+        .projects-section .heading-with-lines {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -2307,23 +2491,23 @@ const FeaturedProjects = () => {
           max-width: 600px;
         }
 
-        .line-left,
-        .line-right {
+        .projects-section .line-left {
           flex: 1;
           max-width: 80px;
           height: 2px;
           border-radius: 2px;
+          background: linear-gradient(90deg, transparent, #d6a800);
         }
 
-        .line-left {
-          background: linear-gradient(90deg, transparent, var(--primary-gold));
+        .projects-section .line-right {
+          flex: 1;
+          max-width: 80px;
+          height: 2px;
+          border-radius: 2px;
+          background: linear-gradient(90deg, #d6a800, transparent);
         }
 
-        .line-right {
-          background: linear-gradient(90deg, var(--primary-gold), transparent);
-        }
-
-        .projects-header h2 {
+        .projects-section .projects-header h2 {
           font-size: 1.6rem;
           font-weight: 800;
           color: #ffffff;
@@ -2333,14 +2517,13 @@ const FeaturedProjects = () => {
           white-space: nowrap;
         }
 
-        /* Grid Layout - Cards */
-        .projects-grid {
+        .projects-section .projects-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 24px;
         }
 
-        .project-card {
+        .projects-section .project-card {
           position: relative;
           border-radius: 10px;
           overflow: hidden;
@@ -2352,24 +2535,24 @@ const FeaturedProjects = () => {
           border: 2px solid rgba(214, 168, 0, 0.15);
         }
 
-        .project-card:hover {
+        .projects-section .project-card:hover {
           transform: translateY(-6px);
           box-shadow: 0 12px 36px rgba(214, 168, 0, 0.2);
-          border-color: var(--primary-gold);
+          border-color: #d6a800;
         }
 
-        .project-card img {
+        .projects-section .project-card img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           transition: transform 0.4s ease;
         }
 
-        .project-card:hover img {
+        .projects-section .project-card:hover img {
           transform: scale(1.08);
         }
 
-        .project-overlay {
+        .projects-section .project-overlay {
           position: absolute;
           bottom: 0;
           left: 0;
@@ -2379,7 +2562,7 @@ const FeaturedProjects = () => {
           transition: all 0.3s ease;
         }
 
-        .project-overlay span {
+        .projects-section .project-overlay span {
           color: white;
           font-weight: 700;
           font-size: 0.85rem;
@@ -2388,24 +2571,24 @@ const FeaturedProjects = () => {
           display: block;
         }
 
-        .project-card:hover .project-overlay {
+        .projects-section .project-card:hover .project-overlay {
           background: linear-gradient(to top, rgba(214, 168, 0, 0.92) 0%, transparent 100%);
         }
 
-        .project-card:hover .project-overlay span {
-          color: var(--primary-blue);
+        .projects-section .project-card:hover .project-overlay span {
+          color: #07154a;
         }
 
-        .projects-footer {
+        .projects-section .projects-footer {
           display: flex;
           justify-content: center;
           margin-top: 40px;
         }
 
-        .view-all {
-          background: var(--primary-gold);
-          color: var(--primary-blue);
-          border: 2px solid var(--primary-gold);
+        .projects-section .view-all {
+          background: #d6a800;
+          color: #07154a;
+          border: 2px solid #d6a800;
           padding: 14px 42px;
           border-radius: 6px;
           font-weight: 700;
@@ -2416,16 +2599,15 @@ const FeaturedProjects = () => {
           text-transform: uppercase;
         }
 
-        .view-all:hover {
+        .projects-section .view-all:hover {
           background: transparent;
-          color: var(--primary-gold);
+          color: #d6a800;
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(214, 168, 0, 0.25);
         }
 
-        /* Responsive Grid */
         @media (max-width: 1200px) {
-          .projects-grid {
+          .projects-section .projects-grid {
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
           }
@@ -2436,26 +2618,26 @@ const FeaturedProjects = () => {
             padding: 50px 0;
           }
 
-          .container {
+          .projects-section .container {
             padding: 0 20px;
           }
 
-          .heading-with-lines {
+          .projects-section .heading-with-lines {
             max-width: 500px;
             gap: 16px;
           }
 
-          .line-left,
-          .line-right {
+          .projects-section .line-left,
+          .projects-section .line-right {
             max-width: 50px;
           }
 
-          .projects-header h2 {
+          .projects-section .projects-header h2 {
             font-size: 1.4rem;
           }
 
-          .projects-grid {
-            grid-template-columns: repeat(1, 1fr);
+          .projects-section .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
           }
         }
@@ -2465,51 +2647,50 @@ const FeaturedProjects = () => {
             padding: 40px 0;
           }
 
-          .container {
+          .projects-section .container {
             padding: 0 16px;
           }
 
-          .projects-header {
+          .projects-section .projects-header {
             margin-bottom: 28px;
           }
 
-          .heading-with-lines {
+          .projects-section .heading-with-lines {
             gap: 14px;
             max-width: 100%;
           }
 
-          .line-left,
-          .line-right {
+          .projects-section .line-left,
+          .projects-section .line-right {
             max-width: 35px;
             min-width: 20px;
           }
 
-          .projects-header h2 {
+          .projects-section .projects-header h2 {
             font-size: 1.2rem;
             white-space: normal;
             text-align: center;
           }
 
-          .projects-grid {
+          .projects-section .projects-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 14px;
           }
 
-          .project-card {
+          .projects-section .project-card {
             border-radius: 8px;
             border-width: 1.5px;
           }
 
-          .project-overlay {
+          .projects-section .project-overlay {
             padding: 14px 12px;
           }
 
-          .project-overlay span {
+          .projects-section .project-overlay span {
             font-size: 0.7rem;
-            letter-spacing: 0.3px;
           }
 
-          .view-all {
+          .projects-section .view-all {
             padding: 12px 32px;
             font-size: 0.8rem;
             width: 100%;
@@ -2517,7 +2698,7 @@ const FeaturedProjects = () => {
             text-align: center;
           }
 
-          .projects-footer {
+          .projects-section .projects-footer {
             margin-top: 28px;
           }
         }
@@ -2527,127 +2708,58 @@ const FeaturedProjects = () => {
             padding: 30px 0;
           }
 
-          .container {
+          .projects-section .container {
             padding: 0 12px;
           }
 
-          .projects-header {
+          .projects-section .projects-header {
             margin-bottom: 20px;
           }
 
-          .heading-with-lines {
+          .projects-section .heading-with-lines {
             gap: 10px;
           }
 
-          .line-left,
-          .line-right {
+          .projects-section .line-left,
+          .projects-section .line-right {
             max-width: 25px;
             min-width: 15px;
           }
 
-          .projects-header h2 {
+          .projects-section .projects-header h2 {
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
           }
 
-          .projects-grid {
-            grid-template-columns: 1fr ;
+          .projects-section .projects-grid {
+            grid-template-columns: 1fr;
             gap: 10px;
           }
 
-          .project-card {
+          .projects-section .project-card {
             border-radius: 6px;
-            aspect-ratio: 4/3;
             border-width: 1px;
           }
 
-          .project-overlay {
+          .projects-section .project-overlay {
             padding: 10px 10px;
           }
 
-          .project-overlay span {
+          .projects-section .project-overlay span {
             font-size: 0.6rem;
-            letter-spacing: 0.2px;
           }
 
-          .view-all {
+          .projects-section .view-all {
             padding: 10px 20px;
             font-size: 0.7rem;
             max-width: 100%;
             border-radius: 4px;
           }
 
-          .projects-footer {
+          .projects-section .projects-footer {
             margin-top: 20px;
           }
         }
 
-        @media (max-width: 360px) {
-          .projects-section {
-            padding: 24px 0;
-          }
-
-          .container {
-            padding: 0 10px;
-          }
-
-          .heading-with-lines {
-            gap: 8px;
-          }
-
-          .line-left,
-          .line-right {
-            max-width: 18px;
-            min-width: 10px;
-          }
-
-          .projects-header h2 {
-            font-size: 0.8rem;
-          }
-
-          .projects-grid {
-            gap: 8px;
-          }
-
-          .project-overlay {
-            padding: 8px 8px;
-          }
-
-          .project-overlay span {
-            font-size: 0.5rem;
-          }
-
-          .view-all {
-            padding: 8px 16px;
-            font-size: 0.6rem;
-          }
-        }
-
-        /* Touch device optimization */
-        @media (hover: none) {
-          .project-card:hover {
-            transform: none;
-          }
-
-          .project-card:hover img {
-            transform: none;
-          }
-
-          .project-card:hover .project-overlay {
-            background: linear-gradient(to top, rgba(7, 21, 74, 0.92) 0%, transparent 100%);
-          }
-
-          .project-card:hover .project-overlay span {
-            color: white;
-          }
-
-          .project-card:active {
-            transform: scale(0.98);
-            transition: transform 0.1s ease;
-          }
-        }
-
-        /* Animation */
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -2659,17 +2771,15 @@ const FeaturedProjects = () => {
           }
         }
 
-        .project-card {
+        .projects-section .project-card {
           animation: fadeInUp 0.6s ease forwards;
           opacity: 0;
         }
 
-        .project-card:nth-child(1) { animation-delay: 0.05s; }
-        .project-card:nth-child(2) { animation-delay: 0.1s; }
-        .project-card:nth-child(3) { animation-delay: 0.15s; }
-        .project-card:nth-child(4) { animation-delay: 0.2s; }
-        .project-card:nth-child(5) { animation-delay: 0.25s; }
-        .project-card:nth-child(6) { animation-delay: 0.3s; }
+        .projects-section .project-card:nth-child(1) { animation-delay: 0.05s; }
+        .projects-section .project-card:nth-child(2) { animation-delay: 0.1s; }
+        .projects-section .project-card:nth-child(3) { animation-delay: 0.15s; }
+        .projects-section .project-card:nth-child(4) { animation-delay: 0.2s; }
       `}</style>
     </section>
   );
