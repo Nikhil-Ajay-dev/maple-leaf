@@ -30,16 +30,17 @@ module.exports = async (req, res) => {
   // CORS
   const origin = req.headers.origin;
   const allowed = allowedOrigins.some((o) =>
-    o instanceof RegExp ? o.test(origin) : o === origin
+    o instanceof RegExp ? o.test(origin) : o === origin,
   );
   if (allowed) res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed." });
+  if (req.method !== "POST")
+    return res.status(405).json({ error: "Method not allowed." });
 
-  const { name, email, message } = req.body;
+  const { name, email, message, recaptchaToken } = req.body;
 
   if (!name || !email || !message)
     return res.status(400).json({ error: "All fields are required." });
@@ -49,8 +50,9 @@ module.exports = async (req, res) => {
 
   const isHuman = await verifyRecaptcha(recaptchaToken);
   if (!isHuman)
-    return res.status(400).json({ error: "reCAPTCHA verification failed. Please try again." });
-
+    return res
+      .status(400)
+      .json({ error: "reCAPTCHA verification failed. Please try again." });
 
   const safeName = sanitize(name);
   const safeEmail = validator.normalizeEmail(email);
@@ -70,7 +72,9 @@ module.exports = async (req, res) => {
     await transporter.sendMail({
       from: `"MAPLE LEAF WINDOW FILM" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
-      cc: process.env.GMAIL_CC ? `${process.env.GMAIL_CC},${safeEmail}` : "another@example.com",
+      cc: process.env.GMAIL_CC
+        ? `${process.env.GMAIL_CC},${safeEmail}`
+        : "another@example.com",
       replyTo: safeEmail,
       subject: `✨ New Project Inquiry from ${safeName}`,
       html: `
