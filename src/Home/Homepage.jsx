@@ -1316,72 +1316,80 @@ function HomePage() {
     );
   };
 
-  const BeforeAfterSection = () => {
-    const [position, setPosition] = useState(50);
-    const containerRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const autoPlayRef = useRef(null);
 
-    // Auto-slide effect
-    useEffect(() => {
-      if (isPlaying) {
-        let direction = 1;
-        autoPlayRef.current = setInterval(() => {
-          setPosition((prev) => {
-            let newPos = prev + direction * 0.5;
-            if (newPos >= 95) {
-              direction = -1;
-              newPos = 95;
-            } else if (newPos <= 5) {
-              direction = 1;
-              newPos = 5;
-            }
-            return newPos;
-          });
-        }, 30);
-      }
-      return () => clearInterval(autoPlayRef.current);
-    }, [isPlaying]);
+const BeforeAfterSection = () => {
+  const [position, setPosition] = useState(50);
+  const containerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const autoPlayRef = useRef(null);
 
-    // Handle Drag / Interaction
-    const handleMove = (e) => {
-      if (!isDragging) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      if (x >= 0 && x <= 100) setPosition(x);
-    };
+  // Auto-slide effect
+  useEffect(() => {
+    if (isPlaying) {
+      let direction = 1;
+      autoPlayRef.current = setInterval(() => {
+        setPosition((prev) => {
+          let newPos = prev + direction * 0.5;
+          if (newPos >= 95) {
+            direction = -1;
+            newPos = 95;
+          } else if (newPos <= 5) {
+            direction = 1;
+            newPos = 5;
+          }
+          return newPos;
+        });
+      }, 30);
+    }
+    return () => clearInterval(autoPlayRef.current);
+  }, [isPlaying]);
 
-    const handleStart = () => {
-      setIsDragging(true);
-      setIsPlaying(false); // Pause auto-play when user interacts manually
-    };
+  // Handle Drag / Interaction
+  const handleMove = (e) => {
+    if (!isDragging) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    if (!clientX) return;
+    const x = ((clientX - rect.left) / rect.width) * 100;
+    if (x >= 0 && x <= 100) setPosition(x);
+  };
 
-    const handleEnd = () => {
-      setIsDragging(false);
-    };
+  const handleStart = (e) => {
+    setIsDragging(true);
+    setIsPlaying(false);
+    const rect = containerRef.current.getBoundingClientRect();
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    if (!clientX) return;
+    const x = ((clientX - rect.left) / rect.width) * 100;
+    if (x >= 0 && x <= 100) setPosition(x);
+  };
 
-    // Button Controls Actions
-    const togglePlayPause = () => {
-      setIsPlaying((prev) => !prev);
-    };
+  const handleEnd = () => {
+    setIsDragging(false);
+  };
 
-    const handleReset = () => {
-      setIsPlaying(false);
-      setPosition(50);
-    };
+  const togglePlayPause = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
-    const showBefore = () => {
-      setIsPlaying(false);
-      setPosition(100);
-    };
+  const handleReset = () => {
+    setIsPlaying(false);
+    setPosition(50);
+  };
 
-    const showAfter = () => {
-      setIsPlaying(false);
-      setPosition(0);
-    };
+  const showBefore = () => {
+    setIsPlaying(false);
+    setPosition(100);
+  };
 
-    return (
+  const showAfter = () => {
+    setIsPlaying(false);
+    setPosition(0);
+  };
+
+  return (
+    <>
       <section className="before-after-section">
         <div className="container before-after-inner">
           {/* Left Column: Compact Text */}
@@ -1417,6 +1425,7 @@ function HomePage() {
               onTouchStart={handleStart}
               onTouchEnd={handleEnd}
               onTouchMove={(e) => {
+                if (!isDragging) return;
                 const touch = e.touches[0];
                 const rect = containerRef.current.getBoundingClientRect();
                 const x = ((touch.clientX - rect.left) / rect.width) * 100;
@@ -1489,15 +1498,16 @@ function HomePage() {
             </div>
           </div>
         </div>
+      </section>
 
-        <style>{`
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
           --dark-gold: #b89200;
         }
 
-        .before-after-section { 
+        .before-after-section {
           padding: 60px 0;
           background: #0a0a0a;
           position: relative;
@@ -1532,21 +1542,21 @@ function HomePage() {
           padding: 0 24px;
         }
 
-        .before-after-inner { 
-          display: grid; 
-          grid-template-columns: 0.7fr 1.3fr; 
-          gap: 40px; 
-          align-items: center; 
+        .before-after-inner {
+          display: grid;
+          grid-template-columns: 0.7fr 1.3fr;
+          gap: 40px;
+          align-items: center;
           position: relative;
           z-index: 1;
         }
 
         /* Text Section */
-        .before-after-text .eyebrow { 
-          color: var(--primary-gold); 
-          font-weight: 700; 
-          letter-spacing: 2px; 
-          font-size: 0.8rem; 
+        .before-after-text .eyebrow {
+          color: var(--primary-gold);
+          font-weight: 700;
+          letter-spacing: 2px;
+          font-size: 0.8rem;
           text-transform: uppercase;
           display: flex;
           align-items: center;
@@ -1565,18 +1575,18 @@ function HomePage() {
           100% { transform: rotate(360deg); }
         }
 
-        .before-after-text h2 { 
-          font-size: 2.1rem; 
-          font-weight: 900; 
-          line-height: 1.1; 
-          margin: 6px 0 12px; 
+        .before-after-text h2 {
+          font-size: 2.1rem;
+          font-weight: 900;
+          line-height: 1.1;
+          margin: 6px 0 12px;
           text-transform: uppercase;
           color: #ffffff;
         }
 
-        .before-after-text p { 
-          opacity: 0.7; 
-          margin-bottom: 20px; 
+        .before-after-text p {
+          opacity: 0.7;
+          margin-bottom: 20px;
           color: #cccccc;
           font-size: 0.95rem;
           line-height: 1.45;
@@ -1622,16 +1632,17 @@ function HomePage() {
           width: 100%;
         }
 
-        .before-after-slider { 
-          width: 100%; 
+        .before-after-slider {
+          width: 100%;
           aspect-ratio: 16 / 9;
           min-height: 400px;
-          cursor: ew-resize; 
+          cursor: ew-resize;
           user-select: none;
           border-radius: 16px;
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
           border: 3px solid var(--primary-gold);
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          overflow: hidden;
         }
 
         .before-after-slider:hover {
@@ -1639,15 +1650,16 @@ function HomePage() {
           box-shadow: 0 20px 60px rgba(214, 168, 0, 0.15);
         }
 
-        .ba-container { 
-          width: 100%; 
-          height: 100%; 
-          position: relative; 
-          border-radius: 13px; 
+        .ba-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          border-radius: 13px;
           overflow: hidden;
           background: #000000;
         }
 
+        /* Image placeholders - Replace with your actual images */
         .ba-image-before {
           position: absolute;
           inset: 0;
@@ -1666,6 +1678,15 @@ function HomePage() {
           background-repeat: no-repeat;
         }
 
+        /* Fallback gradients if images don't load */
+        // .ba-image-before {
+        //   background: linear-gradient(145deg, #1a2a3a 0%, #2c4a5e 100%);
+        // }
+
+        // .ba-image-after {
+        //   background: linear-gradient(145deg, #4a3520, #8b6b40);
+        // }
+
         .ba-label {
           position: absolute;
           top: 16px;
@@ -1677,7 +1698,7 @@ function HomePage() {
           letter-spacing: 1.5px;
           z-index: 5;
           pointer-events: none;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
         .ba-label.before {
@@ -1685,7 +1706,7 @@ function HomePage() {
           background: rgba(0, 0, 0, 0.8);
           color: #ffffff;
           backdrop-filter: blur(4px);
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .ba-label.after {
@@ -1693,7 +1714,7 @@ function HomePage() {
           background: var(--primary-gold);
           color: var(--primary-blue);
           backdrop-filter: blur(4px);
-          border: 1px solid rgba(255,255,255,0.2);
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .ba-handle {
@@ -1777,23 +1798,23 @@ function HomePage() {
           font-size: 0.8rem;
         }
 
-        /* Responsive Layout */
+        /* Responsive Layout - Mobile Fix */
         @media (max-width: 992px) {
-          .before-after-inner { 
-            grid-template-columns: 1fr; 
+          .before-after-inner {
+            grid-template-columns: 1fr;
             gap: 30px;
           }
 
-          .before-after-text { 
-            text-align: center; 
+          .before-after-text {
+            text-align: center;
           }
 
           .before-after-text .eyebrow {
             justify-content: center;
           }
 
-          .before-after-text h2 { 
-            font-size: 1.8rem; 
+          .before-after-text h2 {
+            font-size: 1.8rem;
           }
 
           .btn-primary {
@@ -1806,12 +1827,20 @@ function HomePage() {
         }
 
         @media (max-width: 576px) {
-          .before-after-section { 
-            padding: 40px 0; 
+          .before-after-section {
+            padding: 40px 0;
           }
 
-          .before-after-text h2 { 
-            font-size: 1.4rem; 
+          .container {
+            padding: 0 16px;
+          }
+
+          .before-after-inner {
+            gap: 20px;
+          }
+
+          .before-after-text h2 {
+            font-size: 1.4rem;
           }
 
           .before-after-text p {
@@ -1820,12 +1849,18 @@ function HomePage() {
 
           .before-after-slider {
             min-height: 250px;
+            border-radius: 12px;
+            border-width: 2px;
           }
 
-          .handle-circle { 
-            width: 36px; 
-            height: 36px; 
-            font-size: 0.9rem; 
+          .ba-container {
+            border-radius: 10px;
+          }
+
+          .handle-circle {
+            width: 36px;
+            height: 36px;
+            font-size: 0.9rem;
           }
 
           .ba-label {
@@ -1849,11 +1884,41 @@ function HomePage() {
             flex: 1 1 calc(50% - 8px);
             justify-content: center;
           }
+
+          .before-after-section {
+            overflow-x: hidden;
+          }
+
+          .slider-wrapper {
+            max-width: 100%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .container {
+            padding: 0 12px;
+          }
+
+          .before-after-slider {
+            min-height: 200px;
+          }
+
+          .ctrl-btn {
+            font-size: 0.6rem;
+            padding: 5px 8px;
+            flex: 1 1 100%;
+          }
+
+          .ba-label {
+            font-size: 0.5rem;
+            padding: 3px 8px;
+          }
         }
       `}</style>
-      </section>
-    );
-  };
+    </>
+  );
+};
+
 
   const reasons = [
     {
@@ -2152,79 +2217,72 @@ function HomePage() {
     },
   ];
 
-  const FeaturedProjects = () => {
-    const projects = [
-      {
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
-        title: "Residential Privacy Film",
-      },
-      {
-        img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=300&fit=crop",
-        title: "Commercial Heat Control",
-      },
-      {
-        img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop",
-        title: "Storefront Security Film",
-      },
-      {
-        img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
-        title: "Luxury Condo Tinting",
-      },
-      {
-        img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop",
-        title: "Office Decorative Film",
-      },
-      {
-        img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=300&fit=crop",
-        title: "Bird Safety Installation",
-      },
-    ];
+const FeaturedProjects = () => {
+  const projects = [
+    {
+      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
+      title: "Residential Privacy Film",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=300&fit=crop",
+      title: "Commercial Heat Control",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop",
+      title: "Storefront Security Film",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop",
+      title: "Luxury Condo Tinting",
+    },
+    // {
+    //   img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop",
+    //   title: "Office Decorative Film",
+    // },
+    // {
+    //   img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=300&fit=crop",
+    //   title: "Bird Safety Installation",
+    // },
+  ];
 
-    return (
-      <section className="projects-section">
-        <div className="container">
-          <div className="projects-header">
-            <div className="heading-with-lines">
-              <span className="line-left"></span>
-              <h2>FEATURED PROJECTS</h2>
-              <span className="line-right"></span>
-            </div>
-          </div>
-
-          <Swiper
-            spaceBetween={20}
-            slidesPerView={1.2}
-            breakpoints={{
-              768: { slidesPerView: 2.5 },
-              1024: { slidesPerView: 4 },
-            }}
-          >
-            {projects.map((p, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="project-card">
-                  <img src={p.img} alt={p.title} loading="lazy" />
-                  <div className="project-overlay">
-                    <span>{p.title}</span>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div className="projects-footer">
-            <button className="view-all">VIEW ALL PROJECTS →</button>
+  return (
+    <section className="projects-section">
+      <div className="container">
+        <div className="projects-header">
+          <div className="heading-with-lines">
+            <span className="line-left"></span>
+            <h2>FEATURED PROJECTS</h2>
+            <span className="line-right"></span>
           </div>
         </div>
 
-        <style>{`
+        <div className="projects-grid">
+          {projects.map((p, idx) => (
+            <div className="project-card" key={idx}>
+              <img src={p.img} alt={p.title} loading="lazy" />
+              <div className="project-overlay">
+                <span>{p.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="projects-footer">
+          <button className="view-all">VIEW ALL PROJECTS →</button>
+        </div>
+      </div>
+
+      <style>{`
         :root {
           --primary-blue: #07154a;
           --primary-gold: #d6a800;
+          --dark-gold: #b89200;
         }
 
         .projects-section {
           padding: 60px 0;
-          background: #f8f9fa;
+          background: var(--primary-blue);
+          position: relative;
         }
 
         .container {
@@ -2237,7 +2295,7 @@ function HomePage() {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 32px;
+          margin-bottom: 40px;
         }
 
         .heading-with-lines {
@@ -2246,6 +2304,7 @@ function HomePage() {
           justify-content: center;
           gap: 24px;
           width: 100%;
+          max-width: 600px;
         }
 
         .line-left,
@@ -2267,51 +2326,36 @@ function HomePage() {
         .projects-header h2 {
           font-size: 1.6rem;
           font-weight: 800;
-          color: var(--primary-blue);
+          color: #ffffff;
           letter-spacing: 1px;
           text-transform: uppercase;
           margin: 0;
           white-space: nowrap;
         }
 
-        .projects-footer {
-          display: flex;
-          justify-content: center;
-          margin-top: 32px;
-        }
-
-        .view-all {
-          background: var(--primary-blue);
-          color: white;
-          border: none;
-          padding: 12px 36px;
-          border-radius: 4px;
-          font-weight: 700;
-          font-size: 0.85rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-        }
-
-        .view-all:hover {
-          background: var(--primary-gold);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 16px rgba(214, 168, 0, 0.3);
+        /* Grid Layout - Cards */
+        .projects-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
         }
 
         .project-card {
           position: relative;
-          border-radius: 8px;
+          border-radius: 10px;
           overflow: hidden;
           cursor: pointer;
           aspect-ratio: 4/3;
-          background: #e0e0e0;
-          transition: transform 0.3s ease;
+          background: #1a1a2e;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          border: 2px solid rgba(214, 168, 0, 0.15);
         }
 
         .project-card:hover {
-          transform: scale(1.02);
+          transform: translateY(-6px);
+          box-shadow: 0 12px 36px rgba(214, 168, 0, 0.2);
+          border-color: var(--primary-gold);
         }
 
         .project-card img {
@@ -2331,7 +2375,7 @@ function HomePage() {
           left: 0;
           right: 0;
           padding: 20px 16px;
-          background: linear-gradient(to top, rgba(7, 21, 74, 0.9) 0%, transparent 100%);
+          background: linear-gradient(to top, rgba(7, 21, 74, 0.92) 0%, transparent 100%);
           transition: all 0.3s ease;
         }
 
@@ -2341,75 +2385,295 @@ function HomePage() {
           font-size: 0.85rem;
           letter-spacing: 0.5px;
           text-transform: uppercase;
+          display: block;
         }
 
         .project-card:hover .project-overlay {
-          background: linear-gradient(to top, rgba(214, 168, 0, 0.9) 0%, transparent 100%);
+          background: linear-gradient(to top, rgba(214, 168, 0, 0.92) 0%, transparent 100%);
         }
 
         .project-card:hover .project-overlay span {
           color: var(--primary-blue);
         }
 
-        /* Swiper overrides */
-        .swiper-slide {
-          height: auto;
+        .projects-footer {
+          display: flex;
+          justify-content: center;
+          margin-top: 40px;
+        }
+
+        .view-all {
+          background: var(--primary-gold);
+          color: var(--primary-blue);
+          border: 2px solid var(--primary-gold);
+          padding: 14px 42px;
+          border-radius: 6px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+
+        .view-all:hover {
+          background: transparent;
+          color: var(--primary-gold);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(214, 168, 0, 0.25);
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 1200px) {
+          .projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+          }
         }
 
         @media (max-width: 992px) {
+          .projects-section {
+            padding: 50px 0;
+          }
+
+          .container {
+            padding: 0 20px;
+          }
+
+          .heading-with-lines {
+            max-width: 500px;
+            gap: 16px;
+          }
+
           .line-left,
           .line-right {
             max-width: 50px;
           }
 
-          .heading-with-lines {
-            gap: 16px;
+          .projects-header h2 {
+            font-size: 1.4rem;
+          }
+
+          .projects-grid {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 18px;
           }
         }
 
         @media (max-width: 768px) {
-          .projects-header h2 {
-            font-size: 1.3rem;
-            white-space: normal;
+          .projects-section {
+            padding: 40px 0;
+          }
+
+          .container {
+            padding: 0 16px;
+          }
+
+          .projects-header {
+            margin-bottom: 28px;
+          }
+
+          .heading-with-lines {
+            gap: 14px;
+            max-width: 100%;
           }
 
           .line-left,
           .line-right {
-            max-width: 30px;
+            max-width: 35px;
+            min-width: 20px;
           }
 
-          .heading-with-lines {
-            gap: 12px;
+          .projects-header h2 {
+            font-size: 1.2rem;
+            white-space: normal;
+            text-align: center;
+          }
+
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+          }
+
+          .project-card {
+            border-radius: 8px;
+            border-width: 1.5px;
+          }
+
+          .project-overlay {
+            padding: 14px 12px;
+          }
+
+          .project-overlay span {
+            font-size: 0.7rem;
+            letter-spacing: 0.3px;
           }
 
           .view-all {
+            padding: 12px 32px;
+            font-size: 0.8rem;
             width: 100%;
+            max-width: 350px;
             text-align: center;
+          }
+
+          .projects-footer {
+            margin-top: 28px;
           }
         }
 
         @media (max-width: 480px) {
           .projects-section {
-            padding: 40px 0;
+            padding: 30px 0;
           }
 
-          .projects-header h2 {
-            font-size: 1.1rem;
+          .container {
+            padding: 0 12px;
           }
 
-          .line-left,
-          .line-right {
-            max-width: 20px;
+          .projects-header {
+            margin-bottom: 20px;
           }
 
           .heading-with-lines {
             gap: 10px;
           }
+
+          .line-left,
+          .line-right {
+            max-width: 25px;
+            min-width: 15px;
+          }
+
+          .projects-header h2 {
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+          }
+
+          .projects-grid {
+            grid-template-columns: 1fr ;
+            gap: 10px;
+          }
+
+          .project-card {
+            border-radius: 6px;
+            aspect-ratio: 4/3;
+            border-width: 1px;
+          }
+
+          .project-overlay {
+            padding: 10px 10px;
+          }
+
+          .project-overlay span {
+            font-size: 0.6rem;
+            letter-spacing: 0.2px;
+          }
+
+          .view-all {
+            padding: 10px 20px;
+            font-size: 0.7rem;
+            max-width: 100%;
+            border-radius: 4px;
+          }
+
+          .projects-footer {
+            margin-top: 20px;
+          }
         }
+
+        @media (max-width: 360px) {
+          .projects-section {
+            padding: 24px 0;
+          }
+
+          .container {
+            padding: 0 10px;
+          }
+
+          .heading-with-lines {
+            gap: 8px;
+          }
+
+          .line-left,
+          .line-right {
+            max-width: 18px;
+            min-width: 10px;
+          }
+
+          .projects-header h2 {
+            font-size: 0.8rem;
+          }
+
+          .projects-grid {
+            gap: 8px;
+          }
+
+          .project-overlay {
+            padding: 8px 8px;
+          }
+
+          .project-overlay span {
+            font-size: 0.5rem;
+          }
+
+          .view-all {
+            padding: 8px 16px;
+            font-size: 0.6rem;
+          }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) {
+          .project-card:hover {
+            transform: none;
+          }
+
+          .project-card:hover img {
+            transform: none;
+          }
+
+          .project-card:hover .project-overlay {
+            background: linear-gradient(to top, rgba(7, 21, 74, 0.92) 0%, transparent 100%);
+          }
+
+          .project-card:hover .project-overlay span {
+            color: white;
+          }
+
+          .project-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+          }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .project-card {
+          animation: fadeInUp 0.6s ease forwards;
+          opacity: 0;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.05s; }
+        .project-card:nth-child(2) { animation-delay: 0.1s; }
+        .project-card:nth-child(3) { animation-delay: 0.15s; }
+        .project-card:nth-child(4) { animation-delay: 0.2s; }
+        .project-card:nth-child(5) { animation-delay: 0.25s; }
+        .project-card:nth-child(6) { animation-delay: 0.3s; }
       `}</style>
-      </section>
-    );
-  };
+    </section>
+  );
+};
 
   const steps = [
     {
